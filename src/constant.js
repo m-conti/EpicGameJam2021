@@ -1,1 +1,0 @@
-LOOP_INTERVAL = 10;
