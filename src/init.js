@@ -1,12 +1,10 @@
 
 const game = new Game();
 
-let lastLoopTime = 0;
+const app = new PIXI.Application({
+width: window.innerWidth, height: window.innerHeight, backgroundColor: 0x00000, resolution: window.devicePixelRatio || 1,
+});
 
-const cb = (loopTime) => {
-  game.loop(loopTime - lastLoopTime);
-  lastLoopTime = loopTime;
-  window.requestAnimationFrame(cb);
-}
+document.body.appendChild(app.view);
 
-window.requestAnimationFrame(cb);
+app.ticker.add(game.loop)
