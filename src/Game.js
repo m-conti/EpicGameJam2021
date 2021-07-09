@@ -5,7 +5,7 @@ class Game {
 
   }
 
-  loop() {
-    this.entities.forEach((entity) => entity.loop());
+  loop(timeDelta) {
+    this.entities.forEach((entity) => entity.loop(timeDelta));
   }
 }

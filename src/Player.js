@@ -4,4 +4,7 @@ class Player {
 
   }
 
+  loop(timeDelta) {
+
+  }
 }
