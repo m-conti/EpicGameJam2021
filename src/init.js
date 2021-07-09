@@ -1,10 +1,18 @@
 
-const game = new Game();
-
 const app = new PIXI.Application({
 width: window.innerWidth, height: window.innerHeight, backgroundColor: 0x00000, resolution: window.devicePixelRatio || 1,
 });
 
+const container = new PIXI.Container();
+
+app.stage.addChild(container);
+
+window.game = new Game(app);
+
+window.addEventListener('keydown', game.handleInput);
+
 document.body.appendChild(app.view);
 
-app.ticker.add(game.loop)
+game.spawnPlayer();
+
+app.ticker.add(game.loop);
