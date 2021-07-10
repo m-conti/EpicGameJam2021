@@ -1,8 +1,8 @@
 const COLORS = {
     '0': 0x000,
-    '1': 'src/assets/sprites/redsquare.png',
-    '2': 'src/assets/sprites/cyansquare.png',
-    '3': 'src/assets/sprites/cyansquare.png',
+    '1': 0xFF0000,
+    '2': 0x00FF00,
+    '3': 0x0000FF,
 }
 
 class Map {
@@ -38,15 +38,16 @@ class Map {
         for (let x = 0; x < this.dimensions; x++) {
             for (let y = 0; y < this.dimensions; y++) {
                 if (this.map[x][y]) {
-                    let block = new PIXI.Sprite.from(COLORS[this.map[x][y]]);
-                    block.width = 10;
-                    block.height = 10;
+                    let room = new PIXI.Graphics();
 
-                    minimap.addChild(block);
+                    room.beginFill(COLORS[this.map[x][y]]);
+                    room.drawRect(x * 10, y * 10, 10, 10);
+                    room.endFill();
+
+                    minimap.addChild(room);
                 }
             }
         }
-        console.log(minimap)
         return minimap;
     }
 

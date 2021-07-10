@@ -25,6 +25,9 @@ class Hud {
     }
 
     draw() {
+        window.game.map.minimap.x += 1600;
+        window.game.map.minimap.y += 200;
+        hud.addChild(window.game.map.minimap);
         hud.addChild(this.hud);
         hud.addChild(this.lifeBarBox);
         hud.addChild(this.lifeBar);
