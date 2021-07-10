@@ -11,7 +11,6 @@ class Map {
 
         this.dimensions = 15;
         this.generateMap();
-<<<<<<< HEAD
         this.minimap = this.drawMinimap();
         this.mapContainer = this.drawMap();
     }
@@ -35,12 +34,6 @@ class Map {
     }
 
     drawMinimap() {
-=======
-        this.minimap = this.drawMap();
-    }
-
-    drawMap() {
->>>>>>> 44f643eef56e778329bc5419ef21e7e9a25741a2
         let minimap = new PIXI.Container();
         for (let x = 0; x < this.dimensions; x++) {
             for (let y = 0; y < this.dimensions; y++) {
