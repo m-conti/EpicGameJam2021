@@ -17,7 +17,7 @@ class Player extends SpriteEntity {
     const mask = PIXI.Sprite.from(PLAYER_SPRITE_PATH);
     const texture = PIXI.Texture.from(PLAYER_PATTERN_PATH);
     const playerSprite = new PIXI.Sprite(texture);
-    const playerSprite2 = PIXI.Sprite.from(PLAYER_SPRITE_PATH);
+    const playerSprite2 = PIXI.Sprite.from(PLAYER_SPRITE_PATH2);
 
     playerContainer.addChild(mask, playerSprite, playerSprite2);
     // playerSprite.scale = {'x': 2, 'y' :2}

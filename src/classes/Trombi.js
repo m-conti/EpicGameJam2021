@@ -10,7 +10,6 @@ class Trombi {
 
     constructor() {
         this.trombi = new PIXI.Container();
-        this.sprite = PIXI.Sprite.from(TROMBI_SPRITE_PATH1);
         this.textBubble = new PIXI.Graphics();
         this.textTriangle = new PIXI.Graphics();
     }
@@ -18,6 +17,7 @@ class Trombi {
     spawn() {
         app.stage.addChild(this.trombi);
 
+        this.sprite = this.getSprite();
         this.trombi.addChild(this.sprite);
         this.sprite.x = POS_X;
         this.sprite.y = POS_Y;
@@ -54,6 +54,7 @@ class Trombi {
 
     refresh() {
         this.helpText.text = this.getHelpText();
+        this.sprite = this.getSprite();
     }
 
     getHelpText() {
@@ -65,6 +66,16 @@ class Trombi {
             case FLOORS.END: return "MWAHAHA!!! It looks like you finally arrived to the last floor! I bet you're really surprised it's me the boss! I WILL CRUSH YOU!";
 
             default: return;
+        }
+    }
+
+    getSprite() {
+        switch (game.player.floor) {
+            case FLOORS.START, FLOORS.IT: return PIXI.Sprite.from(TROMBI_SPRITE_PATH1);
+            case FLOORS.MARKETING, FLOORS.HR: return PIXI.Sprite.from(TROMBI_SPRITE_PATH2);
+            case FLOORS.END: return PIXI.Sprite.from(TROMBI_SPRITE_PATH3);
+
+            default: return PIXI.Sprite.from(TROMBI_SPRITE_PATH1);
         }
     }
 }
