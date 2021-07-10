@@ -66,6 +66,5 @@ class Game {
     for (const entity of this.entities) {
       entity.tick(timeDelta);
     }
-    this.camera.tick(timeDelta);
   }
 }

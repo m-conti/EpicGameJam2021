@@ -80,7 +80,7 @@ class Player extends SpriteEntity {
     this.x = window.game.map.spawn.x * ROOM_SIZE + (ROOM_SIZE / 2 - this.sprite.width/2);
     this.y = window.game.map.spawn.y * ROOM_SIZE + (ROOM_SIZE / 2 - this.sprite.height/2);
 
-    window.game.camera.reset();
+    window.game.camera.updateCameraFromPlayer(this.originX, this.originY);
   }
 
   tick(timeDelta) {
@@ -100,6 +100,7 @@ class Player extends SpriteEntity {
     // else {
     //   this.move(x, y)
     // }
+    window.game.camera.updateCameraFromPlayer(this.originX, this.originY);
 
     this.power.fire(this.originVector, timeDelta)
     super.tick(timeDelta)
