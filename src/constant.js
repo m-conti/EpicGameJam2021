@@ -14,5 +14,6 @@ const FLOORS = {
   HR: 'HR Department',
   END: 'Big Boss',
 }
-
-const BACKGROUND_COLOR = 0x000000
+const PLAYER_WIDTH = 50
+const PLAYER_HEIGHT = 50
+const BACKGROUND_COLOR = 0xfac049

@@ -1,24 +1,23 @@
 
-class Player extends Entity {
+class Player extends SpriteEntity {
   constructor(x, y) {
-    super(x, y);
 
-    this.width = 50;
-    this.height = 50;
+    super(x, y, PLAYER_WIDTH, PLAYER_HEIGHT);
+
+    this.width = PLAYER_WIDTH;
+    this.height = PLAYER_HEIGHT;
 
     this.moveSpeed = 12;
     this.fireRate = 25;
     this.reload = 0;
 
-    this.graphics = new PIXI.Graphics();
-    this.graphics.moveTo(this.x, this.y);
-    this.graphics.beginFill(0xDE3249);
-    this.graphics.drawRect(0, 0, this.width, this.height);
-    this.graphics.endFill();
-    this.graphics.beginFill(0x00FF00);
-    this.graphics.drawRect(this.width / 2, this.height / 2, this.width / 2, this.height / 2);
-    this.graphics.drawRect(0, 0, this.width / 2, this.height / 2);
-    this.graphics.endFill();
+    const texture = PIXI.Texture.from('src/assets/sprites/cravate.png');
+    const playerSprite = new PIXI.Sprite(texture);
+    playerSprite.anchor.set(0.5);
+    playerSprite.scale.x = 0.1;
+    playerSprite.scale.y = 0.1;
+    this.sprite = playerSprite;
+    app.stage.addChild(playerSprite);
   }
 
   get originX() {
