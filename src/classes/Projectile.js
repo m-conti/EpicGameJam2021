@@ -8,9 +8,9 @@ class Projectile extends SpriteEntity {
   }
 
   onCollide(elementCollided) {
-    this.remove();
     if (this.damage && elementCollided.applyDamage)
       elementCollided.applyDamage(this.damage);
+    this.remove();
   }
 
   tick(timeDelta) {
