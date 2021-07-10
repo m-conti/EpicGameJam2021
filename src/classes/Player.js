@@ -20,7 +20,6 @@ class Player extends SpriteEntity {
         const playerSprite2 = PIXI.Sprite.from(PLAYER_SPRITE_PATH2);
 
         playerContainer.addChild(mask, playerSprite, playerSprite2);
-        // playerSprite.scale = {'x': 2, 'y' :2}
         playerContainer.scale.x = 0.3;
         playerContainer.scale.y = 0.3;
         playerSprite.width = 400;
