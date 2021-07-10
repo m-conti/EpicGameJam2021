@@ -3,9 +3,9 @@ class Game {
   constructor(app) {
     this.app = app;
     this.player = new Player(50, 50);
-    this.wall1 = new Wall(60, 60);
+    //this.wall1 = new Wall(60, 60);
 
-    this.entities = [this.player, this.wall1];
+    this.entities = [this.player];
 
     this.camera = new Camera(this.player);
     this.hud = new Hud();

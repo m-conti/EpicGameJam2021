@@ -24,6 +24,7 @@ const WALL_HEIGHT = 150
 const WALL_SPRITE_PATH = 'src/assets/sprites/wall.png'
 const BACKGROUND_COLOR = 0xfac049
 const PLAYER_SPRITE_PATH = 'src/assets/sprites/cravate.png'
+const PLAYER_PATTERN_PATH = 'src/assets/sprites/pattern.jpg'
 
 
 const ROOM_SIZE = 500;
