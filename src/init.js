@@ -18,4 +18,6 @@ game.spawnPlayer();
 
 game.drawHud();
 
+game.spawnTrombi();
+
 app.ticker.add(game.loop);
