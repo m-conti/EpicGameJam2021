@@ -1,13 +1,4 @@
-const POS_X = innerWidth - 120;
-const POS_Y =  innerHeight - innerHeight / 3;
-const BUBBLE_W = 250;
-const BUBBLE_H = 170;
-const TROMBI_SPRITE_PATH1 = 'src/assets/sprites/enemies/Trombi/Trombi_Phase_Une.png';
-const TROMBI_SPRITE_PATH2 = 'src/assets/sprites/enemies/Trombi/Trombi_Phase_Deux.png';
-const TROMBI_SPRITE_PATH3 = 'src/assets/sprites/enemies/Trombi/Trombi_Phase_Trois.png';
-
 class Trombi {
-
     constructor() {
         this.trombi = new PIXI.Container();
         this.textBubble = new PIXI.Graphics();
@@ -19,23 +10,23 @@ class Trombi {
 
         this.sprite = this.getSprite();
         this.trombi.addChild(this.sprite);
-        this.sprite.x = POS_X;
-        this.sprite.y = POS_Y;
+        this.sprite.x = TROMBI_X;
+        this.sprite.y = TROMBI_Y;
         this.sprite.scale.x = 0.05;
         this.sprite.scale.y = 0.05;
 
         this.trombi.addChild(this.textTriangle);
         this.textTriangle.beginFill(0xFFF9CE);
         this.textTriangle.lineStyle(1, 0xFFF9CE, 1);
-        this.textTriangle.moveTo(POS_X, POS_Y - 5);
-        this.textTriangle.lineTo(POS_X, POS_Y - 20);
-        this.textTriangle.lineTo(POS_X - 20, POS_Y - 20);
-        this.textTriangle.lineTo(POS_X , POS_Y - 5);
+        this.textTriangle.moveTo(TROMBI_X, TROMBI_Y - 5);
+        this.textTriangle.lineTo(TROMBI_X, TROMBI_Y - 20);
+        this.textTriangle.lineTo(TROMBI_X - 20, TROMBI_Y - 20);
+        this.textTriangle.lineTo(TROMBI_X , TROMBI_Y - 5);
         this.textTriangle.endFill(0xFFF9CE);
 
         this.trombi.addChild(this.textBubble);
         this.textBubble.beginFill(0xFFF9CE);
-        this.textBubble.drawRoundedRect(POS_X - BUBBLE_W / 2 - 10, POS_Y - (BUBBLE_H + 20), BUBBLE_W, BUBBLE_H, 20);
+        this.textBubble.drawRoundedRect(TROMBI_X - BUBBLE_W / 2 - 10, TROMBI_Y - (BUBBLE_H + 20), BUBBLE_W, BUBBLE_H, 20);
         this.textBubble.endFill();
 
         this.helpText =  new PIXI.Text(this.getHelpText(), {
@@ -47,8 +38,8 @@ class Trombi {
             wordWrapWidth: 230,
         });
 
-        this.helpText.x = POS_X - BUBBLE_W / 2;
-        this.helpText.y = POS_Y - (BUBBLE_H + 20 - 10);
+        this.helpText.x = TROMBI_X - BUBBLE_W / 2;
+        this.helpText.y = TROMBI_Y - (BUBBLE_H + 20 - 10);
         this.trombi.addChild(this.helpText);
     }
 

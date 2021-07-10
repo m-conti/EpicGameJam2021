@@ -1,4 +1,3 @@
-
 const INPUT_KEYS = {
   UP: 'w',
   DOWN: 's',
@@ -26,6 +25,14 @@ const BACKGROUND_COLOR = 0xfac049
 const PLAYER_SPRITE_PATH = 'src/assets/sprites/cravate.png'
 const PLAYER_SPRITE_PATH2 = 'src/assets/sprites/cravate3.png'
 const PLAYER_PATTERN_PATH = 'src/assets/sprites/pattern.jpg'
+
+const TROMBI_X = innerWidth - 120;
+const TROMBI_Y =  innerHeight - innerHeight / 3;
+const BUBBLE_W = 250;
+const BUBBLE_H = 170;
+const TROMBI_SPRITE_PATH1 = 'src/assets/sprites/enemies/Trombi/Trombi_Phase_Une.png';
+const TROMBI_SPRITE_PATH2 = 'src/assets/sprites/enemies/Trombi/Trombi_Phase_Deux.png';
+const TROMBI_SPRITE_PATH3 = 'src/assets/sprites/enemies/Trombi/Trombi_Phase_Trois.png';
 
 
 const ROOM_SIZE = 500;
