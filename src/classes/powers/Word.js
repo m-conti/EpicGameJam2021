@@ -9,6 +9,7 @@ class WordProjectile extends Projectile {
     text.updateText(); // force it to render to texture inside
     this.sprite = new PIXI.Sprite(text.texture);
     this.sprite.position.set(this.x, this.y);
+    this.damage = 10;
 
     if (this.direction.x > 0) {
       this.sprite.rotation = Math.atan2(this.direction.y, this.direction.x);

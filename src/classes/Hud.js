@@ -72,16 +72,22 @@ class Hud {
     }
 
     drawNbEnemiesLeft(nbEnemies) {
-        let enemiesText = new PIXI.Text(nbEnemies + ' enemies left', {
-            fontFamily: 'Comic Sans MS',
-            fontSize: 20,
-            fill: 0x990201,
-            fontWeight: 400,
-            wordWrap: true,
-            wordWrapWidth: 230,
-        })
-        enemiesText.position.set(500, window.innerHeight - 50);
-        hud.addChild(enemiesText)
+        const text = nbEnemies + ' enemies left';
+        if (!this.enemiesText) {
+            this.enemiesText = new PIXI.Text(text, {
+                fontFamily: 'Comic Sans MS',
+                fontSize: 20,
+                fill: 0x990201,
+                fontWeight: 400,
+                wordWrap: true,
+                wordWrapWidth: 230,
+            })
+            this.enemiesText.position.set(500, window.innerHeight - 50);
+            hud.addChild(this.enemiesText)
+        }
+        else {
+            this.enemiesText.text = text;
+        }
     }
 
     changeFloor(next) {

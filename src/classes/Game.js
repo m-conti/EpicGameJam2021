@@ -34,7 +34,8 @@ class Game {
   }
 
   onEnemyDeath() {
-
+    console.log(`ENEMIES : ${this.enemies.length}`)
+    this.hud.drawNbEnemiesLeft(this.enemies.length);
   }
 
   spawnRandomEnemies() {

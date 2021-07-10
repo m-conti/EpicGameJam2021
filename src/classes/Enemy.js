@@ -53,10 +53,8 @@ class Enemy extends SpriteEntity {
 
   onDeath() {
     // animation death
-    window.game.onEnemyDeath();
-    console.log('ENEMY DEAD');
-
     this.remove();
+    window.game.onEnemyDeath();
   }
 
   fire(timeDelta) {
