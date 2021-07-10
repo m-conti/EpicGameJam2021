@@ -8,6 +8,8 @@ class Player extends Entity {
 
     this.moveSpeed = 12;
 
+    this.health = 100;
+
     this.powers = [
       new WordPower(),
     ];
@@ -24,6 +26,10 @@ class Player extends Entity {
     this.graphics.endFill();
   }
 
+  get isAlive() {
+    return Boolean(this.health);
+  }
+
   get originX() {
     return this.x + this.width / 2;
   }
@@ -38,6 +44,20 @@ class Player extends Entity {
 
   get power() {
     return this.powers[this.powerIndex];
+  }
+
+  applyDamage(damage) {
+    if (!this.isAlive) return;
+
+    this.health = Math.max(this.health - damage, 0);
+
+    if (!this.health) this.onDeath();
+  }
+
+  onDeath() {
+    // animation death
+    console.log('PLAYER DEAD');
+    this.remove();
   }
 
   tick(timeDelta) {

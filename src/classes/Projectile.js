@@ -20,7 +20,8 @@ class Projectile extends Entity {
 
   onCollide(elementCollided) {
     this.remove();
-    elementCollided?.applyDamage(this.damage);
+    if (this.damage && elementCollided.applyDamage)
+      elementCollided.applyDamage(this.damage);
   }
 
   tick(timeDelta) {
