@@ -21,8 +21,8 @@ class Game {
     this.minimapContainer = this.map.drawMinimap();
     this.minimapContainer.x = 1024;
     this.minimapContainer.y = 40;
-    window.game.app.stage.addChild(this.map.mapContainer);
-    window.game.app.stage.addChild(this.minimapContainer);
+    container.addChild(this.map.mapContainer);
+    container.addChild(this.minimapContainer);
     this.player.spawn();
     this.player.respawn();
   }
