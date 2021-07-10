@@ -6,7 +6,7 @@ class Enemy extends Entity {
     this.width = 40;
     this.height = 40;
     this.health = 100;
-
+    this.canCollideWithPlayer = true;
   }
 
   get isAlive() {

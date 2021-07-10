@@ -42,7 +42,7 @@ class Player extends SpriteEntity {
   }
 
   collidesWithEntity = function(entity) {
-    if (entity.canCollideWithPlayer) {
+    if (entity.canCollideWithPlayer && entity.sprite) {
         const maxXEntity = entity.sprite.x + entity.sprite.width;
         const maxYEntity = entity.sprite.y + entity.sprite.height;
 
