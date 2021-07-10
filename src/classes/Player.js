@@ -1,11 +1,12 @@
 
-class Player {
+class Player extends Entity {
   constructor(x, y) {
-    this.x = x;
-    this.y = y;
+    super(x, y);
 
     this.width = 50;
     this.height = 50;
+
+    this.moveSpeed = 2;
 
     this.graphics = new PIXI.Graphics();
 
@@ -14,18 +15,11 @@ class Player {
     this.graphics.endFill();
 
   }
-  
-  spawn() {
-    window.game.app.stage.addChild(this.graphics);
-  }
 
-  move(x, y) {
-    this.x += x;
-    this.y += y;
-  }
-
-  loop(timeDelta) {
-    this.graphics.x = this.x;
-    this.graphics.y = this.y;
+  tick(timeDelta) {
+    const x = ((window.game.inputHandler.keyPressed[INPUT_KEYS.RIGHT] ? 1 : 0) - (window.game.inputHandler.keyPressed[INPUT_KEYS.LEFT] ? 1 : 0)) * this.moveSpeed * timeDelta;
+    const y = ((window.game.inputHandler.keyPressed[INPUT_KEYS.DOWN] ? 1 : 0) - (window.game.inputHandler.keyPressed[INPUT_KEYS.UP] ? 1 : 0)) * this.moveSpeed * timeDelta;
+    this.move(x, y);
+    super.tick(timeDelta);
   }
 }

@@ -7,18 +7,10 @@ class Game {
     this.inputHandler = new InputHandler();
 
     this.loop = this.loop.bind(this);
-    this.handleInput = this.handleInput.bind(this);
   }
 
   addEntity(entity) {
     this.entities.push(entity);
-  }
-
-  handleInput(event) {
-    switch (event.type) {
-      case 'keydown': return this.inputHandler.onKeyDown(event.key);
-      default: console.error(`input not handle: ${event.type}`);
-    }
   }
 
   spawnPlayer() {
@@ -26,7 +18,9 @@ class Game {
   }
 
   loop(timeDelta) {
-    // console.log(`loop with timedelta : ${timeDelta}`);
-    this.entities?.forEach((entity) => entity?.loop(timeDelta));
+    console.log(`loop with timedelta : ${timeDelta}`);
+    for (const entity of this.entities) {
+      entity.tick(timeDelta);
+    }
   }
 }

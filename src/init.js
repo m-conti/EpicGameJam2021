@@ -9,8 +9,6 @@ app.stage.addChild(container);
 
 window.game = new Game(app);
 
-window.addEventListener('keydown', game.handleInput);
-
 document.body.appendChild(app.view);
 
 game.spawnPlayer();
