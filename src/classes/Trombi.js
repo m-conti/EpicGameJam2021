@@ -54,11 +54,11 @@ class Trombi {
 
     getHelpText() {
         switch (game.player.floor) {
-            case FLOORS.RECEPTION: return "Hi I'm Trombi! It looks like you're new here! Let me help you get acquainted with your new family!";
+            case FLOORS.START: return "Hi I'm Trombi! It looks like you're new here! Let me help you get acquainted with your new family!";
             case FLOORS.IT: return "It looks like the IT team is in a bit of a rush at the moment! Tread carefully, you might encounter some bugs!";
             case FLOORS.MARKETING: return "It looks like you need to pay to stop seeing the pop-up ads, you can use my credit card number: 4578 4562 5643 9173";
             case FLOORS.HR: return "It looks like you're with our HR team, don't worry they really nice and competent people, just do as they say!";
-            case FLOORS.BOSS: return "MWAHAHA!!! It looks like you finally arrived to the last floor! I bet you're really surprised it's me the boss! I WILL CRUSH YOU!";
+            case FLOORS.END: return "MWAHAHA!!! It looks like you finally arrived to the last floor! I bet you're really surprised it's me the boss! I WILL CRUSH YOU!";
 
             default: return;
         }
