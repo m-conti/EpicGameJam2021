@@ -25,8 +25,8 @@ const BACKGROUND_COLOR = 0xfac049
 const PLAYER_SPRITE_PATH = 'src/assets/sprites/cravate.png'
 const PLAYER_SPRITE_PATH2 = 'src/assets/sprites/cravate3.png'
 
-const TROMBI_X = innerWidth - 120;
-const TROMBI_Y =  innerHeight - innerHeight / 3;
+const TROMBI_X = innerWidth - 200;
+const TROMBI_Y =  innerHeight - innerHeight / 2;
 const BUBBLE_W = 250;
 const BUBBLE_H = 170;
 const TROMBI_SPRITE_PATH1 = 'src/assets/sprites/enemies/Trombi/Trombi_Phase_Une.png';

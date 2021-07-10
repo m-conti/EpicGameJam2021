@@ -53,7 +53,9 @@ class Game {
   }
 
   spawnTrombi() {
-    this.trombi.spawn();
+    setTimeout(() => {
+      this.trombi.spawn()
+    }, 3000)
   }
 
   gameOver() {
