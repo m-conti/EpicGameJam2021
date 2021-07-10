@@ -5,6 +5,7 @@ class Game {
     this.player = new Player(50, 50);
     this.camera = new Camera(this.player);
     this.entities = [this.player];
+    this.hud = new Hud();
     this.map = new Map("salut");
     this.inputHandler = new InputHandler(app);
 
@@ -23,6 +24,10 @@ class Game {
     window.game.app.stage.addChild(this.map.mapContainer);
     window.game.app.stage.addChild(this.minimapContainer);
     this.player.spawn();
+  }
+
+  drawHud() {
+    this.hud.draw();
   }
 
   loop(timeDelta) {
