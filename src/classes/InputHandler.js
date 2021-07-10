@@ -1,9 +1,13 @@
 
 class InputHandler {
-  constructor() {
+  constructor(app) {
     this.keyPressed = {};
     window.addEventListener('keydown', this.onKeyDown.bind(this));
     window.addEventListener('keyup', this.onKeyUp.bind(this));
+    window.addEventListener('mousedown', this.onMouseDown.bind(this));
+    window.addEventListener('mouseup', this.onMouseUp.bind(this));
+    // app.stage.on('mouseleave', this.onMouseUp.bind(this));
+    console.log(app);
   }
 
   onKeyDown({ key }) {
@@ -19,6 +23,14 @@ class InputHandler {
 
   onKeyUp({ key }) {
     this.keyPressed[key] = false;
+  }
+
+  onMouseDown(event) {
+    this.keyPressed[`mouse${event.button}`] = true;
+  }
+
+  onMouseUp({ button }) {
+    this.keyPressed[`mouse${button}`] = false;
   }
 
   moveUp() {
