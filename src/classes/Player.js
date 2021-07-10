@@ -2,7 +2,6 @@ class Player extends SpriteEntity {
   constructor(x, y) {
 
     super(x, y, PLAYER_WIDTH, PLAYER_HEIGHT);
-
     this.width = PLAYER_WIDTH;
     this.height = PLAYER_HEIGHT;
     this.moveSpeed = 12;
@@ -14,7 +13,6 @@ class Player extends SpriteEntity {
 
     const texture = PIXI.Texture.from(PLAYER_SPRITE_PATH);
     const playerSprite = new PIXI.Sprite(texture);
-    // playerSprite.anchor.set(0.5);
     playerSprite.scale.x = 0.1;
     playerSprite.scale.y = 0.1;
     this.sprite = playerSprite;
