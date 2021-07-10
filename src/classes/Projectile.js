@@ -5,8 +5,6 @@ class Projectile extends SpriteEntity {
     this.moveSpeed = moveSpeed;
     this.direction = direction;
     this.damage = damage;
-    this.width = 80;
-    this.height = 8;
   }
 
   onCollide(elementCollided) {
