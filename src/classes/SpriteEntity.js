@@ -19,5 +19,6 @@ class SpriteEntity extends Entity {
       if (index === -1) return;
       // this.graphics.clear();
       window.game.entities.splice(index, 1);
+      container.removeChild(this.sprite);
     }
 }

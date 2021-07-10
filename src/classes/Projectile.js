@@ -5,6 +5,7 @@ class Projectile extends SpriteEntity {
     this.moveSpeed = moveSpeed;
     this.direction = direction;
     this.damage = damage;
+    this.typeEntity = ENTITY_TYPES.PROJECTILE;
   }
 
   onCollide(elementCollided) {
