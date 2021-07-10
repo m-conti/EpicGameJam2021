@@ -11,6 +11,7 @@ class Entity {
   remove() {
     const index = window.game.entities.indexOf(this);
     if (index === -1) return;
+    this.graphics.clear();
     window.game.entities.splice(index, 1);
   }
 
@@ -20,7 +21,6 @@ class Entity {
   }
 
   tick(timeDelta) {
-    this.graphics.x = this.x;
-    this.graphics.y = this.y;
+    this.graphics.position.set(this.x, this.y);
   }
 }
