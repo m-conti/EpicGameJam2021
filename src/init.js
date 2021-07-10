@@ -1,23 +1,43 @@
-const app = new PIXI.Application({
-    width: window.innerWidth,
-    height: window.innerHeight,
-    backgroundColor: BACKGROUND_COLOR,
+Webcam.set({
+    width: 320,
+    height: 240,
+    image_format: 'jpeg',
+    jpeg_quality: 90
 });
+Webcam.attach('#webcam');
 
-const container = new PIXI.Container();
-const hud = new PIXI.Container();
+function take_snapshot() {
+    Webcam.snap(function (data_uri) {
+        // display results in page
+        document.getElementById('results').innerHTML =
+            '<img id="cam_picture" src="' + data_uri + '"/>';
+    });
+}
 
-app.stage.addChild(container);
-app.stage.addChild(hud);
+function startGame() {
+    document.querySelector("#webcam_container").style.display = 'none';
 
-window.game = new Game(app);
+    window.app = new PIXI.Application({
+        width: window.innerWidth,
+        height: window.innerHeight,
+        backgroundColor: BACKGROUND_COLOR,
+    });
 
-document.body.appendChild(app.view);
+    window.container = new PIXI.Container();
+    window.hud = new PIXI.Container();
 
-game.spawnPlayer();
+    app.stage.addChild(container);
+    app.stage.addChild(hud);
 
-game.drawHud();
+    window.game = new Game(app);
 
-game.spawnTrombi();
+    document.body.appendChild(app.view);
 
-app.ticker.add(game.loop);
+    game.spawnPlayer();
+
+    game.drawHud();
+
+    game.spawnTrombi();
+
+    app.ticker.add(game.loop);
+}
