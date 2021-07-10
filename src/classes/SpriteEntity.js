@@ -8,7 +8,7 @@ class SpriteEntity extends Entity {
     }
     
     spawn() {
-      window.game.app.stage.addChild(this.sprite)
+      container.addChild(this.sprite)
       this.sprite.position.set(this.x, this.y)
     }
 

@@ -13,7 +13,8 @@ class Wall extends SpriteEntity {
       wallSprite.scale.x = 0.1;
       wallSprite.scale.y = 0.1;
       this.sprite = wallSprite;
-      app.stage.addChild(wallSprite);
+      // app.stage.addChild(wallSprite);
+      container.addChild(wallSprite);
     }
   
     tick() {
