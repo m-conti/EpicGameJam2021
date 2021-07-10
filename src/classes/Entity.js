@@ -4,9 +4,9 @@ class Entity {
     this.y = y;
   }
 
-  spawn() {
-    window.game.app.stage.addChild(this.graphics);
-  }
+    spawn() {
+        container.addChild(this.graphics);
+    }
 
   remove() {
     const index = window.game.entities.indexOf(this);

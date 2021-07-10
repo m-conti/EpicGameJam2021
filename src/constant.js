@@ -5,7 +5,9 @@ const INPUT_KEYS = {
   LEFT: 'a',
   RIGHT: 'd',
   FIRE: 'mouse0',
-}
+  INCREMENT_POWER: 'v',
+  DECREMENT_POWER: 'c',
+};
 
 const FLOORS = {
   START: 'Welcome',
@@ -17,3 +19,5 @@ const FLOORS = {
 const PLAYER_WIDTH = 50
 const PLAYER_HEIGHT = 50
 const BACKGROUND_COLOR = 0xfac049
+
+const ROOM_SIZE = 500;

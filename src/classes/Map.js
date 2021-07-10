@@ -11,10 +11,29 @@ class Map {
 
         this.dimensions = 15;
         this.generateMap();
-        this.minimap = this.drawMap();
+        this.minimap = this.drawMinimap();
+        this.mapContainer = this.drawMap();
     }
 
     drawMap() {
+        let mapContainer = new PIXI.Container();
+        for (let x = 0; x < this.dimensions; x++) {
+            for (let y = 0; y < this.dimensions; y++) {
+                if (this.map[x][y]) {
+                    let room = new PIXI.Graphics();
+
+                    room.beginFill(COLORS[this.map[x][y]]);
+                    room.drawRect(x * ROOM_SIZE, y * ROOM_SIZE, ROOM_SIZE, ROOM_SIZE);
+                    room.endFill();
+
+                    mapContainer.addChild(room);
+                }
+            }
+        }
+        return mapContainer;
+    }
+
+    drawMinimap() {
         let minimap = new PIXI.Container();
         for (let x = 0; x < this.dimensions; x++) {
             for (let y = 0; y < this.dimensions; y++) {
@@ -55,6 +74,10 @@ class Map {
             randomDirection;
 
         this.map[currentRow][currentColumn] = 2;
+        this.spawn = {
+            'x': currentRow,
+            'y': currentColumn,
+        };
         while (maxTunnels > 0 && this.dimensions && maxLength) {
             do {
                 randomDirection = directions[Math.floor(Math.random() * directions.length)];
@@ -87,5 +110,9 @@ class Map {
             }
         }
         this.map[currentRow][currentColumn] = 3;
+        this.exit = {
+            'x': currentRow,
+            'y': currentColumn,
+        };
     }
 }

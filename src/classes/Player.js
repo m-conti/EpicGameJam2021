@@ -9,18 +9,27 @@ class Player extends SpriteEntity {
 
     this.moveSpeed = 12;
 
+    this.health = 100;
+
     this.powers = [
       new WordPower(),
+      new ExcelPower()
     ];
     this.powerIndex = 0;
 
-    const texture = PIXI.Texture.from('src/assets/sprites/cravate.png');
-    const playerSprite = new PIXI.Sprite(texture);
-    playerSprite.anchor.set(0.5);
-    playerSprite.scale.x = 0.1;
-    playerSprite.scale.y = 0.1;
-    this.sprite = playerSprite;
-    app.stage.addChild(playerSprite);
+    this.graphics = new PIXI.Graphics();
+    this.graphics.moveTo(this.x, this.y);
+    this.graphics.beginFill(0xFFAAAA);
+    this.graphics.drawRect(0, 0, this.width, this.height);
+    this.graphics.endFill();
+    this.graphics.beginFill(0x00FF00);
+    this.graphics.drawRect(this.width / 2, this.height / 2, this.width / 2, this.height / 2);
+    this.graphics.drawRect(0, 0, this.width / 2, this.height / 2);
+    this.graphics.endFill();
+  }
+
+  get isAlive() {
+    return Boolean(this.health);
   }
 
   get originX() {
@@ -65,8 +74,8 @@ class Player extends SpriteEntity {
     this.x = window.game.map.spawn.x * ROOM_SIZE + (ROOM_SIZE / 2 - this.width/2);
     this.y = window.game.map.spawn.y * ROOM_SIZE + (ROOM_SIZE / 2 - this.height/2);
 
-    container.x = -window.game.map.spawn.x * ROOM_SIZE + window.game.app.renderer.width / 2;
-    container.y = -window.game.map.spawn.y * ROOM_SIZE + window.game.app.renderer.height / 2;
+    window.game.app.stage.x = -window.game.map.spawn.x * ROOM_SIZE + window.game.app.renderer.width / 2;
+    window.game.app.stage.y = -window.game.map.spawn.y * ROOM_SIZE + window.game.app.renderer.height / 2;
   }
 
   tick(timeDelta) {
