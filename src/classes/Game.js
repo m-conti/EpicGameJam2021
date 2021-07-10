@@ -4,6 +4,7 @@ class Game {
     this.app = app;
     this.player = new Player(50, 50);
     this.entities = [this.player];
+    this.map = new Map("salut");
     this.inputHandler = new InputHandler(app);
 
     this.loop = this.loop.bind(this);
@@ -14,6 +15,10 @@ class Game {
   }
 
   spawnPlayer() {
+    this.minimapContainer = this.map.drawMap();
+    this.minimapContainer.x = 1024;
+    this.minimapContainer.y = 40;
+    window.game.app.stage.addChild(this.minimapContainer);
     this.player.spawn();
   }
 
