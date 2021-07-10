@@ -15,7 +15,7 @@ class Player extends Entity {
 
     this.graphics = new PIXI.Graphics();
     this.graphics.moveTo(this.x, this.y);
-    this.graphics.beginFill(0xDE3249);
+    this.graphics.beginFill(0xFFAAAA);
     this.graphics.drawRect(0, 0, this.width, this.height);
     this.graphics.endFill();
     this.graphics.beginFill(0x00FF00);
@@ -38,6 +38,14 @@ class Player extends Entity {
 
   get power() {
     return this.powers[this.powerIndex];
+  }
+
+  respawn() {
+    this.x = window.game.map.spawn.x * ROOM_SIZE + (ROOM_SIZE / 2 - this.width/2);
+    this.y = window.game.map.spawn.y * ROOM_SIZE + (ROOM_SIZE / 2 - this.height/2);
+
+    window.game.app.stage.x = -window.game.map.spawn.x * ROOM_SIZE + window.game.app.renderer.width / 2;
+    window.game.app.stage.y = -window.game.map.spawn.y * ROOM_SIZE + window.game.app.renderer.height / 2;
   }
 
   tick(timeDelta) {

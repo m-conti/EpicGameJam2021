@@ -1,6 +1,5 @@
-
 const app = new PIXI.Application({
-width: window.innerWidth, height: window.innerHeight, backgroundColor: BACKGROUND_COLOR, resolution: window.devicePixelRatio || 1,
+    width: 600, height: 600, backgroundColor: BACKGROUND_COLOR, resolution: 1,
 });
 
 const container = new PIXI.Container();

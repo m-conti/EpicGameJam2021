@@ -8,3 +8,5 @@ const INPUT_KEYS = {
 }
 
 const BACKGROUND_COLOR = 0x000000
+
+const ROOM_SIZE = 500;
