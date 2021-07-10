@@ -44,7 +44,7 @@ class Hud {
         this.lifeBar.y = window.innerHeight + 90;
         this.lifeBar.scale.set(0.1);
         this.lifeBar.rotation = 4.71239; 
-        hud.addChild(this.lifeBar);       
+        hud.addChild(this.lifeBar);        
     }
 
     drawNbEnemiesLeft(nbEnemies) {
@@ -69,6 +69,9 @@ class Hud {
             wordWrap: true,
             wordWrapWidth: 230,
         })
+        window.game.map.minimap.x += 1600;
+        window.game.map.minimap.y += 200;
+        hud.addChild(window.game.map.minimap);
 
         hud.addChild(this.hud);
         this.drawLifeBar(player.health)

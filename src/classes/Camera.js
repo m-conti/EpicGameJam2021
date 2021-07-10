@@ -10,11 +10,9 @@ class Camera {
         container.y = -this.y;
     }
 
-    tick(timeDelta) {
-        const x = ((window.game.inputHandler.keyPressed[INPUT_KEYS.RIGHT] ? 1 : 0) - (window.game.inputHandler.keyPressed[INPUT_KEYS.LEFT] ? 1 : 0)) * this.moveSpeed * timeDelta;
-        const y = ((window.game.inputHandler.keyPressed[INPUT_KEYS.DOWN] ? 1 : 0) - (window.game.inputHandler.keyPressed[INPUT_KEYS.UP] ? 1 : 0)) * this.moveSpeed * timeDelta;
-        this.x += x;
-        this.y += y;
+    updateCameraFromPlayer(x, y) {
+        this.x = x - window.game.app.renderer.width / 2;
+        this.y = y - window.game.app.renderer.height / 2;
         container.x = -this.x;
         container.y = -this.y;
     }
