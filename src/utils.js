@@ -1,5 +1,10 @@
 
-const getMousePos = () => window.game.app.renderer.plugins.interaction.mouse.global;
+const getMousePos = () => {
+  const { x, y } = window.game.app.renderer.plugins.interaction.mouse.global;
+  const origin = window.game.camera;
+
+  return { x: x + origin.x, y: y + origin.y };
+};
 
 const getFireVector = (source, target) => {
   const x = (target.x - source.x);

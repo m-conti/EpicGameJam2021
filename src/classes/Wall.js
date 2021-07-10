@@ -10,7 +10,6 @@ class Wall extends SpriteEntity {
   
       const texture = PIXI.Texture.from('src/assets/sprites/wall.png');
       const wallSprite = new PIXI.Sprite(texture);
-      // wallSprite.anchor.set(0.5);
       wallSprite.scale.x = 0.1;
       wallSprite.scale.y = 0.1;
       this.sprite = wallSprite;

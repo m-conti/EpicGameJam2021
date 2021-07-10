@@ -1,4 +1,3 @@
-
 const app = new PIXI.Application({
     width: window.innerWidth,
     height: window.innerHeight,
@@ -14,5 +13,7 @@ window.game = new Game(app);
 document.body.appendChild(app.view);
 
 game.spawnPlayer();
+
+game.drawHud();
 
 app.ticker.add(game.loop);

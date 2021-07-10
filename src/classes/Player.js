@@ -6,17 +6,25 @@ class Player extends SpriteEntity {
     this.height = PLAYER_HEIGHT;
     this.moveSpeed = 12;
 
+    this.health = 100;
+
     this.powers = [
       new WordPower(),
+      new ExcelPower()
     ];
     this.powerIndex = 0;
 
     const texture = PIXI.Texture.from(PLAYER_SPRITE_PATH);
     const playerSprite = new PIXI.Sprite(texture);
+    playerSprite.anchor.set(0.5);
     playerSprite.scale.x = 0.1;
     playerSprite.scale.y = 0.1;
     this.sprite = playerSprite;
     app.stage.addChild(playerSprite);
+  }
+
+  get isAlive() {
+    return Boolean(this.health);
   }
 
   get originX() {
@@ -41,11 +49,40 @@ class Player extends SpriteEntity {
         const maxYEntity = entity.sprite.y + entity.sprite.height;
 
         return (
-            (this.sprite.x <= maxXEntity && ((this.sprite.x + this.sprite.width) >= entity.sprite.x) ) &&
-            (this.sprite.y <= maxYEntity && ((this.sprite.y + this.sprite.height) >= entity.sprite.y) )
+            ((this.sprite.x - this.sprite.width / 2) <= maxXEntity && ((this.sprite.x + this.sprite.width / 2) >= entity.sprite.x) ) &&
+            ((this.sprite.y - this.sprite.height / 2) <= maxYEntity && ((this.sprite.y + this.sprite.height / 2) >= entity.sprite.y) )
         )
     }
     return false
+  }
+
+  incrementPower() {
+    this.powerIndex = (this.powerIndex + 1) % this.powers.length;
+  }
+
+  decrementPower() {
+    this.powerIndex = (this.powerIndex + this.powers.length - 1) % this.powers.length;
+  }
+
+  applyDamage(damage) {
+    if (!this.isAlive) return;
+
+    this.health = Math.max(this.health - damage, 0);
+
+    if (!this.health) this.onDeath();
+  }
+
+  onDeath() {
+    // animation death
+    console.log('PLAYER DEAD');
+    this.remove();
+  }
+
+  respawn() {
+    this.x = window.game.map.spawn.x * ROOM_SIZE + (ROOM_SIZE / 2 - this.width/2);
+    this.y = window.game.map.spawn.y * ROOM_SIZE + (ROOM_SIZE / 2 - this.height/2);
+
+    window.game.camera.reset();
   }
 
   tick(timeDelta) {
