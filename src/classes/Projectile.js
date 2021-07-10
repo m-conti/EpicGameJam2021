@@ -6,14 +6,16 @@ class Projectile extends Entity {
     this.direction = direction;
     this.damage = damage;
 
-    this.width = 5;
-    this.height = 5;
+    this.width = 80;
+    this.height = 8;
 
     this.graphics = new PIXI.Graphics();
 
+    this.graphics.moveTo(this.x, this.y);
     this.graphics.beginFill(0xDE3249);
-    this.graphics.drawRect(this.x, this.y, this.x + this.width, this.y + this.height);
+    this.graphics.drawRect(0, 0, this.width, this.height);
     this.graphics.endFill();
+    this.graphics.rotation = Math.atan2(-direction.y, -direction.x);
   }
 
   onCollide(elementCollided) {

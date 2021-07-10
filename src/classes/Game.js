@@ -28,7 +28,6 @@ class Game {
   }
 
   loop(timeDelta) {
-    // console.log(`loop with timedelta : ${timeDelta}`);
     for (const entity of this.entities) {
       entity.tick(timeDelta);
     }
