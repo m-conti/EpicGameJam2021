@@ -4,4 +4,5 @@ const INPUT_KEYS = {
   DOWN: 's',
   LEFT: 'a',
   RIGHT: 'd',
+  FIRE: 'mouse0',
 }
