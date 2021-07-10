@@ -1,4 +1,3 @@
-
 class Player extends SpriteEntity {
   constructor(x, y) {
 
@@ -6,7 +5,6 @@ class Player extends SpriteEntity {
 
     this.width = PLAYER_WIDTH;
     this.height = PLAYER_HEIGHT;
-
     this.moveSpeed = 12;
 
     this.powers = [
@@ -14,9 +12,9 @@ class Player extends SpriteEntity {
     ];
     this.powerIndex = 0;
 
-    const texture = PIXI.Texture.from('src/assets/sprites/cravate.png');
+    const texture = PIXI.Texture.from(PLAYER_SPRITE_PATH);
     const playerSprite = new PIXI.Sprite(texture);
-    playerSprite.anchor.set(0.5);
+    // playerSprite.anchor.set(0.5);
     playerSprite.scale.x = 0.1;
     playerSprite.scale.y = 0.1;
     this.sprite = playerSprite;
@@ -39,11 +37,38 @@ class Player extends SpriteEntity {
     return this.powers[this.powerIndex];
   }
 
+  collidesWithEntity = function(entity) {
+    if (entity.canCollideWithPlayer) {
+        const maxXEntity = entity.sprite.x + entity.sprite.width;
+        const maxYEntity = entity.sprite.y + entity.sprite.height;
+
+        return (
+            (this.sprite.x <= maxXEntity && ((this.sprite.x + this.sprite.width) >= entity.sprite.x) ) &&
+            (this.sprite.y <= maxYEntity && ((this.sprite.y + this.sprite.height) >= entity.sprite.y) )
+        )
+    }
+    return false
+  }
+
   tick(timeDelta) {
     const x = ((window.game.inputHandler.keyPressed[INPUT_KEYS.RIGHT] ? 1 : 0) - (window.game.inputHandler.keyPressed[INPUT_KEYS.LEFT] ? 1 : 0)) * this.moveSpeed * timeDelta;
     const y = ((window.game.inputHandler.keyPressed[INPUT_KEYS.DOWN] ? 1 : 0) - (window.game.inputHandler.keyPressed[INPUT_KEYS.UP] ? 1 : 0)) * this.moveSpeed * timeDelta;
-    this.move(x, y);
-    this.power.fire(this.originVector, timeDelta);
-    super.tick(timeDelta);
+    
+    const prevX = this.sprite.x
+    const prevY = this.sprite.y
+
+    this.sprite.position.set(this.sprite.x + x, this.sprite.y + y)
+    this.move(x, y)
+
+    if (window.game.entities?.some(entity => this.collidesWithEntity(entity))) {
+      this.sprite.position.set(prevX, prevY)
+      this.moveTo(prevX, prevY)
+    }
+    // else {
+    //   this.move(x, y)
+    // }
+
+    this.power.fire(this.originVector, timeDelta)
+    super.tick(timeDelta)
   }
 }

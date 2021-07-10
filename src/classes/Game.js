@@ -2,8 +2,12 @@
 class Game {
   constructor(app) {
     this.app = app;
+    this.bump = new Bump(PIXI);
     this.player = new Player(50, 50);
-    this.entities = [this.player];
+    this.wall1 = new Wall(300, 300);
+
+    this.entities = [this.player, this.wall1];
+
     this.map = new Map("salut");
     this.inputHandler = new InputHandler(app);
 
