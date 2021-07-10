@@ -19,9 +19,8 @@ class EnemyCV extends Enemy {
     super(x, y);
     this.fireRate = 10;
     this.targetRange = 1000;
-
     this.health = 20;
-
+    
     const texture = PIXI.Texture.from(CV_SPRITE_PATH);
     const enemySprite = new PIXI.Sprite(texture);
     enemySprite.scale.x = 0.1;

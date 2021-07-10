@@ -19,9 +19,7 @@ class EnemyMail extends Enemy {
     super(x, y);
     this.fireRate = 14;
     this.targetRange = 1000;
-
     this.health = 50;
-
     const texture = PIXI.Texture.from(MAIL_SPRITE_PATH);
     const enemySprite = new PIXI.Sprite(texture);
     enemySprite.scale.x = 0.1;

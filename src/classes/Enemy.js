@@ -6,13 +6,7 @@ class Enemy extends SpriteEntity {
     this.height = 40;
     this.health = 100;
     this.canCollideWithPlayer = true;
-    
-    // const texture = PIXI.Texture.from(ENEMY_SPRITE_PATH);
-    // const enemySprite = new PIXI.Sprite(texture);
-    // enemySprite.scale.x = 0.1;
-    // enemySprite.scale.y = 0.1;
-    // this.sprite = enemySprite;
-    // app.stage.addChild(enemySprite);
+
     this.direction = 0;
     this.moveSpeed = 5;
 
