@@ -1,4 +1,4 @@
-class Ennemy extends Entity {
+class Enemy extends Entity {
   constructor(x, y) {
     super(x, y);
     
@@ -19,7 +19,7 @@ class Ennemy extends Entity {
 
   onDeath() {
     // animation death
-    console.log('ENNEMY DEAD');
+    console.log('ENEMY DEAD');
     this.remove();
   }
 }
