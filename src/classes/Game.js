@@ -15,7 +15,10 @@ class Game {
   }
 
   spawnPlayer() {
-    window.game.app.stage.addChild(this.map.drawMap());
+    this.minimapContainer = this.map.drawMap();
+    this.minimapContainer.x = 1024;
+    this.minimapContainer.y = 40;
+    window.game.app.stage.addChild(this.minimapContainer);
     this.player.spawn();
   }
 
