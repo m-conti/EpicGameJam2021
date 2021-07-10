@@ -1,5 +1,7 @@
 const app = new PIXI.Application({
-width: window.innerWidth, height: window.innerHeight, backgroundColor: BACKGROUND_COLOR,
+    width: window.innerWidth,
+    height: window.innerHeight,
+    backgroundColor: BACKGROUND_COLOR,
 });
 
 const container = new PIXI.Container();
@@ -15,5 +17,7 @@ document.body.appendChild(app.view);
 game.spawnPlayer();
 
 game.drawHud();
+
+game.spawnTrombi();
 
 app.ticker.add(game.loop);
