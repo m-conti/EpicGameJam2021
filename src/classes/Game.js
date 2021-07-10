@@ -55,7 +55,7 @@ class Game {
   }
 
   drawHud() {
-    this.hud.draw();
+    this.hud.draw(this.player, this.enemies);
   }
 
   spawnTrombi() {

@@ -2,8 +2,8 @@ class Hud {
     constructor(player) {
         this.hud = new PIXI.Container();
         this.floor = FLOORS.START;
+        this.life = player.health;
 
-        this.drawLifeBar(20);
         this.drawSetting();
     }
 
@@ -18,6 +18,17 @@ class Hud {
     }
 
     drawLifeBar(health) {
+        let lifePercentage = new PIXI.Text(health + '%',  {
+            fontFamily: 'Comic Sans MS',
+            fontSize: 20,
+            fill: 0x990201,
+            fontWeight: 400,
+            wordWrap: true,
+            wordWrapWidth: 230,
+        })
+        lifePercentage.position.set(360, window.innerHeight - 50);
+        hud.addChild(lifePercentage)
+
         if (health === 0) {
             this.lifeBar = PIXI.Sprite.from(textures.life0);
         } else if (health <= 25) {
@@ -29,25 +40,46 @@ class Hud {
         } else {
             this.lifeBar = PIXI.Sprite.from(textures.life4);
         }
-        let lifePercentage = new PIXI.Text(health + '%',  {fontSize: 20, fill: 0xFFFFFF})
-        lifePercentage.position.set(360, window.innerHeight - 50);
-        hud.addChild(lifePercentage)
-        console.log(window.innerHeight);
         this.lifeBar.x = 0;
         this.lifeBar.y = window.innerHeight + 90;
         this.lifeBar.scale.set(0.1);
-        this.lifeBar.rotation = 4.71239;
+        this.lifeBar.rotation = 4.71239; 
+        hud.addChild(this.lifeBar);       
     }
 
-    draw() {
-        let floorText = new PIXI.Text(this.floor, {fontSize: 20, fill: 0xFFFFFF})
+    drawNbEnemiesLeft(nbEnemies) {
+        let enemiesText = new PIXI.Text(nbEnemies + ' enemies left', {
+            fontFamily: 'Comic Sans MS',
+            fontSize: 20,
+            fill: 0x990201,
+            fontWeight: 400,
+            wordWrap: true,
+            wordWrapWidth: 230,
+        })
+        enemiesText.position.set(500, window.innerHeight - 50);
+        hud.addChild(enemiesText)
+    }
+
+    draw(player, enemies) {
+        let floorText = new PIXI.Text(this.floor, {
+            fontFamily: 'Comic Sans MS',
+            fontSize: 20,
+            fill: 0x990201,
+            fontWeight: 400,
+            wordWrap: true,
+            wordWrapWidth: 230,
+        })
 
         hud.addChild(this.hud);
-        hud.addChild(this.lifeBar);
+        this.drawLifeBar(player.health)
+        console.log(enemies.length)
+        this.drawNbEnemiesLeft(enemies.length)
+        
         floorText.position.set(10, 5);
         hud.addChild(this.settings);
         hud.addChild(floorText);
     }
+
     changeFloor(next) {
         this.floor = FLOORS[next];
     }
