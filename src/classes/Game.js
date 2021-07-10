@@ -5,7 +5,7 @@ class Game {
     this.player = new Player(50, 50);
     this.camera = new Camera(this.player);
     this.entities = [this.player];
-    this.hud = new Hud();
+    this.hud = new Hud(this.player);
     this.map = new Map("salut");
     this.inputHandler = new InputHandler(app);
 
