@@ -26,3 +26,9 @@ const PLAYER_SPRITE_PATH = 'src/assets/sprites/cravate.png'
 
 
 const ROOM_SIZE = 500;
+
+const ENEMY_LIST = [
+  EnemyCV,
+  EnemyMail,
+  EnemyPhone,
+]

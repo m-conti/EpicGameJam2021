@@ -1,7 +1,8 @@
-class Ennemy extends Entity {
-  constructor() {
-    super();
+class Enemy extends Entity {
+  constructor(x, y) {
+    super(x, y);
     
+    this.graphics = new PIXI.Graphics();
     this.health = 100;
 
   }
@@ -19,7 +20,7 @@ class Ennemy extends Entity {
 
   onDeath() {
     // animation death
-    console.log('ENNEMY DEAD');
+    console.log('ENEMY DEAD');
     this.remove();
   }
 }
