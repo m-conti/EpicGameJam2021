@@ -2,12 +2,15 @@ const POS_X = innerWidth - 120;
 const POS_Y =  innerHeight - innerHeight / 3;
 const BUBBLE_W = 250;
 const BUBBLE_H = 170;
+const TROMBI_SPRITE_PATH1 = 'src/assets/sprites/enemies/Trombi/Trombi_Phase_Une.png';
+const TROMBI_SPRITE_PATH2 = 'src/assets/sprites/enemies/Trombi/Trombi_Phase_Deux.png';
+const TROMBI_SPRITE_PATH3 = 'src/assets/sprites/enemies/Trombi/Trombi_Phase_Trois.png';
 
 class Trombi {
 
     constructor() {
         this.trombi = new PIXI.Container();
-        this.sprite = new PIXI.Graphics();
+        this.sprite = PIXI.Sprite.from(TROMBI_SPRITE_PATH1);
         this.textBubble = new PIXI.Graphics();
         this.textTriangle = new PIXI.Graphics();
     }
@@ -16,9 +19,10 @@ class Trombi {
         app.stage.addChild(this.trombi);
 
         this.trombi.addChild(this.sprite);
-        this.sprite.beginFill(0x0504AA);
-        this.sprite.drawRect(POS_X, POS_Y, 40, 70);
-        this.sprite.endFill();
+        this.sprite.x = POS_X;
+        this.sprite.y = POS_Y;
+        this.sprite.scale.x = 0.05;
+        this.sprite.scale.y = 0.05;
 
         this.trombi.addChild(this.textTriangle);
         this.textTriangle.beginFill(0xFFF9CE);
