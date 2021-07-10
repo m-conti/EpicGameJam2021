@@ -11,6 +11,7 @@ class Game {
     this.hud = new Hud();
     this.map = new Map("salut");
     this.inputHandler = new InputHandler(app);
+    this.trombi = new Trombi();
 
     this.loop = this.loop.bind(this);
   }
@@ -46,6 +47,10 @@ class Game {
 
   drawHud() {
     this.hud.draw();
+  }
+
+  spawnTrombi() {
+    this.trombi.spawn();
   }
 
   loop(timeDelta) {
