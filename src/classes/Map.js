@@ -20,13 +20,13 @@ class Map {
         for (let x = 0; x < this.dimensions; x++) {
             for (let y = 0; y < this.dimensions; y++) {
                 if (this.map[x][y]) {
-                    let block = new PIXI.Graphics();
+                    let room = new PIXI.Graphics();
 
-                    block.beginFill(COLORS[this.map[x][y]]);
-                    block.drawRect(x * 400, y * 400, 400, 400);
-                    block.endFill();
+                    room.beginFill(COLORS[this.map[x][y]]);
+                    room.drawRect(x * ROOM_SIZE, y * ROOM_SIZE, ROOM_SIZE, ROOM_SIZE);
+                    room.endFill();
 
-                    mapContainer.addChild(block);
+                    mapContainer.addChild(room);
                 }
             }
         }
@@ -75,6 +75,10 @@ class Map {
             randomDirection;
 
         this.map[currentRow][currentColumn] = 2;
+        this.spawn = {
+            'x': currentRow,
+            'y': currentColumn,
+        };
         while (maxTunnels > 0 && this.dimensions && maxLength) {
             do {
                 randomDirection = directions[Math.floor(Math.random() * directions.length)];
@@ -107,5 +111,9 @@ class Map {
             }
         }
         this.map[currentRow][currentColumn] = 3;
+        this.exit = {
+            'x': currentRow,
+            'y': currentColumn,
+        };
     }
 }

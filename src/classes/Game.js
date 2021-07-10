@@ -24,6 +24,7 @@ class Game {
     window.game.app.stage.addChild(this.map.mapContainer);
     window.game.app.stage.addChild(this.minimapContainer);
     this.player.spawn();
+    this.player.respawn();
   }
 
   drawHud() {
