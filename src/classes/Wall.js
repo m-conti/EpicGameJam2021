@@ -7,6 +7,7 @@ class Wall extends SpriteEntity {
       this.width = WALL_WIDTH;
       this.height = WALL_HEIGHT;
       this.canCollideWithPlayer = true;
+      this.typeEntity = ENTITY_TYPES.WALL
   
       const texture = PIXI.Texture.from(WALL_SPRITE_PATH);
       const wallSprite = new PIXI.Sprite(texture);

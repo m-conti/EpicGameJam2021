@@ -25,6 +25,7 @@ const WALL_SPRITE_PATH = 'src/assets/sprites/wall.png'
 const BACKGROUND_COLOR = 0xfac049
 const PLAYER_SPRITE_PATH = 'src/assets/sprites/cravate.png'
 
+const WORDSHOT_SQUARE = 30
 const BORDER_ROOM_SPRITE_PATH = 'src/assets/sprites/wall.png'
 
 const ROOM_SIZE = 500;
@@ -40,3 +41,11 @@ const ENEMY_LIST = [
   EnemyMail,
   EnemyPhone,
 ]
+
+const ENTITY_TYPES = {
+  PLAYER: 'player',
+  WALL: 'wall',
+  PROJECTILE: 'projectile'
+}
+
+const ENEMY_SPRITE_PATH = 'src/assets/sprites/enemies/Phone/Phone_Frame_1.png'

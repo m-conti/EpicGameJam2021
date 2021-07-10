@@ -1,6 +1,8 @@
 class Player extends SpriteEntity {
   constructor(x, y) {
     super(x, y);
+
+    this.typeEntity = ENTITY_TYPES.PLAYER
     this.moveSpeed = 12;
     this.floor = FLOORS.START;
 

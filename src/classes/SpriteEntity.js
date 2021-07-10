@@ -13,4 +13,11 @@ class SpriteEntity extends Entity {
     tick(timeDelta) {
         this.sprite.position.set(this.x, this.y)
     }
+
+    remove() {
+      const index = window.game.entities.indexOf(this);
+      if (index === -1) return;
+      // this.graphics.clear();
+      window.game.entities.splice(index, 1);
+    }
 }

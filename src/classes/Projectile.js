@@ -15,9 +15,11 @@ class Projectile extends SpriteEntity {
       elementCollided.applyDamage(this.damage);
   }
 
+
   tick(timeDelta) {
     const x = this.direction.x * this.moveSpeed * timeDelta;
     const y = this.direction.y * this.moveSpeed * timeDelta;
+
     this.move(x, y);
     super.tick();
   }
