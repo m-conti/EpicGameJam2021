@@ -13,4 +13,6 @@ document.body.appendChild(app.view);
 
 game.spawnPlayer();
 
+game.drawHud();
+
 app.ticker.add(game.loop);

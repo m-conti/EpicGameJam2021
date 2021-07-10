@@ -5,6 +5,7 @@ class Game {
     this.player = new Player(50, 50);
     this.entities = [this.player];
     this.inputHandler = new InputHandler();
+    this.hud = new Hud();
 
     this.loop = this.loop.bind(this);
   }
@@ -15,6 +16,10 @@ class Game {
 
   spawnPlayer() {
     this.player.spawn();
+  }
+
+  drawHud() {
+    this.hud.draw();
   }
 
   loop(timeDelta) {
