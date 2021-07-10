@@ -6,7 +6,7 @@ const COLORS = {
 }
 
 class Map {
-    constructor(theme) {
+    constructor() {
         this.theme = "";
 
         this.dimensions = 15;
@@ -28,6 +28,11 @@ class Map {
 
                     mapContainer.addChild(room);
                 }
+                // else {
+                //     // Else make a borderRoom entity
+                //     const borderRoom = new BorderRoom(x, y)
+                //     this.borderRooms.push(borderRoom)
+                // }
             }
         }
         return mapContainer;

@@ -25,6 +25,7 @@ const WALL_SPRITE_PATH = 'src/assets/sprites/wall.png'
 const BACKGROUND_COLOR = 0xfac049
 const PLAYER_SPRITE_PATH = 'src/assets/sprites/cravate.png'
 
+const BORDER_ROOM_SPRITE_PATH = 'src/assets/sprites/wall.png'
 
 const ROOM_SIZE = 500;
 

@@ -9,7 +9,11 @@ class Game {
 
     this.camera = new Camera(this.player);
     this.hud = new Hud();
-    this.map = new Map("salut");
+
+    // const borderRooms = [];
+    this.map = new Map();
+    // this.entities = this.entities.concat(borderRooms)
+
     this.inputHandler = new InputHandler(app);
     this.trombi = new Trombi();
 
