@@ -7,6 +7,30 @@ class Hud {
         this.drawSetting();
     }
 
+    draw(player, enemies) {
+        let floorText = new PIXI.Text(this.floor, {
+            fontFamily: 'Comic Sans MS',
+            fontSize: 20,
+            fill: 0x990201,
+            fontWeight: 400,
+            wordWrap: true,
+            wordWrapWidth: 230,
+        })
+        console.log('XXXXX',window.game.map.minimap.x)
+        window.game.map.minimap.x += 1600;
+        window.game.map.minimap.y += 200;
+        hud.addChild(window.game.map.minimap);
+
+        hud.addChild(this.hud);
+        this.drawLifeBar(player.health)
+        console.log(enemies.length)
+        this.drawNbEnemiesLeft(enemies.length)
+        
+        floorText.position.set(10, 5);
+        hud.addChild(this.settings);
+        hud.addChild(floorText);
+    }
+
     drawSetting() {
         this.settings = new PIXI.Sprite.from(textures.settings)
         this.settings.anchor.set(0.5, 0.5);
@@ -58,29 +82,6 @@ class Hud {
         })
         enemiesText.position.set(500, window.innerHeight - 50);
         hud.addChild(enemiesText)
-    }
-
-    draw(player, enemies) {
-        let floorText = new PIXI.Text(this.floor, {
-            fontFamily: 'Comic Sans MS',
-            fontSize: 20,
-            fill: 0x990201,
-            fontWeight: 400,
-            wordWrap: true,
-            wordWrapWidth: 230,
-        })
-        window.game.map.minimap.x += 1600;
-        window.game.map.minimap.y += 200;
-        hud.addChild(window.game.map.minimap);
-
-        hud.addChild(this.hud);
-        this.drawLifeBar(player.health)
-        console.log(enemies.length)
-        this.drawNbEnemiesLeft(enemies.length)
-        
-        floorText.position.set(10, 5);
-        hud.addChild(this.settings);
-        hud.addChild(floorText);
     }
 
     changeFloor(next) {
