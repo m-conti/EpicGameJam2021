@@ -1,11 +1,11 @@
 class Player extends SpriteEntity {
+
   constructor(x, y) {
     super(x, y);
 
     this.typeEntity = ENTITY_TYPES.PLAYER
     this.moveSpeed = 12;
     this.floor = FLOORS.START;
-
     this.health = 100;
 
     this.powers = [
@@ -14,13 +14,30 @@ class Player extends SpriteEntity {
     ];
     this.powerIndex = 0;
 
-    const texture = PIXI.Texture.from(PLAYER_SPRITE_PATH);
+    // const texture = PIXI.Texture.from(PLAYER_SPRITE_PATH);
+
+
+    const playerContainer = new PIXI.Container();
+    const mask = PIXI.Sprite.from(PLAYER_SPRITE_PATH);
+    const texture = PIXI.Texture.from((document.querySelector("#cam_picture")));
     const playerSprite = new PIXI.Sprite(texture);
+    const playerSprite2 = PIXI.Sprite.from(PLAYER_SPRITE_PATH2);
+
+    playerContainer.addChild(mask, playerSprite, playerSprite2);
+    playerContainer.scale.x = 0.3;
+    playerContainer.scale.y = 0.3;
+    playerSprite.width = 400;
+    playerSprite.height = 800;
+    playerSprite2.width = 400;
+    playerSprite2.height = 800;
+    mask.width = 400;
+    mask.height = 800;
+    playerSprite.mask = mask;
     playerSprite.anchor.set(0.5);
-    playerSprite.scale.x = 0.1;
-    playerSprite.scale.y = 0.1;
-    this.sprite = playerSprite;
-    app.stage.addChild(playerSprite);
+    playerSprite2.anchor.set(0.5);
+    mask.anchor.set(0.5);
+    this.sprite = playerContainer;
+    app.stage.addChild(playerContainer);
   }
 
   get isAlive() {
@@ -43,7 +60,7 @@ class Player extends SpriteEntity {
     return this.powers[this.powerIndex];
   }
 
-  collidesWithEntity = function(entity) {
+  collidesWithEntity(entity) {
     if (entity.canCollideWithPlayer && entity.sprite) {
         const maxXEntity = entity.sprite.x + entity.sprite.width;
         const maxYEntity = entity.sprite.y + entity.sprite.height;
@@ -57,54 +74,54 @@ class Player extends SpriteEntity {
   }
 
   incrementPower() {
-    this.powerIndex = (this.powerIndex + 1) % this.powers.length;
+      this.powerIndex = (this.powerIndex + 1) % this.powers.length;
   }
 
   decrementPower() {
-    this.powerIndex = (this.powerIndex + this.powers.length - 1) % this.powers.length;
+      this.powerIndex = (this.powerIndex + this.powers.length - 1) % this.powers.length;
   }
 
   applyDamage(damage) {
-    if (!this.isAlive) return;
+      if (!this.isAlive) return;
 
-    this.health = Math.max(this.health - damage, 0);
+      this.health = Math.max(this.health - damage, 0);
 
-    if (!this.health) this.onDeath();
+      if (!this.health) this.onDeath();
   }
 
   onDeath() {
-    // animation death
-    console.log('PLAYER DEAD');
-    this.remove();
+      // animation death
+      console.log('PLAYER DEAD');
+      this.remove();
   }
 
   respawn() {
-    this.x = window.game.map.spawn.x * ROOM_SIZE + (ROOM_SIZE / 2 - this.sprite.width/2);
-    this.y = window.game.map.spawn.y * ROOM_SIZE + (ROOM_SIZE / 2 - this.sprite.height/2);
+      this.x = window.game.map.spawn.x * ROOM_SIZE + (ROOM_SIZE / 2 - this.sprite.width / 2);
+      this.y = window.game.map.spawn.y * ROOM_SIZE + (ROOM_SIZE / 2 - this.sprite.height / 2);
 
-    window.game.camera.updateCameraFromPlayer(this.originX, this.originY);
+      window.game.camera.updateCameraFromPlayer(this.originX, this.originY);
   }
 
   tick(timeDelta) {
-    const x = ((window.game.inputHandler.keyPressed[INPUT_KEYS.RIGHT] ? 1 : 0) - (window.game.inputHandler.keyPressed[INPUT_KEYS.LEFT] ? 1 : 0)) * this.moveSpeed * timeDelta;
-    const y = ((window.game.inputHandler.keyPressed[INPUT_KEYS.DOWN] ? 1 : 0) - (window.game.inputHandler.keyPressed[INPUT_KEYS.UP] ? 1 : 0)) * this.moveSpeed * timeDelta;
+      const x = ((window.game.inputHandler.keyPressed[INPUT_KEYS.RIGHT] ? 1 : 0) - (window.game.inputHandler.keyPressed[INPUT_KEYS.LEFT] ? 1 : 0)) * this.moveSpeed * timeDelta;
+      const y = ((window.game.inputHandler.keyPressed[INPUT_KEYS.DOWN] ? 1 : 0) - (window.game.inputHandler.keyPressed[INPUT_KEYS.UP] ? 1 : 0)) * this.moveSpeed * timeDelta;
 
-    const prevX = this.sprite.x
-    const prevY = this.sprite.y
+      const prevX = this.sprite.x
+      const prevY = this.sprite.y
 
-    this.sprite.position.set(this.sprite.x + x, this.sprite.y + y)
-    this.move(x, y)
+      this.sprite.position.set(this.sprite.x + x, this.sprite.y + y)
+      this.move(x, y)
 
-    if (window.game.entities?.some(entity => this.collidesWithEntity(entity))) {
-      this.sprite.position.set(prevX, prevY)
-      this.moveTo(prevX, prevY)
-    }
-    // else {
-    //   this.move(x, y)
-    // }
-    window.game.camera.updateCameraFromPlayer(this.originX, this.originY);
+      if (window.game.entities?.some(entity => this.collidesWithEntity(entity))) {
+          this.sprite.position.set(prevX, prevY)
+          this.moveTo(prevX, prevY)
+      }
+      // else {
+      //   this.move(x, y)
+      // }
+      window.game.camera.updateCameraFromPlayer(this.originX, this.originY);
 
-    this.power.fire(this.originVector, timeDelta)
-    super.tick(timeDelta)
+      this.power.fire(this.originVector, timeDelta)
+      super.tick(timeDelta)
   }
 }

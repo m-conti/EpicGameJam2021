@@ -3,20 +3,12 @@ class Game {
   constructor(app) {
     this.app = app;
     this.player = new Player(50, 50);
-    this.wall1 = new Wall(60, 60);
-
-    this.entities = [this.player, this.wall1];
-
+    this.entities = [this.player];
     this.camera = new Camera(this.player);
-    this.hud = new Hud();
-
-    // const borderRooms = [];
-    this.map = new Map();
-    // this.entities = this.entities.concat(borderRooms)
-
+    this.hud = new Hud(this.player);
+    this.map = new Map("salut");
     this.inputHandler = new InputHandler(app);
     this.trombi = new Trombi();
-
     this.loop = this.loop.bind(this);
   }
 
@@ -59,7 +51,7 @@ class Game {
   }
 
   drawHud() {
-    this.hud.draw();
+    this.hud.draw(this.player, this.enemies);
   }
 
   spawnTrombi() {
