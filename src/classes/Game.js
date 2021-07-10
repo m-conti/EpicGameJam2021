@@ -4,8 +4,9 @@ class Game {
     this.app = app;
     this.player = new Player(50, 50);
     this.entities = [this.player];
-    this.inputHandler = new InputHandler();
     this.hud = new Hud();
+    this.map = new Map("salut");
+    this.inputHandler = new InputHandler(app);
 
     this.loop = this.loop.bind(this);
   }
@@ -15,6 +16,7 @@ class Game {
   }
 
   spawnPlayer() {
+    window.game.app.stage.addChild(this.map.drawMap());
     this.player.spawn();
   }
 
@@ -23,7 +25,7 @@ class Game {
   }
 
   loop(timeDelta) {
-    console.log(`loop with timedelta : ${timeDelta}`);
+    // console.log(`loop with timedelta : ${timeDelta}`);
     for (const entity of this.entities) {
       entity.tick(timeDelta);
     }
