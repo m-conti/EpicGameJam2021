@@ -8,7 +8,7 @@ class Game {
     this.entities = [this.player];
 
     this.camera = new Camera(this.player);
-    this.hud = new Hud();
+    this.hud = new Hud(this.player);
     this.map = new Map("salut");
     this.inputHandler = new InputHandler(app);
     this.trombi = new Trombi();
@@ -55,7 +55,7 @@ class Game {
   }
 
   drawHud() {
-    this.hud.draw();
+    this.hud.draw(this.player, this.enemies);
   }
 
   spawnTrombi() {
