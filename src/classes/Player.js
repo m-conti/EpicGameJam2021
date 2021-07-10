@@ -12,6 +12,7 @@ class Player extends Entity {
 
     this.powers = [
       new WordPower(),
+      new ExcelPower()
     ];
     this.powerIndex = 0;
 
@@ -44,6 +45,14 @@ class Player extends Entity {
 
   get power() {
     return this.powers[this.powerIndex];
+  }
+
+  incrementPower() {
+    this.powerIndex = (this.powerIndex + 1) % this.powers.length;
+  }
+
+  decrementPower() {
+    this.powerIndex = (this.powerIndex + this.powers.length - 1) % this.powers.length;
   }
 
   applyDamage(damage) {
