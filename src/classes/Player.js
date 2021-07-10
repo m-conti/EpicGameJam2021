@@ -39,6 +39,36 @@ class Player extends SpriteEntity {
     return this.powers[this.powerIndex];
   }
 
+  incrementPower() {
+    this.powerIndex = (this.powerIndex + 1) % this.powers.length;
+  }
+
+  decrementPower() {
+    this.powerIndex = (this.powerIndex + this.powers.length - 1) % this.powers.length;
+  }
+
+  applyDamage(damage) {
+    if (!this.isAlive) return;
+
+    this.health = Math.max(this.health - damage, 0);
+
+    if (!this.health) this.onDeath();
+  }
+
+  onDeath() {
+    // animation death
+    console.log('PLAYER DEAD');
+    this.remove();
+  }
+
+  respawn() {
+    this.x = window.game.map.spawn.x * ROOM_SIZE + (ROOM_SIZE / 2 - this.width/2);
+    this.y = window.game.map.spawn.y * ROOM_SIZE + (ROOM_SIZE / 2 - this.height/2);
+
+    container.x = -window.game.map.spawn.x * ROOM_SIZE + window.game.app.renderer.width / 2;
+    container.y = -window.game.map.spawn.y * ROOM_SIZE + window.game.app.renderer.height / 2;
+  }
+
   tick(timeDelta) {
     const x = ((window.game.inputHandler.keyPressed[INPUT_KEYS.RIGHT] ? 1 : 0) - (window.game.inputHandler.keyPressed[INPUT_KEYS.LEFT] ? 1 : 0)) * this.moveSpeed * timeDelta;
     const y = ((window.game.inputHandler.keyPressed[INPUT_KEYS.DOWN] ? 1 : 0) - (window.game.inputHandler.keyPressed[INPUT_KEYS.UP] ? 1 : 0)) * this.moveSpeed * timeDelta;
