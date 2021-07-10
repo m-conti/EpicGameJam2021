@@ -7,8 +7,11 @@ class Player extends Entity {
     this.height = 50;
 
     this.moveSpeed = 12;
-    this.fireRate = 25;
-    this.reload = 0;
+
+    this.powers = [
+      new WordPower(),
+    ];
+    this.powerIndex = 0;
 
     this.graphics = new PIXI.Graphics();
     this.graphics.moveTo(this.x, this.y);
@@ -33,24 +36,15 @@ class Player extends Entity {
     return { x: this.originX, y: this.originY };
   }
 
-  fire(timeDelta) {
-    if (this.reload) {
-      this.reload = Math.max(this.reload - timeDelta, 0);
-      return;
-    }
-    if (window.game.inputHandler.keyPressed[INPUT_KEYS.FIRE]) {
-      const target = getMousePos();
-      console.log(this.originVector, target);
-      console.log(getFireVector({ x: this.originX, y: this.originY }, target));
-      this.reload = this.fireRate;
-    }
+  get power() {
+    return this.powers[this.powerIndex];
   }
 
   tick(timeDelta) {
     const x = ((window.game.inputHandler.keyPressed[INPUT_KEYS.RIGHT] ? 1 : 0) - (window.game.inputHandler.keyPressed[INPUT_KEYS.LEFT] ? 1 : 0)) * this.moveSpeed * timeDelta;
     const y = ((window.game.inputHandler.keyPressed[INPUT_KEYS.DOWN] ? 1 : 0) - (window.game.inputHandler.keyPressed[INPUT_KEYS.UP] ? 1 : 0)) * this.moveSpeed * timeDelta;
     this.move(x, y);
-    this.fire(timeDelta);
+    this.power.fire(this.originVector, timeDelta);
     super.tick(timeDelta);
   }
 }
