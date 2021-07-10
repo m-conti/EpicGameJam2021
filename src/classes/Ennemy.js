@@ -1,6 +1,6 @@
 class Ennemy extends Entity {
-  constructor() {
-    super();
+  constructor(x, y) {
+    super(x, y);
     
     this.health = 100;
 
