@@ -25,9 +25,9 @@ class Hud {
     }
 
     draw() {
-        app.stage.addChild(this.hud);
-        app.stage.addChild(this.lifeBarBox);
-        app.stage.addChild(this.lifeBar);
+        hud.addChild(this.hud);
+        hud.addChild(this.lifeBarBox);
+        hud.addChild(this.lifeBar);
         let floorText = new PIXI.Text(this.floor, {fontSize: 20, fill: 0xFFFFFF})
         floorText.position.set(10, 5);
         this.hud.addChild(this.settings);

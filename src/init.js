@@ -5,8 +5,10 @@ const app = new PIXI.Application({
 });
 
 const container = new PIXI.Container();
+const hud = new PIXI.Container();
 
 app.stage.addChild(container);
+app.stage.addChild(hud);
 
 window.game = new Game(app);
 

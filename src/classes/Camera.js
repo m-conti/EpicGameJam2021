@@ -6,8 +6,8 @@ class Camera {
     reset() {
         this.x = window.game.map.spawn.x * ROOM_SIZE - window.game.app.renderer.width / 2 + ROOM_SIZE / 2;
         this.y = window.game.map.spawn.y * ROOM_SIZE - window.game.app.renderer.height / 2 + ROOM_SIZE / 2;
-        window.game.app.stage.x = -this.x;
-        window.game.app.stage.y = -this.y;
+        container.x = -this.x;
+        container.y = -this.y;
     }
 
     tick(timeDelta) {
@@ -15,7 +15,7 @@ class Camera {
         const y = ((window.game.inputHandler.keyPressed[INPUT_KEYS.DOWN] ? 1 : 0) - (window.game.inputHandler.keyPressed[INPUT_KEYS.UP] ? 1 : 0)) * this.moveSpeed * timeDelta;
         this.x += x;
         this.y += y;
-        window.game.app.stage.x = -this.x;
-        window.game.app.stage.y = -this.y;
+        container.x = -this.x;
+        container.y = -this.y;
     }
 }
