@@ -21,10 +21,14 @@ class EnemyMail extends Enemy {
     this.targetRange = 1000;
 
     this.health = 50;
-    // this.graphics.moveTo(this.x, this.y);
-    // this.graphics.beginFill(0xFFDD1A);
-    // this.graphics.drawRect(0, 0, this.width, this.height);
-    // this.graphics.endFill();
+
+    const texture = PIXI.Texture.from(MAIL_SPRITE_PATH);
+    const enemySprite = new PIXI.Sprite(texture);
+    enemySprite.scale.x = 0.1;
+    enemySprite.scale.y = 0.1;
+    this.sprite = enemySprite;
+    app.stage.addChild(enemySprite);
+
     this.Projectile = ProjectileMail;
   }
 }

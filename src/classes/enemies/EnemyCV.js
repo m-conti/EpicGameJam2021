@@ -21,10 +21,14 @@ class EnemyCV extends Enemy {
     this.targetRange = 1000;
 
     this.health = 20;
-    // this.graphics.moveTo(this.x, this.y);
-    // this.graphics.beginFill(0xFF00AA);
-    // this.graphics.drawRect(0, 0, this.width, this.height);
-    // this.graphics.endFill();
+
+    const texture = PIXI.Texture.from(CV_SPRITE_PATH);
+    const enemySprite = new PIXI.Sprite(texture);
+    enemySprite.scale.x = 0.1;
+    enemySprite.scale.y = 0.1;
+    this.sprite = enemySprite;
+    app.stage.addChild(enemySprite);
+
     this.Projectile = ProjectileCV;
   }
 }

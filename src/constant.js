@@ -57,4 +57,6 @@ const ENTITY_TYPES = {
   PROJECTILE: 'projectile'
 }
 
-const ENEMY_SPRITE_PATH = 'src/assets/sprites/enemies/Phone/Phone_Frame_1.png'
+const PHONE_SPRITE_PATH = 'src/assets/sprites/enemies/Phone/Phone_Frame_1.png'
+const CV_SPRITE_PATH = 'src/assets/sprites/enemies/CV/CV_Frame_1.png'
+const MAIL_SPRITE_PATH = 'src/assets/sprites/enemies/Mail/Mail_Frame_1.png'

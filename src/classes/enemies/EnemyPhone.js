@@ -20,10 +20,13 @@ class EnemyPhone extends Enemy {
     this.fireRate = 8;
     this.targetRange = 1000;
 
-    // this.graphics.moveTo(this.x, this.y);
-    // this.graphics.beginFill(0x0FF0AA);
-    // this.graphics.drawRect(0, 0, this.width, this.height);
-    // this.graphics.endFill();
+    const texture = PIXI.Texture.from(PHONE_SPRITE_PATH);
+    const enemySprite = new PIXI.Sprite(texture);
+    enemySprite.scale.x = 0.1;
+    enemySprite.scale.y = 0.1;
+    this.sprite = enemySprite;
+    app.stage.addChild(enemySprite);
+
     this.Projectile = ProjectilePhone;
   }
 }
