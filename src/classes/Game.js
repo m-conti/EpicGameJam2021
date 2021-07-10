@@ -16,6 +16,10 @@ class Game {
     this.loop = this.loop.bind(this);
   }
 
+  get enemies() {
+    return this.entities.filter((entity) => entity instanceof Enemy);
+  }
+
   addEntity(entity) {
     this.entities.push(entity);
   }
@@ -30,6 +34,11 @@ class Game {
     this.player.spawn();
     this.player.respawn();
     this.spawnRandomEnemies();
+    console.log(this.enemies);
+  }
+
+  onEnemyDeath() {
+
   }
 
   spawnRandomEnemies() {

@@ -1,8 +1,6 @@
 class SpriteEntity extends Entity {
-    constructor(x, y, w, h) {
+    constructor(x, y) {
       super(x, y)
-      this.width = w
-      this.height = h
       this.x = x
       this.y = y
     }

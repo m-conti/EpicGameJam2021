@@ -22,7 +22,9 @@ class Enemy extends Entity {
 
   onDeath() {
     // animation death
+    window.game.onEnemyDeath();
     console.log('ENEMY DEAD');
+
     this.remove();
   }
 }

@@ -1,8 +1,6 @@
 class Player extends SpriteEntity {
   constructor(x, y) {
-    super(x, y, PLAYER_WIDTH, PLAYER_HEIGHT);
-    this.width = PLAYER_WIDTH;
-    this.height = PLAYER_HEIGHT;
+    super(x, y);
     this.moveSpeed = 12;
     this.floor = FLOORS.START;
 
@@ -28,11 +26,11 @@ class Player extends SpriteEntity {
   }
 
   get originX() {
-    return this.x + this.width / 2;
+    return this.x - this.sprite.width / 2;
   }
 
   get originY() {
-    return this.y + this.height / 2;
+    return this.y;
   }
 
   get originVector() {
@@ -79,8 +77,8 @@ class Player extends SpriteEntity {
   }
 
   respawn() {
-    this.x = window.game.map.spawn.x * ROOM_SIZE + (ROOM_SIZE / 2 - this.width/2);
-    this.y = window.game.map.spawn.y * ROOM_SIZE + (ROOM_SIZE / 2 - this.height/2);
+    this.x = window.game.map.spawn.x * ROOM_SIZE + (ROOM_SIZE / 2 - this.sprite.width/2);
+    this.y = window.game.map.spawn.y * ROOM_SIZE + (ROOM_SIZE / 2 - this.sprite.height/2);
 
     window.game.camera.reset();
   }
