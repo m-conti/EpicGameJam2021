@@ -11,10 +11,29 @@ class Map {
 
         this.dimensions = 15;
         this.generateMap();
-        this.minimap = this.drawMap();
+        this.minimap = this.drawMinimap();
+        this.mapContainer = this.drawMap();
     }
 
     drawMap() {
+        let mapContainer = new PIXI.Container();
+        for (let x = 0; x < this.dimensions; x++) {
+            for (let y = 0; y < this.dimensions; y++) {
+                if (this.map[x][y]) {
+                    let block = new PIXI.Graphics();
+
+                    block.beginFill(COLORS[this.map[x][y]]);
+                    block.drawRect(x * 400, y * 400, 400, 400);
+                    block.endFill();
+
+                    mapContainer.addChild(block);
+                }
+            }
+        }
+        return mapContainer;
+    }
+
+    drawMinimap() {
         let minimap = new PIXI.Container();
         for (let x = 0; x < this.dimensions; x++) {
             for (let y = 0; y < this.dimensions; y++) {
