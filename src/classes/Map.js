@@ -51,14 +51,7 @@ class Map {
     }
 
     getRandomTunnelCoord() {
-        const tryTunnel = () => {
-            let currentRow = Math.floor(Math.random() * this.dimensions),
-                currentColumn = Math.floor(Math.random() * this.dimensions);
-            return this.map[currentRow][currentRow] ? { y: currentRow, x: currentColumn } : null;
-        };
-        let coord = null;
-        while (!coord) coord = tryTunnel();
-        return coord;
+        return this.freeTunnels[randomBetween(0, this.freeTunnels.length)];
     }
 
     generateMap() {
@@ -125,5 +118,8 @@ class Map {
             'x': currentRow,
             'y': currentColumn,
         };
+        
+        this.freeTunnels = [];
+        this.map.forEach((row, rowIdx) => row.forEach((col, colIdx) => { if(col) this.freeTunnels.push({ x: rowIdx, y: colIdx }) }));
     }
 }

@@ -1,10 +1,10 @@
 class Player extends SpriteEntity {
   constructor(x, y) {
-
     super(x, y, PLAYER_WIDTH, PLAYER_HEIGHT);
     this.width = PLAYER_WIDTH;
     this.height = PLAYER_HEIGHT;
     this.moveSpeed = 12;
+    this.floor = FLOORS.START;
 
     this.health = 100;
 
@@ -88,7 +88,7 @@ class Player extends SpriteEntity {
   tick(timeDelta) {
     const x = ((window.game.inputHandler.keyPressed[INPUT_KEYS.RIGHT] ? 1 : 0) - (window.game.inputHandler.keyPressed[INPUT_KEYS.LEFT] ? 1 : 0)) * this.moveSpeed * timeDelta;
     const y = ((window.game.inputHandler.keyPressed[INPUT_KEYS.DOWN] ? 1 : 0) - (window.game.inputHandler.keyPressed[INPUT_KEYS.UP] ? 1 : 0)) * this.moveSpeed * timeDelta;
-    
+
     const prevX = this.sprite.x
     const prevY = this.sprite.y
 
