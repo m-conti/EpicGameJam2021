@@ -51,6 +51,17 @@ class Map {
         return minimap;
     }
 
+    getRandomTunnelCoord() {
+        const tryTunnel = () => {
+            let currentRow = Math.floor(Math.random() * this.dimensions),
+                currentColumn = Math.floor(Math.random() * this.dimensions);
+            return this.map[currentRow][currentRow] ? { y: currentRow, x: currentColumn } : null;
+        };
+        let coord = null;
+        while (!coord) coord = tryTunnel();
+        return coord;
+    }
+
     generateMap() {
         function createArray(num, dimensions) {
             let array = [];

@@ -73,8 +73,7 @@ class Player extends Entity {
     this.x = window.game.map.spawn.x * ROOM_SIZE + (ROOM_SIZE / 2 - this.width/2);
     this.y = window.game.map.spawn.y * ROOM_SIZE + (ROOM_SIZE / 2 - this.height/2);
 
-    window.game.app.stage.x = -window.game.map.spawn.x * ROOM_SIZE + window.game.app.renderer.width / 2 - ROOM_SIZE / 2;
-    window.game.app.stage.y = -window.game.map.spawn.y * ROOM_SIZE + window.game.app.renderer.height / 2 - ROOM_SIZE / 2;
+    window.game.camera.reset();
   }
 
   tick(timeDelta) {

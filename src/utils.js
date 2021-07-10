@@ -1,7 +1,7 @@
 
 const getMousePos = () => {
   const { x, y } = window.game.app.renderer.plugins.interaction.mouse.global;
-  const origin = window.game.camera.origin;
+  const origin = window.game.camera;
 
   return { x: x + origin.x, y: y + origin.y };
 };
