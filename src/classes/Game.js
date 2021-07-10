@@ -2,7 +2,6 @@
 class Game {
   constructor(app) {
     this.app = app;
-    this.bump = new Bump(PIXI);
     this.player = new Player(50, 50);
     this.wall1 = new Wall(300, 300);
 
