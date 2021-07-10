@@ -3,6 +3,8 @@ class Enemy extends Entity {
     super(x, y);
     
     this.graphics = new PIXI.Graphics();
+    this.width = 40;
+    this.height = 40;
     this.health = 100;
 
   }

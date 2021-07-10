@@ -6,6 +6,8 @@ const getMousePos = () => {
   return { x: x + origin.x, y: y + origin.y };
 };
 
+const randomBetween = (min, max) => Math.floor(min + Math.random() * max);
+
 const getFireVector = (source, target) => {
   const x = (target.x - source.x);
   const y = (target.y - source.y);

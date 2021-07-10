@@ -5,9 +5,9 @@ class Entity {
     this.canCollideWithPlayer = false;
   }
 
-    spawn() {
-        container.addChild(this.graphics);
-    }
+  spawn() {
+      container.addChild(this.graphics);
+  }
 
   remove() {
     const index = window.game.entities.indexOf(this);
@@ -20,6 +20,12 @@ class Entity {
     this.x += x;
     this.y += y;
   }
+
+  moveTo(x, y) {
+    this.x = x;
+    this.y = y;
+  }
+  
 
   tick(timeDelta) {
     this.graphics.position.set(this.x, this.y);

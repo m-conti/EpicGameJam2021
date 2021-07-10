@@ -12,11 +12,6 @@ class SpriteEntity extends Entity {
       this.sprite.position.set(this.x, this.y)
     }
 
-    moveTo(x, y) {
-      this.x = x;
-      this.y = y;
-    }
-  
     tick(timeDelta) {
         this.sprite.position.set(this.x, this.y)
     }
