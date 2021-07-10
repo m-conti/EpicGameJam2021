@@ -8,12 +8,11 @@ class Wall extends SpriteEntity {
       this.height = WALL_HEIGHT;
       this.canCollideWithPlayer = true;
   
-      const texture = PIXI.Texture.from('src/assets/sprites/wall.png');
+      const texture = PIXI.Texture.from(WALL_SPRITE_PATH);
       const wallSprite = new PIXI.Sprite(texture);
       wallSprite.scale.x = 0.1;
       wallSprite.scale.y = 0.1;
       this.sprite = wallSprite;
-      // app.stage.addChild(wallSprite);
       container.addChild(wallSprite);
     }
   
