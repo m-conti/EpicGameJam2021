@@ -30,7 +30,7 @@ function take_snapshot() {
         document.getElementById('results').innerHTML =
             '<img id="cam_picture" src="' + data_uri + '"/>';
     });
-    document.getElementById('webcam-btn').value = 'Hmmmm not really convinced, can we try again?';
+    document.getElementById('webcam-btn').value = 'Hmmmm not ®eally ©onvinced, can we t®y again?';
     document.getElementById('results-btn').style.display = 'block';
 }
 
