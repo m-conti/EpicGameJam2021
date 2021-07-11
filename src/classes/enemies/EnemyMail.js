@@ -23,12 +23,12 @@ class ProjectileMail extends EnemyProjectile {
 class EnemyMail extends Enemy {
   constructor(x, y) {
     super(x, y);
-    this.fireRate = 30;
-    this.targetRange = 600;
+    this.fireRate = 13;
+    this.targetRange = 1200;
     this.health = 50;
 
     this.isAnimate = true;
-    this.animationClock = 30;
+    this.animationClock = 13;
     this.textures = TEXTURES_MAIL;
     const enemySprite = new PIXI.Sprite(this.textures[0]);
     enemySprite.scale.x = 0.1;
