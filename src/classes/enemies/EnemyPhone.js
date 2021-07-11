@@ -21,7 +21,7 @@ class EnemyPhone extends Enemy {
     this.targetRange = 1000;
 
     this.isAnimate = true;
-    this.animationClock = 20;
+    this.animationClock = 60;
     this.textures = [
       PIXI.Texture.fromFrame(PHONE_SPRITE_PATH1),
       PIXI.Texture.fromFrame(PHONE_SPRITE_PATH2),
