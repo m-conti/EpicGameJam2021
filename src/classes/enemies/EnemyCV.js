@@ -22,7 +22,7 @@ class EnemyCV extends Enemy {
     this.health = 20;
 
     this.isAnimate = true;
-    this.animationClock = 25;
+    this.animationClock = 80;
     this.textures = [
       PIXI.Texture.fromFrame(CV_SPRITE_PATH1),
       PIXI.Texture.fromFrame(CV_SPRITE_PATH2),
