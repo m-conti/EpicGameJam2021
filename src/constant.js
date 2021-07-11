@@ -64,3 +64,5 @@ const ENTITY_TYPES = {
 }
 
 const PROBA_LOVE_SHOT = 0.1
+
+const PROJECTILE_TIME_TO_LIVE = 500
