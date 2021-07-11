@@ -17,6 +17,7 @@ class Enemy extends SpriteEntity {
     this.fireRate = 60;
     this.fireDistance = 100;
     this.reload = this.fireRate;
+    this.outOfRange = 60000000;
 
   }
 
@@ -73,6 +74,9 @@ class Enemy extends SpriteEntity {
   tick(deltaTime) {
     this.rotationTimer += deltaTime;
     if (this.rotationTimer >= this.rotationClock) {
+      console.log(getDistance(this, window.game.player))
+      if (getDistance(this, window.game.player) >= this.outOfRange)
+        this.direction = getFireRotation(this, window.game.player);
       const randomDir = randomBetweenFloat(-deltaTime * 0.6, deltaTime * 0.6);
       this.direction += randomDir;
       this.rotationClock = randomBetweenFloat(4, 60);

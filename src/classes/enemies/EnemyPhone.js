@@ -19,6 +19,7 @@ class EnemyPhone extends Enemy {
     super(x, y);
     this.fireRate = 12;
     this.targetRange = 1000;
+    this.moveSpeed = 8;
 
     this.isAnimate = true;
     this.animationClock = 12;
@@ -30,5 +31,6 @@ class EnemyPhone extends Enemy {
     app.stage.addChild(enemySprite);
 
     this.Projectile = ProjectilePhone;
+    this.sprite.tint = Math.round(Math.random() * 0xFFFFFF);
   }
 }

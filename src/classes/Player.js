@@ -10,7 +10,6 @@ class Player extends SpriteEntity {
 
         this.powers = [
             new WordPower(),
-            new ExcelPower()
         ];
         this.powerIndex = 0;
 

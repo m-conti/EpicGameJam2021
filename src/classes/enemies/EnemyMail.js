@@ -20,6 +20,7 @@ class EnemyMail extends Enemy {
     this.fireRate = 13;
     this.targetRange = 1200;
     this.health = 50;
+    this.moveSpeed = 5;
 
     this.isAnimate = true;
     this.animationClock = 13;
@@ -31,5 +32,6 @@ class EnemyMail extends Enemy {
     app.stage.addChild(enemySprite);
 
     this.Projectile = ProjectileMail;
+    this.sprite.tint = Math.round(Math.random() * 0xFFFFFF);
   }
 }

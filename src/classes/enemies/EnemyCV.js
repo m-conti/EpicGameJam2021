@@ -19,6 +19,7 @@ class EnemyCV extends Enemy {
     this.fireRate = 11;
     this.targetRange = 800;
     this.health = 20;
+    this.moveSpeed = 12;
     
     this.isAnimate = true;
     this.animationClock = 11;
@@ -30,5 +31,6 @@ class EnemyCV extends Enemy {
     app.stage.addChild(enemySprite);
     
     this.Projectile = ProjectileCV;
+    this.sprite.tint = Math.round(Math.random() * 0xFFFFFF);
   }
 }

@@ -11,12 +11,19 @@ const randomBetweenFloat = (min, max) => min + Math.random() * max;
 
 const angleToVector = (angle) => ({ x: Math.cos(angle), y: Math.sin(angle) });
 
-const getFireVector = (source, target) => {
+const getFireRotation = (source, target) => {
   const x = (target.x - source.x);
   const y = (target.y - source.y);
-  const angle = Math.atan2(y, x);
-  return angleToVector(angle);
+  return Math.atan2(y, x);
+}
+
+const getFireVector = (source, target) => {
+  return angleToVector(getFireRotation(source, target));
 };
+
+const getDistance = (source, target) => {
+  return Math.pow(source.x - target.x, 2) + Math.pow(source.y - target.y, 2);
+}
 
 
 const debugSprite = (sprite) => {
