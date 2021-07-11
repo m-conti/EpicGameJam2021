@@ -14,7 +14,7 @@ class SpriteEntity extends Entity {
     }
 
     animate(timeDelta) {
-      if (this.animationTimer || !this.isOnScreen) {
+      if (this.animationTimer) {
         this.animationTimer = Math.max(this.animationTimer - timeDelta, 0);
         return;
       }
