@@ -21,6 +21,8 @@ class Map {
         this.generateMap();
         this.minimap = this.drawMinimap();
         this.mapContainer = this.drawMap(game);
+        this.elevator = this.spawnElevator();
+        this.mapContainer.addChild(this.elevator);
     }
 
     drawMap(game) {

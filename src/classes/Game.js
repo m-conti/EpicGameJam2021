@@ -76,6 +76,12 @@ class Game {
         this.trombi.spawn();
     }
 
+    reloadLevel() {
+        this.player.floor = FLOORS.IT;
+
+        this.map = new Map(this);
+    }
+
     gameOver() {
         this.hud.drawGameOver();
         this.trombi.classicGameOver();
