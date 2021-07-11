@@ -27,6 +27,9 @@ const PLAYER_SPRITE_PATH2 = 'src/assets/sprites/cravate3.png'
 const PLAYER_SPRITE_DEFAULT_PATH = 'src/assets/sprites/cravate2.png'
 const PLAYER_PATTERN_PATH = 'src/assets/sprites/pattern.jpg'
 const DEATH_SPRITE_PATH = 'src/assets/sprites/enemies/death.png'
+const PRINTER_SPRITE_PATH = 'src/assets/sprites/furniture/printer.png'
+const DESK_SPRITE_PATH = 'src/assets/sprites/furniture/desk.png'
+const ARMCHAIR_SPRITE_PATH = 'src/assets/sprites/furniture/armchair.png'
 
 const TROMBI_X = innerWidth - 200;
 const TROMBI_Y =  innerHeight - innerHeight / 2;
@@ -62,10 +65,18 @@ const ENTITY_TYPES = {
   PLAYER: 'player',
   WALL: 'wall',
   PROJECTILE: 'projectile',
-  DEATH: 'death'
+  DEATH: 'death',
+  FURNITURE: 'furniture'
 }
 
 const PROBA_LOVE_SHOT = 0.1
+const PROBA_FURNISH_ROOM = 0.5
+
+const FURNITURE_LIST = [
+  Printer,
+  Armchair,
+  Desk,
+]
 
 const PROJECTILE_TIME_TO_LIVE = 500
 const TIME_TO_LIVE_DEATH = 200
