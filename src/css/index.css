@@ -1,26 +1,56 @@
 body {
-  margin: 0;
-  padding: 0;
-  height: 100vh;
-  position: relative;
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    position: relative;
 }
 
 html {
-  background: url(evil_capitalist_tower.JPG) no-repeat bottom fixed;
-  -webkit-background-size: cover;
-  -moz-background-size: cover;
-  -o-background-size: cover;
-  background-size: cover;
+    background: url(evil_capitalist_tower.JPG) no-repeat bottom fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
 }
 
 #webcam_container {
-  position: absolute;
-  top: 50%;
-  transform: translateX(-50%) translateY(-50%);
-  left: 50%;
-  text-align: center;
+    text-align: center;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 100vh;
+    justify-content: space-evenly;
+}
+
+h2 {
+    color: white;
+    font-size: 3em;
+}
+
+p {
+    color: white;
+    font-family: "Sitka Banner", fantasy;
+    font-size: 1.5em;
+}
+
+input[type="button"] {
+    padding: 15px;
+    border-radius: 20px;
+    font-family: "Sitka Banner", fantasy;
+}
+
+input[type="button"]:hover {
+    font-weight: bold;
 }
 
 #results-btn {
-  display: none;
+    display: none;
+    background: #aaffaa;
+    border: solid 3px #22ff22;
+}
+
+#results-btn:hover {
+    background: #22ff22;
+    border: solid 3px #aaffaa;
 }
