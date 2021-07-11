@@ -10,33 +10,46 @@ class Game {
         this.entities = [this.player];
         this.camera = new Camera(this.player);
         this.hud = new Hud(this.player, music);
-        this.map = new Map("salut");
+        this.furnitures = [];
+        this.map = new Map(this);
         this.inputHandler = new InputHandler(app);
         this.trombi = new Trombi();
         this.loop = this.loop.bind(this);
         this.isOver = false;
+        this.music.loop = true;
+        this.gameoverMusic = new Audio(GAME_OVER_MUSIC_AUDIO);
     }
-
+    
     get enemies() {
         return this.entities.filter((entity) => entity instanceof Enemy);
     }
-
+    
     addEntity(entity) {
         this.entities.push(entity);
     }
 
+    spawnFurnitures() {
+        console.log("furnitures", this.furnitures)
+        for (const furniture of this.furnitures) {
+            this.addEntity(furniture);
+            furniture.spawn();
+        }
+    }
+
     spawnPlayer() {
-        this.map.drawMap();
+        this.map.drawMap(this);
         container.addChild(this.map.mapContainer);
         this.player.spawn();
         this.player.respawn();
         this.spawnRandomEnemies();
+        this.boss = new EnemyTrombi(this.map.exit.x * ROOM_SIZE + (ROOM_SIZE /2), this.map.exit.y * ROOM_SIZE + (ROOM_SIZE /2))
+        this.boss.spawn();
         this.music.play();
-        this.music.loop = true;
+        this.gameoverMusic.pause()
+        this.spawnFurnitures();
     }
 
     onEnemyDeath() {
-        console.log(`ENEMIES : ${this.enemies.length}`)
         this.hud.drawNbEnemiesLeft(this.enemies.length);
     }
 
@@ -66,6 +79,23 @@ class Game {
         this.trombi.classicGameOver();
         this.isOver = true;
         this.music.pause()
+        this.gameoverMusic.muted = this.music.muted;
+        this.gameoverMusic.play();
+    }
+
+    gameOverBoss() {
+        this.hud.drawGameOver();
+        this.trombi.bossGameOver();
+        this.isOver = true;
+        this.music.pause()
+        this.gameoverMusic.muted = this.music.muted;
+        this.gameoverMusic.play();
+    }
+
+    gameOverGood() {
+        this.hud.drawWin();
+        this.trombi.goodGameOver();
+        this.isOver = true;
     }
 
     loop(timeDelta) {
@@ -74,5 +104,6 @@ class Game {
             entity.tick(timeDelta);
         }
         this.trombi.tick(timeDelta);
+        this.boss.tick(timeDelta);
     }
 }

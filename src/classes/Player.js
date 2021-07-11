@@ -118,6 +118,7 @@ class Player extends SpriteEntity {
 
         window.game.hud.drawLifeBar(this.health);
         if (!this.health) this.onDeath();
+
     }
 
     onDeath() {

@@ -54,6 +54,7 @@ class Hud {
         this.settings.emit('pointerdown')
         this.settings.on('pointerdown', this.handleSettings.bind(this));
 
+    
         this.containerText.beginFill(0x000000);
         this.containerText.drawRoundedRect(window.innerWidth - 360, window.innerHeight -460, 300, 400, 10)
         this.containerText.endFill();
@@ -113,7 +114,7 @@ class Hud {
 
         const text = health + '%';
         if (!this.lifePercentage) {
-            this.lifePercentage = new PIXI.Text(text,  {
+            this.lifePercentage = new PIXI.Text(text, {
                 fontFamily: 'Comic Sans MS',
                 fontSize: 20,
                 fill: 0x990201,
@@ -123,13 +124,12 @@ class Hud {
             })
             this.lifePercentage.position.set(360, window.innerHeight - 50);
             hud.addChild(this.lifePercentage)
-        }
-        else {
+        } else {
             this.lifePercentage.text = text;
         }
 
         if (!this.lifeBar) this.lifeBar = PIXI.Sprite.from(textures.life4);
-        
+
         if (health === 0) {
             if (this.currentTextureLifeIndex === 0) return;
             this.lifeBar.texture = textures.life0;
@@ -138,11 +138,11 @@ class Hud {
             if (this.currentTextureLifeIndex === 1) return;
             this.lifeBar.texture = textures.life1;
             this.currentTextureLifeIndex = 1;
-        } else if(health <= 50) {
+        } else if (health <= 50) {
             if (this.currentTextureLifeIndex === 2) return;
             this.lifeBar.texture = textures.life2;
             this.currentTextureLifeIndex = 2;
-        } else if(health <= 75) {
+        } else if (health <= 75) {
             if (this.currentTextureLifeIndex === 3) return;
             this.lifeBar.texture = textures.life3;
             this.currentTextureLifeIndex = 3;
@@ -153,8 +153,8 @@ class Hud {
         this.lifeBar.x = 0;
         this.lifeBar.y = window.innerHeight + 90;
         this.lifeBar.scale.set(0.1);
-        this.lifeBar.rotation = 4.71239; 
-        hud.addChild(this.lifeBar);        
+        this.lifeBar.rotation = 4.71239;
+        hud.addChild(this.lifeBar);
     }
 
     drawNbEnemiesLeft(nbEnemies) {
@@ -170,8 +170,7 @@ class Hud {
             })
             this.enemiesText.position.set(500, window.innerHeight - 50);
             hud.addChild(this.enemiesText)
-        }
-        else {
+        } else {
             this.enemiesText.text = text;
         }
     }
@@ -179,10 +178,10 @@ class Hud {
     drawGameOver() {
         this.gameOverSprite = new PIXI.Sprite.from(textures.gameOver);
         this.gameOverSprite.anchor.set(0.5, 0.5);
-        this.gameOverSprite.position.set(window.innerWidth /2, window.innerHeight /2)
+        this.gameOverSprite.position.set(window.innerWidth / 2, window.innerHeight / 2)
         this.gameOverSprite.scale.set(0.5);
         hud.addChild(this.gameOverSprite);
-    
+
         this.question = new PIXI.Text('Play again !', {
             fontFamily: 'Comic Sans MS',
             dropShadow: true,
@@ -194,14 +193,63 @@ class Hud {
             stroke: "red"
         });
         this.question.anchor.set(0.5, 0.5);
-        this.question.x = window.innerWidth /2;
-        this.question.y = window.innerHeight /2;
-        this.question.interactive  = true;
+        this.question.x = window.innerWidth / 2;
+        this.question.y = window.innerHeight / 2;
+        this.question.interactive = true;
         hud.addChild(this.question);
-    
-        this.question.click = function (){  
-          location.reload();
+
+        this.question.click = function () {
+            location.reload();
         }
+
+        this.credit = new PIXI.Text("Made with -love +PRODUCTIVITY by Lola, Louise, Matthieu, Mattia, Stan and Tim!", {
+            fontFamily: 'Comic Sans MS',
+            fill: "#000000",
+            fontSize: 28,
+            stroke: "#ffffff",
+            strokeThickness: 5,
+        })
+        this.credit.anchor.set(0.5);
+        this.credit.x = window.innerWidth / 2;
+        this.credit.y = window.innerHeight - 200;
+        hud.addChild(this.credit);
     }
 
+    drawWin() {
+        this.gameOverSprite = new PIXI.Sprite.from(textures.gameOver);
+        this.gameOverSprite.anchor.set(0.5, 0.5);
+        this.gameOverSprite.position.set(window.innerWidth / 2, window.innerHeight / 2)
+        this.gameOverSprite.scale.set(0.5);
+        this.gameOverSprite.tint = 0x00FF00;
+        hud.addChild(this.gameOverSprite);
+
+        this.question = new PIXI.Text('Play again !', {
+            fontFamily: 'Comic Sans MS',
+            fill: "#aaffaa",
+            fontSize: 28,
+            stroke: "#00ff00",
+            strokeThickness: 5,
+        });
+        this.question.anchor.set(0.5, 0.5);
+        this.question.x = window.innerWidth / 2;
+        this.question.y = window.innerHeight / 2;
+        this.question.interactive = true;
+        hud.addChild(this.question);
+
+        this.question.click = function () {
+            location.reload();
+        }
+
+        this.credit = new PIXI.Text("Made with -love +PRODUCTIVITY by Lola, Louise, Matthieu, Mattia, Stan and Tim!", {
+            fontFamily: 'Comic Sans MS',
+            fill: "#000000",
+            fontSize: 28,
+            stroke: "#ffffff",
+            strokeThickness: 5,
+        })
+        this.credit.anchor.set(0.5);
+        this.credit.x = window.innerWidth / 2;
+        this.credit.y = window.innerHeight - 200;
+        hud.addChild(this.credit);
+    }
 }

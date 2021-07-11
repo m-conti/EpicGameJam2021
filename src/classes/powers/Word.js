@@ -11,7 +11,7 @@ class WordProjectile extends Projectile {
       text = new PIXI.Text(randomElement, {
           fontFamily: 'Comic Sans MS',
           fill: 0xff66ff,
-          fontSize: 44,
+          fontSize: 55,
       });
       this.damage = 0;
     }
@@ -20,7 +20,8 @@ class WordProjectile extends Projectile {
       text = new PIXI.Text(randomElement, {
           fontFamily: 'Comic Sans MS',
           fill: 0x000000,
-
+          stroke: '#FFFFFF',
+          strokeThickness: 5,
       });
       this.damage = 10;
     }
@@ -67,6 +68,8 @@ class WordProjectile extends Projectile {
             break
         }
     }
+    if (this.collidesWithEntity(window.game.boss))
+        this.onCollide(window.game.boss);
     if (!removed) {
       super.tick(timeDelta);
     }

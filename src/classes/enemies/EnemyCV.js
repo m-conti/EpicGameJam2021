@@ -10,6 +10,10 @@ class ProjectileCV extends EnemyProjectile {
     super(x, y, moveSpeed, direction, damage);
 
     this.sprite.position.set(this.x, this.y);
+    const audio = new Audio('src/assets/audio/fire/cv.wav');
+    audio.volume = 0.06
+    audio.muted = window.game.music.muted;
+    audio.play();
   }
 }
 
@@ -28,6 +32,7 @@ class EnemyCV extends Enemy {
     enemySprite.scale.x = 0.1;
     enemySprite.scale.y = 0.1;
     this.sprite = enemySprite;
+    this.sprite.anchor.set(0.5);
     app.stage.addChild(enemySprite);
     
     this.Projectile = ProjectileCV;

@@ -17,16 +17,15 @@ class Enemy extends SpriteEntity {
     this.fireRate = 60;
     this.fireDistance = 100;
     this.reload = this.fireRate;
-    this.outOfRange = 60000000;
-
+    this.outOfRange = 20000000;
   }
 
   get originX() {
-    return this.x - (this.sprite?.width || this.width || 0) / 2;
+    return this.sprite.x - (this.sprite?.width || 0) / 2;
   }
 
   get originY() {
-    return this.y - (this.sprite?.height || this.height || 0) / 2;
+    return this.sprite.y - (this.sprite?.height || 0) / 2;
   }
 
   get originVector() {
@@ -74,7 +73,6 @@ class Enemy extends SpriteEntity {
   tick(deltaTime) {
     this.rotationTimer += deltaTime;
     if (this.rotationTimer >= this.rotationClock) {
-      // console.log(getDistance(this, window.game.player))
       if (getDistance(this, window.game.player) >= this.outOfRange)
         this.direction = getFireRotation(this, window.game.player);
       const randomDir = randomBetweenFloat(-deltaTime * 0.6, deltaTime * 0.6);
