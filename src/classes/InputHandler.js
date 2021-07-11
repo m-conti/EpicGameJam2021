@@ -7,7 +7,7 @@ class InputHandler {
     window.addEventListener('mousedown', this.onMouseDown.bind(this));
     window.addEventListener('mouseup', this.onMouseUp.bind(this));
     // app.stage.on('mouseleave', this.onMouseUp.bind(this));
-    console.log(app);
+    // console.log(app);
   }
 
   onKeyDown({ key }) {
@@ -36,7 +36,7 @@ class InputHandler {
   }
 
   incrementPower() {
-    console.log('up');
+    // console.log('up');
     window.game.player.incrementPower(0, 10);
   }
 }

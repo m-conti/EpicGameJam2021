@@ -1,17 +1,28 @@
 class Hud {
-    constructor(player) {
+    constructor(player, music) {
         this.hud = new PIXI.Container();
         this.floor = player.floor;
         this.life = player.health;
+        this.isSettingsOpen = false;
+        this.music = music;
 
         this.containerText = new PIXI.Graphics()
-        this.commandsText = new PIXI.Text('W: moving forward\nS: moving backward\nA: moving left\nD: moving right\nMouse: shoot\nV: increment power\nC: decrement power', {
+        this.commandsText = new PIXI.Text('W: moving forward\nS: moving backward\nA: moving left\nD: moving right\nMouse: shoot', {
             fontFamily: 'Comic Sans MS',
             fontSize: 20,
             fill: 0xFFFFFF,
             fontWeight: 400,
             wordWrap: true,
             wordWrapWidth: 230,
+        })
+
+        this.restart = new PIXI.Text('Restart Game', {
+            fontFamily: 'Comic Sans MS',
+            fontSize: 20,
+            fill: 0xFFFFFF,
+            fontWeight: 400,
+            wordWrap: true,
+            wordWrapWidth: 230
         })
 
         this.floorText = new PIXI.Text(this.floor, {
@@ -25,7 +36,7 @@ class Hud {
         this.drawSetting();
     }
 
-    draw(player, enemies) {
+    draw(player, enemies, music) {
         this.isSettingsOpen = false;
         this.drawLifeBar(player.health);
         this.drawNbEnemiesLeft(enemies.length);
@@ -35,25 +46,49 @@ class Hud {
     drawSetting() {
         this.settings = new PIXI.Sprite.from(textures.settings);
         this.settings.anchor.set(0.5, 0.5);
-        this.settings.x = window.innerWidth - 40;
-        this.settings.y = window.innerHeight - 40;
-        this.settings.width = 40;
-        this.settings.height = 40;
-        this.settings.interactive = true;
+        this.settings.x = window.innerWidth - 25;
+        this.settings.y = window.innerHeight - 25;
+        this.settings.width = 250;
+        this.settings.height = 250;
+        this.settings.interactive  = true;
         this.settings.emit('pointerdown')
         this.settings.on('pointerdown', this.handleSettings.bind(this));
 
-
+    
         this.containerText.beginFill(0x000000);
-        this.containerText.drawRoundedRect(window.innerWidth - 260, window.innerHeight - 360, 200, 300, 10)
+        this.containerText.drawRoundedRect(window.innerWidth - 360, window.innerHeight -460, 300, 400, 10)
         this.containerText.endFill();
         this.containerText.visible = this.isSettingsOpen
 
-        this.commandsText.position.set(window.innerWidth - 255, window.innerHeight - 360);
+        this.commandsText.position.set(window.innerWidth - 355, window.innerHeight -460);
         this.commandsText.visible = this.isSettingsOpen;
+
+       
+        this.restart.position.set(window.innerWidth - 355, window.innerHeight - 260);
+        this.restart.interactive = true;
+        this.restart.visible = this.isSettingsOpen;
+
+        this.restart.click = function (){  
+            location.reload();
+        }
+
+        this.soundOn = new PIXI.Sprite.from(textures.soundOn);
+        this.soundOn.x = window.innerWidth - 370;
+        this.soundOn.y = window.innerHeight - 200;
+        this.soundOn.width = 100;
+        this.soundOn. height = 100;
+        this.soundOn.interactive = true;
+        this.soundOn.visible = this.isSettingsOpen;
+       
+
+        this.soundOn.click = ()  => {
+            this.music.muted = !this.music.muted
+        }
 
         hud.addChild(this.containerText);
         hud.addChild(this.commandsText);
+        hud.addChild(this.restart);
+        hud.addChild(this.soundOn);
         hud.addChild(this.settings);
         hud.addChild(this.floorText);
     }
@@ -62,9 +97,14 @@ class Hud {
         if (this.isSettingsOpen) {
             this.containerText.visible = false;
             this.commandsText.visible = false;
+            this.restart.visible = false;
+            this.soundOn.visible = false;
         } else {
             this.containerText.visible = true;
             this.commandsText.visible = true;
+            this.restart.visible = true;
+            this.soundOn.visible = true;
+            
             window.game.trombi.destroy();
         }
         this.isSettingsOpen = !this.isSettingsOpen;
