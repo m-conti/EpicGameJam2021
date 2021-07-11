@@ -13,3 +13,5 @@ function add_textures(name, filename, count)
 add_texture('settings', 'settings.png');
 add_textures('life', 'life', 4);
 add_texture('gameOver', 'game_over.jpg')
+add_texture('soundOn', 'soundOn.png');
+add_texture('soundOff', 'soundOff.png');

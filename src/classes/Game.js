@@ -1,18 +1,20 @@
 const MUSIC_PATH = 'src/assets/audio/Tromby_Music.mp3'
+const music = new Audio(MUSIC_PATH);
 
 class Game {
     constructor(app) {
         this.app = app;
+        
+        this.music = music
         this.player = new Player(-400, -400);
         this.entities = [this.player];
         this.camera = new Camera(this.player);
-        this.hud = new Hud(this.player);
+        this.hud = new Hud(this.player, music);
         this.map = new Map("salut");
         this.inputHandler = new InputHandler(app);
         this.trombi = new Trombi();
         this.loop = this.loop.bind(this);
         this.isOver = false;
-        this.music = new Audio(MUSIC_PATH);
     }
 
     get enemies() {
@@ -52,7 +54,7 @@ class Game {
     }
 
     drawHud() {
-        this.hud.draw(this.player, this.enemies);
+        this.hud.draw(this.player, this.enemies, this.music);
     }
 
     spawnTrombi() {

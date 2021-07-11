@@ -1,8 +1,10 @@
 class Hud {
-    constructor(player) {
+    constructor(player, music) {
         this.hud = new PIXI.Container();
         this.floor = player.floor;
         this.life = player.health;
+        this.isSettingsOpen = false;
+        this.music = music;
 
         this.containerText = new PIXI.Graphics()
         this.commandsText = new PIXI.Text('W: moving forward\nS: moving backward\nA: moving left\nD: moving right\nMouse: shoot', {
@@ -34,7 +36,7 @@ class Hud {
         this.drawSetting();
     }
 
-    draw(player, enemies) {
+    draw(player, enemies, music) {
         this.isSettingsOpen = false;
         this.drawLifeBar(player.health);
         this.drawNbEnemiesLeft(enemies.length);
@@ -42,8 +44,6 @@ class Hud {
     }
 
     drawSetting() {
-        //window.game.music
-        // music on and off
         this.settings = new PIXI.Sprite.from(textures.settings);
         this.settings.anchor.set(0.5, 0.5);
         this.settings.x = window.innerWidth - 25;
@@ -71,9 +71,23 @@ class Hud {
             location.reload();
         }
 
+        this.soundOn = new PIXI.Sprite.from(textures.soundOn);
+        this.soundOn.x = window.innerWidth - 370;
+        this.soundOn.y = window.innerHeight - 200;
+        this.soundOn.width = 100;
+        this.soundOn. height = 100;
+        this.soundOn.interactive = true;
+        this.soundOn.visible = this.isSettingsOpen;
+       
+
+        this.soundOn.click = ()  => {
+            this.music.muted = !this.music.muted
+        }
+
         hud.addChild(this.containerText);
         hud.addChild(this.commandsText);
         hud.addChild(this.restart);
+        hud.addChild(this.soundOn);
         hud.addChild(this.settings);
         hud.addChild(this.floorText);
     }
@@ -83,10 +97,13 @@ class Hud {
             this.containerText.visible = false;
             this.commandsText.visible = false;
             this.restart.visible = false;
+            this.soundOn.visible = false;
         } else {
             this.containerText.visible = true;
             this.commandsText.visible = true;
             this.restart.visible = true;
+            this.soundOn.visible = true;
+            
             window.game.trombi.destroy();
         }
         this.isSettingsOpen = !this.isSettingsOpen;

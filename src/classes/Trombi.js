@@ -150,7 +150,6 @@ class Trombi {
             this.helpText.text = this.getRandomTips();
             this.talkingAnim = 0;
         }
-        console.log(this.textSince);
     }
 }
 
