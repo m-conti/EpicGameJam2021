@@ -7,7 +7,8 @@ class Game {
         this.entities = [this.player];
         this.camera = new Camera(this.player);
         this.hud = new Hud(this.player);
-        this.map = new Map("salut");
+        this.furnitures = [];
+        this.map = new Map(this);
         this.inputHandler = new InputHandler(app);
         this.trombi = new Trombi();
         this.loop = this.loop.bind(this);
@@ -23,14 +24,23 @@ class Game {
         this.entities.push(entity);
     }
 
+    spawnFurnitures() {
+        console.log("furnitures", this.furnitures)
+        for (const furniture of this.furnitures) {
+            this.addEntity(furniture);
+            furniture.spawn();
+        }
+    }
+
     spawnPlayer() {
-        this.map.drawMap();
+        this.map.drawMap(this);
         container.addChild(this.map.mapContainer);
         this.player.spawn();
         this.player.respawn();
         this.spawnRandomEnemies();
         this.music.play();
         this.music.loop = true;
+        this.spawnFurnitures();
     }
 
     onEnemyDeath() {
