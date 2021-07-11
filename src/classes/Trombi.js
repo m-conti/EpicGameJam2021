@@ -133,6 +133,11 @@ class Trombi {
         this.talkingAnim += time;
     }
 
+    classicGameOver() {
+        this.talkingAnim = -1;
+        this.helpText.text = "I KNEW YOU WERE A GAUCHIASSE! DIE LEFTARD SCUM! YOU'RE FIRED!"
+    }
+
     tick(timeDelta) {
         if (this.spawnAnim >= 0)
             this.spawnAnimProgress(timeDelta);
