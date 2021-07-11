@@ -1,4 +1,5 @@
 const MUSIC_PATH = 'src/assets/audio/Tromby_Music.mp3'
+const GAME_OVER_MUSIC_AUDIO = 'src/assets/audio/gameover.mp3'
 const music = new Audio(MUSIC_PATH);
 
 class Game {
