@@ -12,21 +12,21 @@ class Trombi {
         this.trombi.addChild(this.sprite);
         this.sprite.x = TROMBI_X;
         this.sprite.y = TROMBI_Y;
-        this.sprite.scale.x = 0.05;
-        this.sprite.scale.y = 0.05;
+        this.sprite.scale.x = 0.08;
+        this.sprite.scale.y = 0.08;
 
         this.trombi.addChild(this.textTriangle);
         this.textTriangle.beginFill(0xFFF9CE);
         this.textTriangle.lineStyle(1, 0xFFF9CE, 1);
-        this.textTriangle.moveTo(TROMBI_X, TROMBI_Y - 5);
+        this.textTriangle.moveTo(TROMBI_X + 10, TROMBI_Y + 30);
         this.textTriangle.lineTo(TROMBI_X, TROMBI_Y - 20);
         this.textTriangle.lineTo(TROMBI_X - 20, TROMBI_Y - 20);
-        this.textTriangle.lineTo(TROMBI_X , TROMBI_Y - 5);
+        this.textTriangle.lineTo(TROMBI_X + 10, TROMBI_Y + 30);
         this.textTriangle.endFill(0xFFF9CE);
 
         this.trombi.addChild(this.textBubble);
         this.textBubble.beginFill(0xFFF9CE);
-        this.textBubble.drawRoundedRect(TROMBI_X - BUBBLE_W / 2 - 10, TROMBI_Y - (BUBBLE_H + 20), BUBBLE_W, BUBBLE_H, 20);
+        this.textBubble.drawRoundedRect(TROMBI_X - BUBBLE_W / 2, TROMBI_Y - BUBBLE_H, BUBBLE_W, BUBBLE_H, 20);
         this.textBubble.endFill();
 
         this.helpText =  new PIXI.Text(this.getHelpText(), {
@@ -38,14 +38,13 @@ class Trombi {
             wordWrapWidth: 230,
         });
 
-        this.helpText.x = TROMBI_X - BUBBLE_W / 2;
-        this.helpText.y = TROMBI_Y - (BUBBLE_H + 20 - 10);
+        this.helpText.x = TROMBI_X - BUBBLE_W / 2 + 10;
+        this.helpText.y = TROMBI_Y - (BUBBLE_H - 10);
         this.trombi.addChild(this.helpText);
     }
 
-    refresh() {
-        this.helpText.text = this.getHelpText();
-        this.sprite = this.getSprite();
+    destroy() {
+        app.stage.removeChild(this.trombi);
     }
 
     getHelpText() {

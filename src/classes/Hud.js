@@ -1,7 +1,7 @@
 class Hud {
     constructor(player) {
         this.hud = new PIXI.Container();
-        this.floor = FLOORS.START;
+        this.floor = player.floor;
         this.life = player.health;
 
         this.containerText = new PIXI.Graphics()
@@ -19,8 +19,6 @@ class Hud {
             fontSize: 20,
             fill: 0x990201,
             fontWeight: 400,
-            wordWrap: true,
-            wordWrapWidth: 230,
         })
 
         this.currentTextureLifeIndex = 4;
@@ -69,13 +67,16 @@ class Hud {
         } else {
             this.containerText.visible = true;
             this.commandsText.visible = true;
+            window.game.trombi.destroy();
         }
         this.isSettingsOpen = !this.isSettingsOpen;
     }
 
     drawLifeBar(health) {
-        if (!this.lifeBar) {
-            this.lifePercentage = new PIXI.Text(health + '%',  {
+
+        const text = health + '%';
+        if (!this.lifePercentage) {
+            this.lifePercentage = new PIXI.Text(text,  {
                 fontFamily: 'Comic Sans MS',
                 fontSize: 20,
                 fill: 0x990201,
@@ -87,10 +88,11 @@ class Hud {
             hud.addChild(this.lifePercentage)
         }
         else {
-            this.lifePercentage.text = health + '%';
+            this.lifePercentage.text = text;
         }
-        if (!this.lifeBar) this.lifeBar = PIXI.Sprite.from(textures.life4);
 
+        if (!this.lifeBar) this.lifeBar = PIXI.Sprite.from(textures.life4);
+        
         if (health === 0) {
             if (this.currentTextureLifeIndex === 0) return;
             this.lifeBar.texture = textures.life0;

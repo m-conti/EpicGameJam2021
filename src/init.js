@@ -1,10 +1,28 @@
-Webcam.set({
-    width: 320,
-    height: 240,
-    image_format: 'jpeg',
-    jpeg_quality: 90
-});
-Webcam.attach('#webcam');
+let hasWebcam;
+
+function detectWebcam(callback) {
+    let md = navigator.mediaDevices;
+    if (!md || !md.enumerateDevices) return callback(false);
+    md.enumerateDevices().then(devices => {
+        callback(devices.some(device => 'videoinput' === device.kind));
+    })
+}
+
+detectWebcam(function(webcam) {
+    hasWebcam = webcam;
+
+    if (!hasWebcam) {
+        startGame();
+    } else {
+        Webcam.set({
+            width: 320,
+            height: 240,
+            image_format: 'jpeg',
+            jpeg_quality: 90
+        });
+        Webcam.attach('#webcam');
+    }
+})
 
 function take_snapshot() {
     Webcam.snap(function (data_uri) {

@@ -14,28 +14,35 @@ class Player extends SpriteEntity {
         ];
         this.powerIndex = 0;
 
-        // const texture = PIXI.Texture.from(PLAYER_SPRITE_PATH);
-
-
         const playerContainer = new PIXI.Container();
-        const mask = PIXI.Sprite.from(PLAYER_SPRITE_PATH);
-        const texture = PIXI.Texture.from((document.querySelector("#cam_picture")));
-        const playerSprite = new PIXI.Sprite(texture);
-        const playerSprite2 = PIXI.Sprite.from(PLAYER_SPRITE_PATH2);
+        if (hasWebcam) {
+            const mask = PIXI.Sprite.from(PLAYER_SPRITE_PATH);
+            const texture = PIXI.Texture.from((document.querySelector("#cam_picture")));
+            const playerSprite = new PIXI.Sprite(texture);
+            const playerSprite2 = PIXI.Sprite.from(PLAYER_SPRITE_PATH2);
 
-        playerContainer.addChild(mask, playerSprite, playerSprite2);
-        playerContainer.scale.x = 0.3;
-        playerContainer.scale.y = 0.3;
-        playerSprite.width = 400;
-        playerSprite.height = 800;
-        playerSprite2.width = 400;
-        playerSprite2.height = 800;
-        mask.width = 400;
-        mask.height = 800;
-        playerSprite.mask = mask;
-        playerSprite.anchor.set(0.5);
-        playerSprite2.anchor.set(0.5);
-        mask.anchor.set(0.5);
+            playerContainer.addChild(mask, playerSprite, playerSprite2);
+            playerContainer.scale.x = 0.3;
+            playerContainer.scale.y = 0.3;
+            playerSprite.width = 400;
+            playerSprite.height = 800;
+            playerSprite2.width = 400;
+            playerSprite2.height = 800;
+            mask.width = 400;
+            mask.height = 800;
+            playerSprite.mask = mask;
+            playerSprite.anchor.set(0.5);
+            playerSprite2.anchor.set(0.5);
+            mask.anchor.set(0.5);
+        } else {
+            const texture = PIXI.Texture.from(PLAYER_SPRITE_DEFAULT_PATH);
+            const playerSprite = new PIXI.Sprite(texture);
+            playerSprite.anchor.set(0.5);
+            playerSprite.scale.x = 0.1;
+            playerSprite.scale.y = 0.1;
+            playerContainer.addChild(playerSprite);
+        }
+
         this.sprite = playerContainer;
         app.stage.addChild(playerContainer);
     }
