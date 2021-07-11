@@ -18,6 +18,7 @@ class EnemyProjectile extends Projectile {
         }
         return false
       }
+
       tick(timeDelta) {
         let removed = false
         for (const entity of window.game.entities) {
