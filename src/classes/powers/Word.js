@@ -2,17 +2,35 @@ class WordProjectile extends Projectile {
   constructor(...args) {
     super(...args);
 
-    const randomElement = CORPORATE_TEXT[Math.floor(Math.random() * CORPORATE_TEXT.length)];
-    const text = new PIXI.Text(randomElement, {
-        fontFamily: 'Comic Sans MS',
-        fill: 0xFFFFFF,
-    });
+    this.typeEntity = ENTITY_TYPES.PROJECTILE
+    const isLoveShot = Math.random() > (1 - PROBA_LOVE_SHOT);
 
-      this.typeEntity = ENTITY_TYPES.PROJECTILE
+    let text;
+    if (isLoveShot) {
+      const randomElement = LOVE_TEXT[Math.floor(Math.random() * LOVE_TEXT.length)];
+      text = new PIXI.Text(randomElement, {
+          fontFamily: 'Comic Sans MS',
+          fill: 0xCCA0B4,
+          fontSize: 44,
+      });
+      this.damage = 0;
+    }
+    else {
+      const randomElement = CORPORATE_TEXT[Math.floor(Math.random() * CORPORATE_TEXT.length)];
+      text = new PIXI.Text(randomElement, {
+          fontFamily: 'Comic Sans MS',
+          fill: 0xFFFFFF,
+
+      });
+      this.damage = 10;
+    }
+
+
+    
     text.updateText(); // force it to render to texture inside
     this.sprite = new PIXI.Sprite(text.texture);
     this.sprite.position.set(this.x, this.y);
-    this.damage = 10;
+    
 
     if (this.direction.x > 0) {
       this.sprite.rotation = Math.atan2(this.direction.y, this.direction.x);
@@ -23,7 +41,7 @@ class WordProjectile extends Projectile {
   }
 
   collidesWithEntity(entity) {
-      if (!([ENTITY_TYPES.PLAYER, ENTITY_TYPES.PROJECTILE].includes(entity.typeEntity))) {
+      if (!([ENTITY_TYPES.PLAYER, ENTITY_TYPES.PROJECTILE, ENTITY_TYPES.DEATH].includes(entity.typeEntity))) {
 
           if (entity.sprite) {
             const maxXEntity = entity.sprite.x + entity.sprite.width;
@@ -60,7 +78,7 @@ class WordPower extends Power {
     super();
     this.fireRate = 10;
     this.fireDistance = 120;
-    this.bulletSpeed = 22;
+    this.bulletSpeed = 16;
     this.reload = 0;
     this.Projectile = WordProjectile;
   }

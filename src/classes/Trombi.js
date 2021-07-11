@@ -29,7 +29,7 @@ class Trombi {
         this.textBubble.drawRoundedRect(TROMBI_X - BUBBLE_W / 2, TROMBI_Y - BUBBLE_H, BUBBLE_W, BUBBLE_H, 20);
         this.textBubble.endFill();
 
-        this.helpText =  new PIXI.Text(this.getHelpText(), {
+        this.helpText = new PIXI.Text(this.getHelpText(), {
             fontFamily: 'Comic Sans MS',
             fontSize: 20,
             fill: 0x000000,
@@ -41,6 +41,7 @@ class Trombi {
         this.helpText.x = TROMBI_X - BUBBLE_W / 2 + 10;
         this.helpText.y = TROMBI_Y - (BUBBLE_H - 10);
         this.trombi.addChild(this.helpText);
+        this.spawnAnim = 0;
     }
 
     destroy() {
@@ -49,24 +50,63 @@ class Trombi {
 
     getHelpText() {
         switch (game.player.floor) {
-            case FLOORS.START: return "Hi I'm Trombi! It looks like you're new here! Let me help you get acquainted with your new family!";
-            case FLOORS.IT: return "It looks like the IT team is in a bit of a rush at the moment! Tread carefully, you might encounter some bugs!";
-            case FLOORS.MARKETING: return "It looks like you need to pay to stop seeing the pop-up ads, you can use my credit card number: 4578 4562 5643 9173";
-            case FLOORS.HR: return "It looks like you're with our HR team, don't worry they really nice and competent people, just do as they say!";
-            case FLOORS.END: return "MWAHAHA!!! It looks like you finally arrived to the last floor! I bet you're really surprised it's me the boss! I WILL CRUSH YOU!";
+            case FLOORS.START:
+                return "Hi I'm Trombi! It looks like you're new here! Let me help you get acquainted with your new family!";
+            case FLOORS.IT:
+                return "It looks like the IT team is in a bit of a rush at the moment! Tread carefully, you might encounter some bugs!";
+            case FLOORS.MARKETING:
+                return "It looks like you need to pay to stop seeing the pop-up ads, you can use my credit card number: 4578 4562 5643 9173";
+            case FLOORS.HR:
+                return "It looks like you're with our HR team, don't worry they really nice and competent people, just do as they say!";
+            case FLOORS.END:
+                return "MWAHAHA!!! It looks like you finally arrived to the last floor! I bet you're really surprised it's me the boss! I WILL CRUSH YOU!";
 
-            default: return;
+            default:
+                return;
         }
     }
 
     getSprite() {
         switch (game.player.floor) {
-            case FLOORS.START, FLOORS.IT: return PIXI.Sprite.from(TROMBI_SPRITE_PATH1);
-            case FLOORS.MARKETING, FLOORS.HR: return PIXI.Sprite.from(TROMBI_SPRITE_PATH2);
-            case FLOORS.END: return PIXI.Sprite.from(TROMBI_SPRITE_PATH3);
+            case FLOORS.START, FLOORS.IT:
+                return PIXI.Sprite.from(TROMBI_SPRITE_PATH1);
+            case FLOORS.MARKETING, FLOORS.HR:
+                return PIXI.Sprite.from(TROMBI_SPRITE_PATH2);
+            case FLOORS.END:
+                return PIXI.Sprite.from(TROMBI_SPRITE_PATH3);
 
-            default: return PIXI.Sprite.from(TROMBI_SPRITE_PATH1);
+            default:
+                return PIXI.Sprite.from(TROMBI_SPRITE_PATH1);
         }
+    }
+
+    spawnAnimProgress(time) {
+        this.sprite.anchor.set(0.5);
+        this.sprite.rotation += 0.03 * time;
+        if (this.spawnAnim < 45) {
+            this.sprite.y += time * 10;
+        }
+        else if (this.spawnAnim < 90) {
+            this.sprite.y -= time * 10;
+        }
+        else if (this.spawnAnim < 135) {
+            this.sprite.y += time * 10;
+        }
+        else if (this.spawnAnim < 160) {
+            this.sprite.y -= time * 10;
+        }
+        else {
+            this.spawnAnim = -1;
+            this.sprite.rotation = 0;
+            return
+        }
+        this.spawnAnim += time;
+    }
+
+    tick(timeDelta) {
+        if (this.spawnAnim >= 0)
+            this.spawnAnimProgress(timeDelta);
+
     }
 }
 

@@ -4,7 +4,7 @@ class Player extends SpriteEntity {
         super(x, y);
 
         this.typeEntity = ENTITY_TYPES.PLAYER
-        this.moveSpeed = 22;
+        this.moveSpeed = 15;
         this.floor = FLOORS.START;
         this.health = 100;
 
@@ -152,7 +152,6 @@ class Player extends SpriteEntity {
         const prevX = this.sprite.x;
         const prevY = this.sprite.y;
 
-
         this.sprite.position.set(this.sprite.x + x, this.sprite.y + y)
         this.move(x, y)
 
@@ -162,9 +161,6 @@ class Player extends SpriteEntity {
             this.sprite.position.set(prevX, prevY)
             this.moveTo(prevX, prevY)
         }
-        // else {
-        //   this.move(x, y)
-        // }
         window.game.camera.updateCameraFromPlayer(this.originX, this.originY);
 
         this.power.fire(this.originVector, timeDelta)

@@ -6,6 +6,7 @@ class Projectile extends SpriteEntity {
     this.direction = direction;
     this.damage = damage;
     this.typeEntity = ENTITY_TYPES.PROJECTILE;
+    this.timeToLive = PROJECTILE_TIME_TO_LIVE;
   }
 
   onCollide(elementCollided) {
@@ -19,6 +20,12 @@ class Projectile extends SpriteEntity {
     const x = this.direction.x * this.moveSpeed * timeDelta;
     const y = this.direction.y * this.moveSpeed * timeDelta;
 
+
+    this.timeToLive -= timeDelta;
+    if (this.timeToLive < 0) {
+      this.remove();
+      return
+    }
     this.move(x, y);
     super.tick();
   }

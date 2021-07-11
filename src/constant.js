@@ -26,6 +26,7 @@ const PLAYER_SPRITE_PATH = 'src/assets/sprites/cravate.png'
 const PLAYER_SPRITE_PATH2 = 'src/assets/sprites/cravate3.png'
 const PLAYER_SPRITE_DEFAULT_PATH = 'src/assets/sprites/cravate2.png'
 const PLAYER_PATTERN_PATH = 'src/assets/sprites/pattern.jpg'
+const DEATH_SPRITE_PATH = 'src/assets/sprites/enemies/death.png'
 
 const TROMBI_X = innerWidth - 200;
 const TROMBI_Y =  innerHeight - innerHeight / 2;
@@ -45,6 +46,9 @@ const ROOM_SIZE = 1500;
 const CORPORATE_TEXT = [
   "Actionable", "Gain traction", "Low-hanging fruit", "Quick fix", "Think outside the box", "30,000 foot view", "Bandwidth", "Benchmark", "Best practice", "Bottleneck", "Deliverable", "Downsize", "In the loop", "Win win", "Pouvoir d'achat", "Gagner un marché", "Scalable", "Hierarchie horizontale", "Scrum Master", "Itération", "Iterate", "Booster", "Closer le deal", "Business Angel", "Buzzword", "VC", "Licorne", "Unicorn", "Pitch", "Traction", "Disrupter", "Écosystème", "Innover", "Lean", "FOMO", "Bankable", "Blockchain", "Business Plan", "Business Model", "Coworking", "Crowdsourcing", "Norvegian Inquisition", "Fordism", "Monetisation", "Disruptif"
 ]
+const LOVE_TEXT = [
+  "Love"
+]
 const MIN_ENEMIES = 10;
 const MAX_ENEMIES = 20;
 
@@ -57,5 +61,12 @@ const ENEMY_LIST = [
 const ENTITY_TYPES = {
   PLAYER: 'player',
   WALL: 'wall',
-  PROJECTILE: 'projectile'
+  PROJECTILE: 'projectile',
+  DEATH: 'death'
 }
+
+const PROBA_LOVE_SHOT = 0.1
+
+const PROJECTILE_TIME_TO_LIVE = 500
+const TIME_TO_LIVE_DEATH = 200
+
