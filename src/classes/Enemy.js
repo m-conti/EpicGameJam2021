@@ -44,8 +44,9 @@ class Enemy extends SpriteEntity {
   }
 
   onDeath() {
-    // animation death
     this.remove();
+    const deathSprite = new Death(this.x + this.width / 2, this.y + this.height / 2);
+    window.game.addEntity(deathSprite);
     window.game.onEnemyDeath();
   }
 

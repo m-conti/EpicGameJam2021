@@ -26,10 +26,7 @@ class Hud {
     }
 
     draw(player, enemies) {
-        
-        
         this.isSettingsOpen = false;
-
         this.drawLifeBar(player.health);
         this.drawNbEnemiesLeft(enemies.length);
         this.drawSetting();
@@ -58,6 +55,7 @@ class Hud {
         hud.addChild(this.containerText);
         hud.addChild(this.commandsText);
         hud.addChild(this.settings);
+        hud.addChild(this.floorText);
     }
 
     handleSettings() {
@@ -139,8 +137,12 @@ class Hud {
         }
     }
 
-    changeFloor(next) {
-        this.floor = FLOORS[next];
+    drawGameOver() {
+        this.gameOverSprite = new PIXI.Sprite.from(textures.gameOver);
+        this.gameOverSprite.anchor.set(0.5, 0.5);
+        this.gameOverSprite.position.set(window.innerWidth /2, window.innerHeight /2)
+        this.gameOverSprite.scale.set(0.3);
+        hud.addChild(this.gameOverSprite);
     }
 
 }
