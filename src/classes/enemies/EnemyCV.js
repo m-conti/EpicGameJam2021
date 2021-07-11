@@ -1,4 +1,4 @@
-class ProjectileCV extends Projectile {
+class ProjectileCV extends EnemyProjectile {
   constructor(x, y, direction={ x: 0, y: 0 }) {
     const moveSpeed = 6;
     const damage = 20;
