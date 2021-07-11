@@ -11,7 +11,7 @@ class Hud {
             wordWrap: true,
             wordWrapWidth: 230,
         })
-        this.commandsText = new PIXI.Text('W: moving forward\nS: moving backward\nA: moving left\nD: moving rigth\nMouse: shoot\nV: increment power\nC: decrement power', {
+        this.commandsText = new PIXI.Text('W: moving forward\nS: moving backward\nA: moving left\nD: moving right\nMouse: shoot\nV: increment power\nC: decrement power', {
             fontFamily: 'Comic Sans MS',
             fontSize: 20,
             fill: 0xFFFFFF,
@@ -49,7 +49,7 @@ class Hud {
         this.settings.on('pointerdown', this.handleSettings.bind(this));
 
         this.containerText.beginFill(0x000000);
-        this.containerText.drawRect(window.innerWidth - 260, window.innerHeight -360, 200, 300)
+        this.containerText.drawRoundedRect(window.innerWidth - 260, window.innerHeight -360, 200, 300, 10)
         this.containerText.endFill();
         this.containerText.visible = this.isSettingsOpen
 
