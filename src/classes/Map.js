@@ -1,14 +1,22 @@
-const COLORS = {
+const MINIMAP_COLORS = {
     '0': 0x000,
     '1': 0xFF0000,
     '2': 0x00FF00,
     '3': 0x0000FF,
 }
 
+const MAP_FLOORS = {
+    '0': PIXI.Texture.from('src/assets/sprites/floors/floor.png'),
+    '1': PIXI.Texture.from('src/assets/sprites/floors/floor.png'),
+    '2': PIXI.Texture.from('src/assets/sprites/floors/floor.png'),
+    '3': PIXI.Texture.from('src/assets/sprites/floors/floor.png'),
+}
+
 class Map {
     constructor() {
         this.theme = "";
 
+        this.walls = [];
         this.dimensions = 15;
         this.generateMap();
         this.minimap = this.drawMinimap();
@@ -19,22 +27,33 @@ class Map {
         let mapContainer = new PIXI.Container();
         for (let x = 0; x < this.dimensions; x++) {
             for (let y = 0; y < this.dimensions; y++) {
-                if (this.map[x][y]) {
-                    let room = new PIXI.Graphics();
+                let room = new PIXI.Sprite(MAP_FLOORS[this.map[x][y]]);
 
-                    room.beginFill(COLORS[this.map[x][y]]);
-                    room.drawRect(x * ROOM_SIZE, y * ROOM_SIZE, ROOM_SIZE, ROOM_SIZE);
-                    room.endFill();
-
-                    mapContainer.addChild(room);
+                room.x = x * ROOM_SIZE;
+                room.y = y * ROOM_SIZE;
+                switch (this.map[x][y]) {
+                    case 0:
+                        room.tint = 0x111111;
+                        this.walls.push(room);
+                        break;
+                    case 2:
+                        room.tint = 0x00FF00;
+                        break;
+                    case 3:
+                        room.tint = 0x0000FF;
+                        break;
                 }
-                // else {
-                //     // Else make a borderRoom entity
-                //     const borderRoom = new BorderRoom(x, y)
-                //     this.borderRooms.push(borderRoom)
-                // }
+                mapContainer.addChild(room);
+                room.width = ROOM_SIZE;
+                room.height = ROOM_SIZE;
             }
+            // else {
+            //     // Else make a borderRoom entity
+            //     const borderRoom = new BorderRoom(x, y)
+            //     this.borderRooms.push(borderRoom)
+            // }
         }
+
         return mapContainer;
     }
 
@@ -45,7 +64,7 @@ class Map {
                 if (this.map[x][y]) {
                     let room = new PIXI.Graphics();
 
-                    room.beginFill(COLORS[this.map[x][y]]);
+                    room.beginFill(MINIMAP_COLORS[this.map[x][y]]);
                     room.drawRect(x * 10, y * 10, 10, 10);
                     room.endFill();
 
@@ -124,8 +143,10 @@ class Map {
             'x': currentRow,
             'y': currentColumn,
         };
-        
+
         this.freeTunnels = [];
-        this.map.forEach((row, rowIdx) => row.forEach((col, colIdx) => { if(col) this.freeTunnels.push({ x: rowIdx, y: colIdx }) }));
+        this.map.forEach((row, rowIdx) => row.forEach((col, colIdx) => {
+            if (col) this.freeTunnels.push({x: rowIdx, y: colIdx})
+        }));
     }
 }
