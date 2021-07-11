@@ -88,7 +88,7 @@ class Player extends SpriteEntity {
             return false;
         return (
             (this.sprite.x <= 0 + this.sprite.width / 2 || this.sprite.y <= 0 + this.sprite.height / 2 ||
-                this.sprite.x >= ROOM_SIZE * window.Fthisgame.map.dimensions - this.sprite.width / 2 ||
+                this.sprite.x >= ROOM_SIZE * window.game.map.dimensions - this.sprite.width / 2 ||
                 this.sprite.y >= ROOM_SIZE * window.game.map.dimensions - this.sprite.height / 2)
         )
     }
