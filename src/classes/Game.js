@@ -62,6 +62,7 @@ class Game {
   }
 
   gameOver() {
+    this.hud.drawGameOver();
     this.isOver = true;
   }
 
