@@ -22,7 +22,7 @@ class EnemyMail extends Enemy {
     this.health = 50;
 
     this.isAnimate = true;
-    this.animationClock = 28;
+    this.animationClock = 100;
     this.textures = [
       PIXI.Texture.fromFrame(MAIL_SPRITE_PATH1),
       PIXI.Texture.fromFrame(MAIL_SPRITE_PATH2),

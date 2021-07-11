@@ -94,6 +94,7 @@ class Player extends SpriteEntity {
       // animation death
       console.log('PLAYER DEAD');
       this.remove();
+      window.game.gameOver = true;
   }
 
   respawn() {
