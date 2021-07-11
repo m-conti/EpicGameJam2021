@@ -32,6 +32,7 @@ class EnemyCV extends Enemy {
     enemySprite.scale.x = 0.1;
     enemySprite.scale.y = 0.1;
     this.sprite = enemySprite;
+    this.sprite.anchor.set(0.5);
     app.stage.addChild(enemySprite);
     
     this.Projectile = ProjectileCV;
