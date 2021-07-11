@@ -20,11 +20,6 @@ class Enemy extends SpriteEntity {
     this.outOfRange = 20000000;
   }
 
-  spawn() {
-    this.sprite.anchor.set(0.5);
-    super.spawn();
-  }
-
   get originX() {
     return this.sprite.x - (this.sprite?.width || 0) / 2;
   }
