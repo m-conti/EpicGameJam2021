@@ -46,6 +46,7 @@ class Game {
       this.addEntity(newEnemy);
       newEnemy.spawn();
     }
+    this.gameOver();
   }
 
   drawHud() {
