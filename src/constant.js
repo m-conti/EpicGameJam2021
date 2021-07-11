@@ -34,6 +34,10 @@ const TROMBI_SPRITE_PATH1 = 'src/assets/sprites/enemies/Trombi/Trombi_Phase_Une.
 const TROMBI_SPRITE_PATH2 = 'src/assets/sprites/enemies/Trombi/Trombi_Phase_Deux.png';
 const TROMBI_SPRITE_PATH3 = 'src/assets/sprites/enemies/Trombi/Trombi_Phase_Trois.png';
 
+const WORDSHOT_SQUARE = 30
+const ENEMY_SHOT_WIDTH = 10
+
+const BORDER_ROOM_SPRITE_PATH = 'src/assets/sprites/wall.png'
 
 const ROOM_SIZE = 500;
 
@@ -48,3 +52,18 @@ const ENEMY_LIST = [
   EnemyMail,
   EnemyPhone,
 ]
+
+const ENTITY_TYPES = {
+  PLAYER: 'player',
+  WALL: 'wall',
+  PROJECTILE: 'projectile'
+}
+
+const PHONE_SPRITE_PATH1 = 'src/assets/sprites/enemies/Phone/Phone_Frame_1.png'
+const PHONE_SPRITE_PATH2 = 'src/assets/sprites/enemies/Phone/Phone_Frame_2.png'
+const PHONE_SPRITE_PATH3 = 'src/assets/sprites/enemies/Phone/Phone_Frame_3.png'
+const CV_SPRITE_PATH1 = 'src/assets/sprites/enemies/CV/CV_Frame_1.png'
+const CV_SPRITE_PATH2 = 'src/assets/sprites/enemies/CV/CV_Frame_2.png'
+const MAIL_SPRITE_PATH1 = 'src/assets/sprites/enemies/Mail/Mail_Frame_1.png'
+const MAIL_SPRITE_PATH2 = 'src/assets/sprites/enemies/Mail/Mail_Frame_2.png'
+const MAIL_SPRITE_PATH3 = 'src/assets/sprites/enemies/Mail/Mail_Frame_3.png'

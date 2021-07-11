@@ -5,6 +5,15 @@ class Entity {
     this.canCollideWithPlayer = false;
   }
 
+  get isOnScreen() {
+    const camera = window.game.camera;
+    if (this.x < camera.x || this.x > camera.x + window.game.app.renderer.width)
+      return false;
+    if (this.y < camera.y || this.y > camera.y + window.game.app.renderer.height)
+      return false;
+    return true;
+  }
+
   spawn() {
       container.addChild(this.graphics);
   }

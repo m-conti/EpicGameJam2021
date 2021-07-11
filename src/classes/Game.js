@@ -3,16 +3,12 @@ class Game {
   constructor(app) {
     this.app = app;
     this.player = new Player(50, 50);
-    //this.wall1 = new Wall(60, 60);
-
     this.entities = [this.player];
-
     this.camera = new Camera(this.player);
     this.hud = new Hud(this.player);
     this.map = new Map("salut");
     this.inputHandler = new InputHandler(app);
     this.trombi = new Trombi();
-
     this.loop = this.loop.bind(this);
   }
 
@@ -38,7 +34,8 @@ class Game {
   }
 
   onEnemyDeath() {
-
+    console.log(`ENEMIES : ${this.enemies.length}`)
+    this.hud.drawNbEnemiesLeft(this.enemies.length);
   }
 
   spawnRandomEnemies() {
