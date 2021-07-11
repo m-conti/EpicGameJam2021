@@ -91,6 +91,12 @@ class Game {
         this.gameoverMusic.play();
     }
 
+    gameOverGood() {
+        this.hud.drawWin();
+        this.trombi.goodGameOver();
+        this.isOver = true;
+    }
+
     loop(timeDelta) {
         if (this.isOver) return;
         for (const entity of this.entities) {

@@ -10,6 +10,12 @@ class ProjectileTrombi extends EnemyProjectile {
 
     this.sprite.position.set(this.x, this.y);
   }
+
+  onCollide(elementCollided) {
+    super.onCollide(elementCollided);
+    if (window.game.player.health < 0)
+      window.game.gameOverGood()
+  }
 }
 
 class EnemyTrombi extends Enemy {

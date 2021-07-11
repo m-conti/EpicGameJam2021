@@ -143,6 +143,11 @@ class Trombi {
         this.helpText.text = "YOU KILLED CAPITALISM!! SHAME ON YOU!!HAVE YOU LEARNED ANYTHING DURING THE JAM ??"
     }
 
+    goodGameOver() {
+        this.talkingAnim = -1;
+        this.helpText.text = "Thank you! By removing your sorry self from the employee pool, you SAVED CAPITALISM YAY !"
+    }
+
     tick(timeDelta) {
         if (this.spawnAnim >= 0)
             this.spawnAnimProgress(timeDelta);
