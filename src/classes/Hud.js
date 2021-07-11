@@ -4,12 +4,17 @@ class Hud {
         this.floor = FLOORS.START;
         this.life = player.health;
 
-        this.currentTextureLifeIndex = 4;
-        this.drawSetting();
-    }
+        this.containerText = new PIXI.Graphics()
+        this.commandsText = new PIXI.Text('W: moving forward\nS: moving backward\nA: moving left\nD: moving right\nMouse: shoot\nV: increment power\nC: decrement power', {
+            fontFamily: 'Comic Sans MS',
+            fontSize: 20,
+            fill: 0xFFFFFF,
+            fontWeight: 400,
+            wordWrap: true,
+            wordWrapWidth: 230,
+        })
 
-    draw(player, enemies) {
-        let floorText = new PIXI.Text(this.floor, {
+        this.floorText = new PIXI.Text(this.floor, {
             fontFamily: 'Comic Sans MS',
             fontSize: 20,
             fill: 0x990201,
@@ -17,29 +22,55 @@ class Hud {
             wordWrap: true,
             wordWrapWidth: 230,
         })
-        console.log('XXXXX',window.game.map.minimap.x)
-        window.game.map.minimap.x += 1600;
-        window.game.map.minimap.y += 200;
-        hud.addChild(window.game.map.minimap);
 
-        hud.addChild(this.hud);
-        this.drawLifeBar(player.health)
-        console.log(enemies.length)
-        this.drawNbEnemiesLeft(enemies.length)
+        this.currentTextureLifeIndex = 4;
+        this.drawSetting();
+    }
+
+    draw(player, enemies) {
         
-        floorText.position.set(10, 5);
-        hud.addChild(this.settings);
-        hud.addChild(floorText);
+        
+        this.isSettingsOpen = false;
+
+        this.drawLifeBar(player.health);
+        this.drawNbEnemiesLeft(enemies.length);
+        this.drawSetting();
     }
 
     drawSetting() {
-        this.settings = new PIXI.Sprite.from(textures.settings)
+        this.settings = new PIXI.Sprite.from(textures.settings);
         this.settings.anchor.set(0.5, 0.5);
         this.settings.x = window.innerWidth - 40;
         this.settings.y = window.innerHeight - 40;
         this.settings.width = 40;
         this.settings.height = 40;
         this.settings.interactive  = true;
+        this.settings.emit('pointerdown')
+        this.settings.on('pointerdown', this.handleSettings.bind(this));
+
+    
+        this.containerText.beginFill(0x000000);
+        this.containerText.drawRoundedRect(window.innerWidth - 260, window.innerHeight -360, 200, 300, 10)
+        this.containerText.endFill();
+        this.containerText.visible = this.isSettingsOpen
+
+        this.commandsText.position.set(window.innerWidth - 255, window.innerHeight -360);
+        this.commandsText.visible = this.isSettingsOpen;
+
+        hud.addChild(this.containerText);
+        hud.addChild(this.commandsText);
+        hud.addChild(this.settings);
+    }
+
+    handleSettings() {
+        if (this.isSettingsOpen) {
+            this.containerText.visible = false;
+            this.commandsText.visible = false;
+        } else {
+            this.containerText.visible = true;
+            this.commandsText.visible = true;
+        }
+        this.isSettingsOpen = !this.isSettingsOpen;
     }
 
     drawLifeBar(health) {

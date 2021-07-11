@@ -2,7 +2,7 @@
 class Game {
   constructor(app) {
     this.app = app;
-    this.player = new Player(50, 50);
+    this.player = new Player(-400, -400);
     this.entities = [this.player];
     this.camera = new Camera(this.player);
     this.hud = new Hud(this.player);
@@ -10,7 +10,7 @@ class Game {
     this.inputHandler = new InputHandler(app);
     this.trombi = new Trombi();
     this.loop = this.loop.bind(this);
-    this.gameOver = false;
+    this.isOver = false;
   }
 
   get enemies() {
@@ -23,11 +23,7 @@ class Game {
 
   spawnPlayer() {
     this.map.drawMap();
-    this.minimapContainer = this.map.drawMinimap();
-    this.minimapContainer.x = 1024;
-    this.minimapContainer.y = 40;
     container.addChild(this.map.mapContainer);
-    container.addChild(this.minimapContainer);
     this.player.spawn();
     this.player.respawn();
     this.spawnRandomEnemies();
@@ -60,8 +56,12 @@ class Game {
     this.trombi.spawn();
   }
 
+  gameOver() {
+    this.isOver = true;
+  }
+
   loop(timeDelta) {
-    if (this.gameOver) return;
+    if (this.isOver) return;
     for (const entity of this.entities) {
       entity.tick(timeDelta);
     }

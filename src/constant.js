@@ -24,7 +24,6 @@ const WALL_SPRITE_PATH = 'src/assets/sprites/wall.png'
 const BACKGROUND_COLOR = 0xfac049
 const PLAYER_SPRITE_PATH = 'src/assets/sprites/cravate.png'
 const PLAYER_SPRITE_PATH2 = 'src/assets/sprites/cravate3.png'
-const PLAYER_PATTERN_PATH = 'src/assets/sprites/pattern.jpg'
 
 const TROMBI_X = innerWidth - 120;
 const TROMBI_Y =  innerHeight - innerHeight / 3;
@@ -39,7 +38,7 @@ const ENEMY_SHOT_WIDTH = 10
 
 const BORDER_ROOM_SPRITE_PATH = 'src/assets/sprites/wall.png'
 
-const ROOM_SIZE = 500;
+const ROOM_SIZE = 1500;
 
 const CORPORATE_TEXT = [
   "Actionable", "Gain traction", "Low-hanging fruit", "Quick fix", "Think outside the box", "30,000 foot view", "Bandwidth", "Benchmark", "Best practice", "Bottleneck", "Deliverable", "Downsize", "In the loop", "Win win", "Pouvoir d'achat", "Gagner un marché", "Scalable", "Hierarchie horizontale", "Scrum Master", "Itération", "Iterate", "Booster", "Closer le deal", "Business Angel", "Buzzword", "VC", "Licorne", "Unicorn", "Pitch", "Traction", "Disrupter", "Écosystème", "Innover", "Lean", "FOMO", "Bankable", "Blockchain", "Business Plan", "Business Model", "Coworking", "Crowdsourcing"
