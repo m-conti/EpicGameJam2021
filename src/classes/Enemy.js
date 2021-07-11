@@ -17,16 +17,20 @@ class Enemy extends SpriteEntity {
     this.fireRate = 60;
     this.fireDistance = 100;
     this.reload = this.fireRate;
-    this.outOfRange = 60000000;
+    this.outOfRange = 20000000;
+  }
 
+  spawn() {
+    this.sprite.anchor.set(0.5);
+    super.spawn();
   }
 
   get originX() {
-    return this.x - (this.sprite?.width || this.width || 0) / 2;
+    return this.sprite.x - (this.sprite?.width || 0) / 2;
   }
 
   get originY() {
-    return this.y - (this.sprite?.height || this.height || 0) / 2;
+    return this.sprite.y - (this.sprite?.height || 0) / 2;
   }
 
   get originVector() {
