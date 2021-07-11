@@ -3,9 +3,12 @@ class WordProjectile extends Projectile {
     super(...args);
 
     const randomElement = CORPORATE_TEXT[Math.floor(Math.random() * CORPORATE_TEXT.length)];
-    const text = new PIXI.Text(randomElement);
+    const text = new PIXI.Text(randomElement, {
+        fontFamily: 'Comic Sans MS',
+        fill: 0xFFFFFF,
+    });
 
-    this.typeEntity = ENTITY_TYPES.PROJECTILE
+      this.typeEntity = ENTITY_TYPES.PROJECTILE
     text.updateText(); // force it to render to texture inside
     this.sprite = new PIXI.Sprite(text.texture);
     this.sprite.position.set(this.x, this.y);

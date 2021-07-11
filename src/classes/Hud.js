@@ -26,10 +26,7 @@ class Hud {
     }
 
     draw(player, enemies) {
-        
-        
         this.isSettingsOpen = false;
-
         this.drawLifeBar(player.health);
         this.drawNbEnemiesLeft(enemies.length);
         this.drawSetting();
@@ -58,6 +55,7 @@ class Hud {
         hud.addChild(this.containerText);
         hud.addChild(this.commandsText);
         hud.addChild(this.settings);
+        hud.addChild(this.floorText);
     }
 
     handleSettings() {
