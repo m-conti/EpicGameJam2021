@@ -113,7 +113,9 @@ class Player extends SpriteEntity {
   onDeath() {
       // animation death
       console.log('PLAYER DEAD');
+
       this.remove();
+      
       window.game.gameOver();
   }
 
