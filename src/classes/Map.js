@@ -13,17 +13,17 @@ const MAP_FLOORS = {
 }
 
 class Map {
-    constructor() {
+    constructor(game) {
         this.theme = "";
 
         this.walls = [];
         this.dimensions = 15;
         this.generateMap();
         this.minimap = this.drawMinimap();
-        this.mapContainer = this.drawMap();
+        this.mapContainer = this.drawMap(game);
     }
 
-    drawMap() {
+    drawMap(game) {
         let mapContainer = new PIXI.Container();
         for (let x = 0; x < this.dimensions; x++) {
             for (let y = 0; y < this.dimensions; y++) {
@@ -36,6 +36,15 @@ class Map {
                         room.tint = 0x111111;
                         this.walls.push(room);
                         break;
+                    case 1:
+                        if (Math.random() > PROBA_FURNISH_ROOM) {
+                            const newFurniture = new FURNITURE_LIST[randomBetween(0, FURNITURE_LIST.length)](0, 0);
+                            const xFurniture = room.x + randomBetween(1, ROOM_SIZE - newFurniture.width);
+                            const yFurniture = room.y + randomBetween(1, ROOM_SIZE - newFurniture.height);
+                            newFurniture.moveTo(xFurniture, yFurniture);
+                            game.furnitures.push(newFurniture);
+                        }
+                        break;
                     case 2:
                         room.tint = 0x00FF00;
                         break;
@@ -47,13 +56,7 @@ class Map {
                 room.width = ROOM_SIZE;
                 room.height = ROOM_SIZE;
             }
-            // else {
-            //     // Else make a borderRoom entity
-            //     const borderRoom = new BorderRoom(x, y)
-            //     this.borderRooms.push(borderRoom)
-            // }
         }
-
         return mapContainer;
     }
 
