@@ -18,11 +18,26 @@ class Map {
 
         this.walls = [];
         this.dimensions = 15;
+        //this.initializeMap(game);
+    }
+
+    emptyMap() {
+        this.wall = [];
+
+        container.removeChild(this.mapContainer);
+        window.app.stage.removeChild(this.minimap);
+        window.game.furnitures = [];
+    }
+
+    initializeMap(game) {
+        this.walls = [];
+
         this.generateMap();
         this.minimap = this.drawMinimap();
         this.mapContainer = this.drawMap(game);
         this.elevator = this.spawnElevator();
         this.mapContainer.addChild(this.elevator);
+        window.app.stage.addChild(this.minimap);
     }
 
     drawMap(game) {

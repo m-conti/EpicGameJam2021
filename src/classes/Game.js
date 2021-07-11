@@ -38,8 +38,10 @@ class Game {
     }
 
     spawnPlayer() {
-        this.map.drawMap(this);
+        this.map.initializeMap(this);
         container.addChild(this.map.mapContainer);
+        this.player.x = -400;
+        this.player.y = -400;
         this.player.spawn();
         this.player.respawn();
         this.spawnRandomEnemies();
@@ -76,10 +78,20 @@ class Game {
         this.trombi.spawn();
     }
 
+    removeAllEntities() {
+        this.entities.forEach(entity => {
+            entity.remove();
+        })
+        container.removeChild(this.player.sprite);
+    }
+
     reloadLevel() {
         this.player.floor = FLOORS.IT;
 
-        this.map = new Map(this);
+        this.removeAllEntities();
+        this.map.emptyMap();
+        this.spawnPlayer();
+        this.entities.push(this.player);
     }
 
     gameOver() {
