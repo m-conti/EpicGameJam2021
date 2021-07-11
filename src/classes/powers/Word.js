@@ -10,7 +10,7 @@ class WordProjectile extends Projectile {
       const randomElement = LOVE_TEXT[Math.floor(Math.random() * LOVE_TEXT.length)];
       text = new PIXI.Text(randomElement, {
           fontFamily: 'Comic Sans MS',
-          fill: 0xCCA0B4,
+          fill: 0xff66ff,
           fontSize: 44,
       });
       this.damage = 0;
@@ -19,7 +19,7 @@ class WordProjectile extends Projectile {
       const randomElement = CORPORATE_TEXT[Math.floor(Math.random() * CORPORATE_TEXT.length)];
       text = new PIXI.Text(randomElement, {
           fontFamily: 'Comic Sans MS',
-          fill: 0xFFFFFF,
+          fill: 0x000000,
 
       });
       this.damage = 10;

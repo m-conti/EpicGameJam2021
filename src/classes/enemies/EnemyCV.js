@@ -1,6 +1,6 @@
 const TEXTURE_CV = [
-  PIXI.Texture.fromFrame(CV_SPRITE_PATH1),
-  PIXI.Texture.fromFrame(CV_SPRITE_PATH2),
+  PIXI.Texture.from(CV_SPRITE_PATH1),
+  PIXI.Texture.from(CV_SPRITE_PATH2),
 ];
 
 class ProjectileCV extends EnemyProjectile {
@@ -8,13 +8,7 @@ class ProjectileCV extends EnemyProjectile {
     const moveSpeed = 6;
     const damage = 4;
     super(x, y, moveSpeed, direction, damage);
-    const graphics = new PIXI.Graphics();
 
-    graphics.beginFill(0xFF00AA);
-    graphics.drawRect(0, 0, 10, 10);
-    graphics.endFill();
-
-    this.sprite = new PIXI.Sprite(window.game.app.renderer.generateTexture(graphics));
     this.sprite.position.set(this.x, this.y);
   }
 }
@@ -25,6 +19,7 @@ class EnemyCV extends Enemy {
     this.fireRate = 11;
     this.targetRange = 800;
     this.health = 20;
+    this.moveSpeed = 12;
     
     this.isAnimate = true;
     this.animationClock = 11;
@@ -36,5 +31,6 @@ class EnemyCV extends Enemy {
     app.stage.addChild(enemySprite);
     
     this.Projectile = ProjectileCV;
+    this.sprite.tint = Math.round(Math.random() * 0xFFFFFF);
   }
 }

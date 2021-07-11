@@ -1,3 +1,5 @@
+const MUSIC_PATH = 'src/assets/audio/Tromby_Music.mp3'
+
 class Game {
     constructor(app) {
         this.app = app;
@@ -10,6 +12,7 @@ class Game {
         this.trombi = new Trombi();
         this.loop = this.loop.bind(this);
         this.isOver = false;
+        this.music = new Audio(MUSIC_PATH);
     }
 
     get enemies() {
@@ -26,7 +29,8 @@ class Game {
         this.player.spawn();
         this.player.respawn();
         this.spawnRandomEnemies();
-        console.log(this.enemies);
+        this.music.play();
+        this.music.loop = true;
     }
 
     onEnemyDeath() {
@@ -52,17 +56,14 @@ class Game {
     }
 
     spawnTrombi() {
-        setTimeout(() => {
-            this.trombi.spawn();
-        }, 3000);
-        setTimeout(() => {
-            this.trombi.destroy();
-        }, 20000);
+        this.trombi.spawn();
     }
 
     gameOver() {
         this.hud.drawGameOver();
+        this.trombi.classicGameOver();
         this.isOver = true;
+        this.music.pause()
     }
 
     loop(timeDelta) {

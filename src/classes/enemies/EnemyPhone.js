@@ -1,7 +1,7 @@
 const TEXTURES_PHONE = [
-  PIXI.Texture.fromFrame(PHONE_SPRITE_PATH1),
-  PIXI.Texture.fromFrame(PHONE_SPRITE_PATH2),
-  PIXI.Texture.fromFrame(PHONE_SPRITE_PATH3),
+  PIXI.Texture.from(PHONE_SPRITE_PATH1),
+  PIXI.Texture.from(PHONE_SPRITE_PATH2),
+  PIXI.Texture.from(PHONE_SPRITE_PATH3),
 ];
 
 class ProjectilePhone extends EnemyProjectile {
@@ -9,13 +9,7 @@ class ProjectilePhone extends EnemyProjectile {
     const moveSpeed = 16;
     const damage = 4;
     super(x, y, moveSpeed, direction, damage);
-    const graphics = new PIXI.Graphics();
 
-    graphics.beginFill(0x0FF0AA);
-    graphics.drawRect(0, 0, 10, 10);
-    graphics.endFill();
-
-    this.sprite = new PIXI.Sprite(window.game.app.renderer.generateTexture(graphics));
     this.sprite.position.set(this.x, this.y);
   }
 }
@@ -25,6 +19,7 @@ class EnemyPhone extends Enemy {
     super(x, y);
     this.fireRate = 12;
     this.targetRange = 1000;
+    this.moveSpeed = 8;
 
     this.isAnimate = true;
     this.animationClock = 12;
@@ -36,5 +31,6 @@ class EnemyPhone extends Enemy {
     app.stage.addChild(enemySprite);
 
     this.Projectile = ProjectilePhone;
+    this.sprite.tint = Math.round(Math.random() * 0xFFFFFF);
   }
 }

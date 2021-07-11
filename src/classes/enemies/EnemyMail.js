@@ -1,7 +1,7 @@
 const TEXTURES_MAIL = [
-  PIXI.Texture.fromFrame(MAIL_SPRITE_PATH1),
-  PIXI.Texture.fromFrame(MAIL_SPRITE_PATH2),
-  PIXI.Texture.fromFrame(MAIL_SPRITE_PATH3),
+  PIXI.Texture.from(MAIL_SPRITE_PATH1),
+  PIXI.Texture.from(MAIL_SPRITE_PATH2),
+  PIXI.Texture.from(MAIL_SPRITE_PATH3),
 ];
 
 class ProjectileMail extends EnemyProjectile {
@@ -9,13 +9,7 @@ class ProjectileMail extends EnemyProjectile {
     const moveSpeed = 10;
     const damage = 4;
     super(x, y, moveSpeed, direction, damage);
-    const graphics = new PIXI.Graphics();
 
-    graphics.beginFill(0xFFDD1A);
-    graphics.drawRect(0, 0, 10, 10);
-    graphics.endFill();
-
-    this.sprite = new PIXI.Sprite(window.game.app.renderer.generateTexture(graphics));
     this.sprite.position.set(this.x, this.y);
   }
 }
@@ -26,6 +20,7 @@ class EnemyMail extends Enemy {
     this.fireRate = 13;
     this.targetRange = 1200;
     this.health = 50;
+    this.moveSpeed = 5;
 
     this.isAnimate = true;
     this.animationClock = 13;
@@ -37,5 +32,6 @@ class EnemyMail extends Enemy {
     app.stage.addChild(enemySprite);
 
     this.Projectile = ProjectileMail;
+    this.sprite.tint = Math.round(Math.random() * 0xFFFFFF);
   }
 }

@@ -17,6 +17,8 @@ class Enemy extends SpriteEntity {
     this.fireRate = 60;
     this.fireDistance = 100;
     this.reload = this.fireRate;
+    this.outOfRange = 60000000;
+
   }
 
   get originX() {
@@ -54,7 +56,7 @@ class Enemy extends SpriteEntity {
     if (this.reload) return;
     this.reload = this.fireRate;
 
-    const target = window.game.player.originVector;
+    const target = window.game.player.hitBoxOrigin;
     const range = Math.pow(this.x - target.x, 2) + Math.pow(this.y - target.y, 2);
     const origin = this.originVector;
     if (Math.pow(this.targetRange, 2) >= range) {
@@ -72,6 +74,9 @@ class Enemy extends SpriteEntity {
   tick(deltaTime) {
     this.rotationTimer += deltaTime;
     if (this.rotationTimer >= this.rotationClock) {
+      console.log(getDistance(this, window.game.player))
+      if (getDistance(this, window.game.player) >= this.outOfRange)
+        this.direction = getFireRotation(this, window.game.player);
       const randomDir = randomBetweenFloat(-deltaTime * 0.6, deltaTime * 0.6);
       this.direction += randomDir;
       this.rotationClock = randomBetweenFloat(4, 60);
