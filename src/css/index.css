@@ -1,4 +1,21 @@
 body {
   margin: 0;
   padding: 0;
+  height: 100vh;
+  position: relative;
+}
+
+html {
+  background: url(evil_capitalist_tower.JPG) no-repeat bottom fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+
+#webcam_container {
+  position: absolute;
+  top: 50%;
+  transform: translateX(-50%);
+  left: 50%;
 }

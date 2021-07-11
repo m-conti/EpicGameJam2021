@@ -43,6 +43,10 @@ class Trombi {
         this.trombi.addChild(this.helpText);
     }
 
+    destroy() {
+        app.stage.removeChild(this.trombi);
+    }
+
     refresh() {
         this.helpText.text = this.getHelpText();
         this.sprite = this.getSprite();

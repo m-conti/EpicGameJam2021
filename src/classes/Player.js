@@ -14,9 +14,6 @@ class Player extends SpriteEntity {
         ];
         this.powerIndex = 0;
 
-        // const texture = PIXI.Texture.from(PLAYER_SPRITE_PATH);
-
-
         const playerContainer = new PIXI.Container();
         if (hasWebcam) {
             const mask = PIXI.Sprite.from(PLAYER_SPRITE_PATH);

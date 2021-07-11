@@ -1,7 +1,7 @@
 class Hud {
     constructor(player) {
         this.hud = new PIXI.Container();
-        this.floor = FLOORS.START;
+        this.floor = player.floor;
         this.life = player.health;
 
         this.containerText = new PIXI.Graphics()
@@ -19,8 +19,6 @@ class Hud {
             fontSize: 20,
             fill: 0x990201,
             fontWeight: 400,
-            wordWrap: true,
-            wordWrapWidth: 230,
         })
 
         this.currentTextureLifeIndex = 4;

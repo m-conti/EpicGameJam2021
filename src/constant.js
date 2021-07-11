@@ -9,11 +9,11 @@ const INPUT_KEYS = {
 };
 
 const FLOORS = {
-  START: 'Welcome',
-  IT: 'IT Department',
-  MARKETING: 'Marketing Department',
-  HR: 'HR Department',
-  END: 'Big Boss',
+  START: 'Ground Floor - Reception',
+  IT: '1st Floor - IT Department',
+  MARKETING: '2nd Floor - Marketing Department',
+  HR: '3rd Floor - HR Department',
+  END: '4th Floor - Big Boss',
 }
 
 const PLAYER_WIDTH = 1
@@ -43,7 +43,7 @@ const BORDER_ROOM_SPRITE_PATH = 'src/assets/sprites/wall.png'
 const ROOM_SIZE = 1500;
 
 const CORPORATE_TEXT = [
-  "Actionable", "Gain traction", "Low-hanging fruit", "Quick fix", "Think outside the box", "30,000 foot view", "Bandwidth", "Benchmark", "Best practice", "Bottleneck", "Deliverable", "Downsize", "In the loop", "Win win", "Pouvoir d'achat", "Gagner un marché", "Scalable", "Hierarchie horizontale", "Scrum Master", "Itération", "Iterate", "Booster", "Closer le deal", "Business Angel", "Buzzword", "VC", "Licorne", "Unicorn", "Pitch", "Traction", "Disrupter", "Écosystème", "Innover", "Lean", "FOMO", "Bankable", "Blockchain", "Business Plan", "Business Model", "Coworking", "Crowdsourcing"
+  "Actionable", "Gain traction", "Low-hanging fruit", "Quick fix", "Think outside the box", "30,000 foot view", "Bandwidth", "Benchmark", "Best practice", "Bottleneck", "Deliverable", "Downsize", "In the loop", "Win win", "Pouvoir d'achat", "Gagner un marché", "Scalable", "Hierarchie horizontale", "Scrum Master", "Itération", "Iterate", "Booster", "Closer le deal", "Business Angel", "Buzzword", "VC", "Licorne", "Unicorn", "Pitch", "Traction", "Disrupter", "Écosystème", "Innover", "Lean", "FOMO", "Bankable", "Blockchain", "Business Plan", "Business Model", "Coworking", "Crowdsourcing", "Norvegian Inquisition", "Fordism", "Monetisation"
 ]
 const MIN_ENEMIES = 10;
 const MAX_ENEMIES = 20;
