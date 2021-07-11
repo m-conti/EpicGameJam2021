@@ -1,7 +1,7 @@
 class ProjectileMail extends EnemyProjectile {
   constructor(x, y, direction={ x: 0, y: 0 }) {
     const moveSpeed = 10;
-    const damage = 10;
+    const damage = 4;
     super(x, y, moveSpeed, direction, damage);
     const graphics = new PIXI.Graphics();
 
@@ -17,8 +17,8 @@ class ProjectileMail extends EnemyProjectile {
 class EnemyMail extends Enemy {
   constructor(x, y) {
     super(x, y);
-    this.fireRate = 14;
-    this.targetRange = 1000;
+    this.fireRate = 30;
+    this.targetRange = 600;
     this.health = 50;
 
     this.isAnimate = true;
