@@ -42,10 +42,16 @@ class Trombi {
         this.helpText.y = TROMBI_Y - (BUBBLE_H - 10);
         this.trombi.addChild(this.helpText);
         this.spawnAnim = 0;
+        this.textSince = 0;
+        this.talkingAnim = -1;
     }
 
     destroy() {
         app.stage.removeChild(this.trombi);
+    }
+
+    getRandomTips() {
+        return (RANDOM_TIPS[randomBetween(0, RANDOM_TIPS.length)])
     }
 
     getHelpText() {
@@ -85,17 +91,13 @@ class Trombi {
         this.sprite.rotation += 0.03 * time;
         if (this.spawnAnim < 45) {
             this.sprite.y += time * 10;
-        }
-        else if (this.spawnAnim < 90) {
+        } else if (this.spawnAnim < 90) {
             this.sprite.y -= time * 10;
-        }
-        else if (this.spawnAnim < 135) {
+        } else if (this.spawnAnim < 135) {
             this.sprite.y += time * 10;
-        }
-        else if (this.spawnAnim < 160) {
+        } else if (this.spawnAnim < 160) {
             this.sprite.y -= time * 10;
-        }
-        else {
+        } else {
             this.spawnAnim = -1;
             this.sprite.rotation = 0;
             return
@@ -103,10 +105,47 @@ class Trombi {
         this.spawnAnim += time;
     }
 
+    talkingAnimProgress(time) {
+        if (this.talkingAnim < 8)
+            this.sprite.x += time * 20;
+        else if (this.talkingAnim < 16) {
+            this.sprite.scale.x *= -1;
+            this.sprite.x -= time * 20;
+        } else if (this.talkingAnim < 24) {
+            this.sprite.scale.x *= -1;
+            this.sprite.x += time * 20;
+        } else if (this.talkingAnim < 32) {
+            this.sprite.scale.x *= -1;
+            this.sprite.x -= time * 20;
+        } else if (this.talkingAnim < 40) {
+            this.sprite.scale.x *= -1;
+            this.sprite.x += time * 20;
+        } else if (this.talkingAnim < 48) {
+            this.sprite.scale.x *= -1;
+            this.sprite.x -= time * 20;
+        } else if (this.talkingAnim < 56) {
+            this.sprite.scale.x *= -1;
+            this.sprite.x += time * 20;
+        } else if (this.talkingAnim < 64) {
+            this.sprite.scale.x *= -1;
+            this.sprite.x -= time * 20;
+        }
+        this.talkingAnim += time;
+    }
+
     tick(timeDelta) {
         if (this.spawnAnim >= 0)
             this.spawnAnimProgress(timeDelta);
-
+        if (this.talkingAnim >= 0)
+            this.talkingAnimProgress(timeDelta);
+        if (this.textSince >= 0)
+            this.textSince += timeDelta;
+        if (this.textSince > 300) {
+            this.textSince = 0;
+            this.helpText.text = this.getRandomTips();
+            this.talkingAnim = 0;
+        }
+        console.log(this.textSince);
     }
 }
 
