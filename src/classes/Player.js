@@ -36,11 +36,11 @@ class Player extends SpriteEntity {
             this.mask.anchor.set(0.5);
         } else {
             const texture = PIXI.Texture.from(PLAYER_SPRITE_DEFAULT_PATH);
-            const playerSprite = new PIXI.Sprite(texture);
-            playerSprite.anchor.set(0.5);
-            playerSprite.scale.x = 0.1;
-            playerSprite.scale.y = 0.1;
-            playerContainer.addChild(playerSprite);
+            this.playerSprite = new PIXI.Sprite(texture);
+            this.playerSprite.anchor.set(0.5);
+            this.playerSprite.scale.x = 0.1;
+            this.playerSprite.scale.y = 0.1;
+            playerContainer.addChild(this.playerSprite);
         }
 
         this.sprite = playerContainer;
@@ -136,13 +136,17 @@ class Player extends SpriteEntity {
         const y = ((window.game.inputHandler.keyPressed[INPUT_KEYS.DOWN] ? 1 : 0) - (window.game.inputHandler.keyPressed[INPUT_KEYS.UP] ? 1 : 0)) * this.moveSpeed * timeDelta;
 
         if (x < 0 && this.playerSprite.scale.x < 0) {
-            this.mask.scale.x *= -1;
+            if (hasWebcam) {
+                this.mask.scale.x *= -1;
+                this.playerSprite2.scale.x *= -1;
+            }
             this.playerSprite.scale.x *= -1;
-            this.playerSprite2.scale.x *= -1;
         } else if (x > 0 && this.playerSprite.scale.x > 0) {
-            this.mask.scale.x *= -1;
+            if (hasWebcam) {
+                this.mask.scale.x *= -1;
+                this.playerSprite2.scale.x *= -1;
+            }
             this.playerSprite.scale.x *= -1;
-            this.playerSprite2.scale.x *= -1;
         }
 
         const prevX = this.sprite.x;

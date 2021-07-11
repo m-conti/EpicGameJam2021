@@ -1,4 +1,3 @@
-
 class Game {
   constructor(app) {
     this.app = app;
@@ -46,7 +45,6 @@ class Game {
       this.addEntity(newEnemy);
       newEnemy.spawn();
     }
-    this.gameOver();
   }
 
   drawHud() {
