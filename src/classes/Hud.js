@@ -141,8 +141,28 @@ class Hud {
         this.gameOverSprite = new PIXI.Sprite.from(textures.gameOver);
         this.gameOverSprite.anchor.set(0.5, 0.5);
         this.gameOverSprite.position.set(window.innerWidth /2, window.innerHeight /2)
-        this.gameOverSprite.scale.set(0.3);
+        this.gameOverSprite.scale.set(0.5);
         hud.addChild(this.gameOverSprite);
+    
+        this.question = new PIXI.Text('Play again !', {
+            fontFamily: 'Comic Sans MS',
+            dropShadow: true,
+            dropShadowBlur: 6,
+            dropShadowColor: "#cd0a0a",
+            dropShadowDistance: 4,
+            fill: "#f50000",
+            fontSize: 28,
+            stroke: "red"
+        });
+        this.question.anchor.set(0.5, 0.5);
+        this.question.x = window.innerWidth /2;
+        this.question.y = window.innerHeight /2;
+        this.question.interactive  = true;
+        hud.addChild(this.question);
+    
+        this.question.click = function (){  
+          location.reload();
+        }
     }
 
 }
