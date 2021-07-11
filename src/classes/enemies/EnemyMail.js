@@ -22,8 +22,14 @@ class EnemyMail extends Enemy {
 
     this.health = 50;
 
-    const texture = PIXI.Texture.from(MAIL_SPRITE_PATH);
-    const enemySprite = new PIXI.Sprite(texture);
+    this.isAnimate = true;
+    this.animationClock = 28;
+    this.textures = [
+      PIXI.Texture.fromFrame(MAIL_SPRITE_PATH1),
+      PIXI.Texture.fromFrame(MAIL_SPRITE_PATH2),
+      PIXI.Texture.fromFrame(MAIL_SPRITE_PATH3),
+    ];
+    const enemySprite = new PIXI.Sprite(this.textures[0]);
     enemySprite.scale.x = 0.1;
     enemySprite.scale.y = 0.1;
     this.sprite = enemySprite;

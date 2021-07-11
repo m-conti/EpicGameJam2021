@@ -22,8 +22,13 @@ class EnemyCV extends Enemy {
 
     this.health = 20;
 
-    const texture = PIXI.Texture.from(CV_SPRITE_PATH);
-    const enemySprite = new PIXI.Sprite(texture);
+    this.isAnimate = true;
+    this.animationClock = 25;
+    this.textures = [
+      PIXI.Texture.fromFrame(CV_SPRITE_PATH1),
+      PIXI.Texture.fromFrame(CV_SPRITE_PATH2),
+    ];
+    const enemySprite = new PIXI.Sprite(textures[0]);
     enemySprite.scale.x = 0.1;
     enemySprite.scale.y = 0.1;
     this.sprite = enemySprite;

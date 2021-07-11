@@ -20,8 +20,14 @@ class EnemyPhone extends Enemy {
     this.fireRate = 8;
     this.targetRange = 1000;
 
-    const texture = PIXI.Texture.from(PHONE_SPRITE_PATH);
-    const enemySprite = new PIXI.Sprite(texture);
+    this.isAnimate = true;
+    this.animationClock = 20;
+    this.textures = [
+      PIXI.Texture.fromFrame(PHONE_SPRITE_PATH1),
+      PIXI.Texture.fromFrame(PHONE_SPRITE_PATH2),
+      PIXI.Texture.fromFrame(PHONE_SPRITE_PATH3),
+    ];
+    const enemySprite = new PIXI.Sprite(this.textures[0]);
     enemySprite.scale.x = 0.1;
     enemySprite.scale.y = 0.1;
     this.sprite = enemySprite;
