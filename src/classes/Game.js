@@ -61,6 +61,7 @@ class Game {
 
     gameOver() {
         this.hud.drawGameOver();
+        this.trombi.classicGameOver();
         this.isOver = true;
         this.music.pause()
     }
