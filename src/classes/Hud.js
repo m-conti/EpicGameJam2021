@@ -176,5 +176,4 @@ class Hud {
         this.credit.y = window.innerHeight - 200;
         hud.addChild(this.credit);
     }
-
 }

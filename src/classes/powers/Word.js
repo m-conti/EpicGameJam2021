@@ -68,6 +68,8 @@ class WordProjectile extends Projectile {
             break
         }
     }
+    if (this.collidesWithEntity(window.game.boss))
+        this.onCollide(window.game.boss);
     if (!removed) {
       super.tick(timeDelta);
     }

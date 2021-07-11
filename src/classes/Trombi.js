@@ -138,6 +138,11 @@ class Trombi {
         this.helpText.text = "I KNEW YOU WERE A GAUCHIASSE! DIE LEFTARD SCUM! YOU'RE FIRED!"
     }
 
+    bossGameOver() {
+        this.talkingAnim = -1;
+        this.helpText.text = "YOU KILLED CAPITALISM!! SHAME ON YOU!!HAVE YOU LEARNED ANYTHING DURING THE JAM ??"
+    }
+
     tick(timeDelta) {
         if (this.spawnAnim >= 0)
             this.spawnAnimProgress(timeDelta);
@@ -150,7 +155,6 @@ class Trombi {
             this.helpText.text = this.getRandomTips();
             this.talkingAnim = 0;
         }
-        console.log(this.textSince);
     }
 }
 

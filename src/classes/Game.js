@@ -41,6 +41,8 @@ class Game {
         this.player.spawn();
         this.player.respawn();
         this.spawnRandomEnemies();
+        this.boss = new EnemyTrombi(this.map.exit.x * ROOM_SIZE + (ROOM_SIZE /2), this.map.exit.y * ROOM_SIZE + (ROOM_SIZE /2))
+        this.boss.spawn();
         this.music.play();
         this.gameoverMusic.pause()
         this.spawnFurnitures();
@@ -80,11 +82,21 @@ class Game {
         this.gameoverMusic.play();
     }
 
+    gameOverBoss() {
+        this.hud.drawGameOver();
+        this.trombi.bossGameOver();
+        this.isOver = true;
+        this.music.pause()
+        this.gameoverMusic.muted = this.music.muted;
+        this.gameoverMusic.play();
+    }
+
     loop(timeDelta) {
         if (this.isOver) return;
         for (const entity of this.entities) {
             entity.tick(timeDelta);
         }
         this.trombi.tick(timeDelta);
+        this.boss.tick(timeDelta);
     }
 }
