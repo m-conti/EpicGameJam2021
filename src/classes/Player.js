@@ -4,7 +4,7 @@ class Player extends SpriteEntity {
         super(x, y);
 
         this.typeEntity = ENTITY_TYPES.PLAYER
-        this.moveSpeed = 12;
+        this.moveSpeed = 22;
         this.floor = FLOORS.START;
         this.health = 100;
 
@@ -14,28 +14,35 @@ class Player extends SpriteEntity {
         ];
         this.powerIndex = 0;
 
-        // const texture = PIXI.Texture.from(PLAYER_SPRITE_PATH);
-
-
         const playerContainer = new PIXI.Container();
-        const mask = PIXI.Sprite.from(PLAYER_SPRITE_PATH);
-        const texture = PIXI.Texture.from((document.querySelector("#cam_picture")));
-        const playerSprite = new PIXI.Sprite(texture);
-        const playerSprite2 = PIXI.Sprite.from(PLAYER_SPRITE_PATH2);
+        if (hasWebcam) {
+            this.mask = PIXI.Sprite.from(PLAYER_SPRITE_PATH);
+            const texture = PIXI.Texture.from((document.querySelector("#cam_picture")));
+            this.playerSprite = new PIXI.Sprite(texture);
+            this.playerSprite2 = PIXI.Sprite.from(PLAYER_SPRITE_PATH2);
 
-        playerContainer.addChild(mask, playerSprite, playerSprite2);
-        playerContainer.scale.x = 0.3;
-        playerContainer.scale.y = 0.3;
-        playerSprite.width = 400;
-        playerSprite.height = 800;
-        playerSprite2.width = 400;
-        playerSprite2.height = 800;
-        mask.width = 400;
-        mask.height = 800;
-        playerSprite.mask = mask;
-        playerSprite.anchor.set(0.5);
-        playerSprite2.anchor.set(0.5);
-        mask.anchor.set(0.5);
+            playerContainer.addChild(this.mask, this.playerSprite, this.playerSprite2);
+            playerContainer.scale.x = 0.3;
+            playerContainer.scale.y = 0.3;
+            this.playerSprite.width = 400;
+            this.playerSprite.height = 800;
+            this.playerSprite2.width = 400;
+            this.playerSprite2.height = 800;
+            this.mask.width = 400;
+            this.mask.height = 800;
+            this.playerSprite.mask = this.mask;
+            this.playerSprite.anchor.set(0.5);
+            this.playerSprite2.anchor.set(0.5);
+            this.mask.anchor.set(0.5);
+        } else {
+            const texture = PIXI.Texture.from(PLAYER_SPRITE_DEFAULT_PATH);
+            const playerSprite = new PIXI.Sprite(texture);
+            playerSprite.anchor.set(0.5);
+            playerSprite.scale.x = 0.1;
+            playerSprite.scale.y = 0.1;
+            playerContainer.addChild(playerSprite);
+        }
+
         this.sprite = playerContainer;
         app.stage.addChild(playerContainer);
     }
@@ -78,7 +85,7 @@ class Player extends SpriteEntity {
             return false;
         return (
             (this.sprite.x <= 0 + this.sprite.width / 2 || this.sprite.y <= 0 + this.sprite.height / 2 ||
-                this.sprite.x >= ROOM_SIZE * window.game.map.dimensions - this.sprite.width / 2  ||
+                this.sprite.x >= ROOM_SIZE * window.game.map.dimensions - this.sprite.width / 2 ||
                 this.sprite.y >= ROOM_SIZE * window.game.map.dimensions - this.sprite.height / 2)
         )
     }
@@ -106,18 +113,16 @@ class Player extends SpriteEntity {
 
         this.health = Math.max(this.health - damage, 0);
 
-      window.game.hud.drawLifeBar(this.health);
-      if (!this.health) this.onDeath();
-  }
+        window.game.hud.drawLifeBar(this.health);
+        if (!this.health) this.onDeath();
+    }
 
-  onDeath() {
-      // animation death
-      console.log('PLAYER DEAD');
-
-      this.remove();
-      
-      window.game.gameOver();
-  }
+    onDeath() {
+        // animation death
+        console.log('PLAYER DEAD');
+        this.remove();
+        window.game.gameOver();
+    }
 
     respawn() {
         this.x = window.game.map.spawn.x * ROOM_SIZE + (ROOM_SIZE / 2);
@@ -129,6 +134,16 @@ class Player extends SpriteEntity {
     tick(timeDelta) {
         const x = ((window.game.inputHandler.keyPressed[INPUT_KEYS.RIGHT] ? 1 : 0) - (window.game.inputHandler.keyPressed[INPUT_KEYS.LEFT] ? 1 : 0)) * this.moveSpeed * timeDelta;
         const y = ((window.game.inputHandler.keyPressed[INPUT_KEYS.DOWN] ? 1 : 0) - (window.game.inputHandler.keyPressed[INPUT_KEYS.UP] ? 1 : 0)) * this.moveSpeed * timeDelta;
+
+        if (x < 0 && this.playerSprite.scale.x < 0) {
+            this.mask.scale.x *= -1;
+            this.playerSprite.scale.x *= -1;
+            this.playerSprite2.scale.x *= -1;
+        } else if (x > 0 && this.playerSprite.scale.x > 0) {
+            this.mask.scale.x *= -1;
+            this.playerSprite.scale.x *= -1;
+            this.playerSprite2.scale.x *= -1;
+        }
 
         const prevX = this.sprite.x;
         const prevY = this.sprite.y;

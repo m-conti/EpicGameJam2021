@@ -1,3 +1,9 @@
+const TEXTURES_MAIL = [
+  PIXI.Texture.fromFrame(MAIL_SPRITE_PATH1),
+  PIXI.Texture.fromFrame(MAIL_SPRITE_PATH2),
+  PIXI.Texture.fromFrame(MAIL_SPRITE_PATH3),
+];
+
 class ProjectileMail extends EnemyProjectile {
   constructor(x, y, direction={ x: 0, y: 0 }) {
     const moveSpeed = 10;
@@ -17,17 +23,13 @@ class ProjectileMail extends EnemyProjectile {
 class EnemyMail extends Enemy {
   constructor(x, y) {
     super(x, y);
-    this.fireRate = 30;
-    this.targetRange = 600;
+    this.fireRate = 13;
+    this.targetRange = 1200;
     this.health = 50;
 
     this.isAnimate = true;
-    this.animationClock = 100;
-    this.textures = [
-      PIXI.Texture.fromFrame(MAIL_SPRITE_PATH1),
-      PIXI.Texture.fromFrame(MAIL_SPRITE_PATH2),
-      PIXI.Texture.fromFrame(MAIL_SPRITE_PATH3),
-    ];
+    this.animationClock = 13;
+    this.textures = TEXTURES_MAIL;
     const enemySprite = new PIXI.Sprite(this.textures[0]);
     enemySprite.scale.x = 0.1;
     enemySprite.scale.y = 0.1;

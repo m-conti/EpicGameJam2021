@@ -12,11 +12,11 @@ class InputHandler {
 
   onKeyDown({ key }) {
     this.keyPressed[key] = true;
-    switch(key) {
-      case INPUT_KEYS.DECREMENT_POWER: this.decrementPower(); break;
-      case INPUT_KEYS.INCREMENT_POWER: this.incrementPower(); break;
-      default: break;
-    }
+  //   switch(key) {
+  //     case INPUT_KEYS.DECREMENT_POWER: this.decrementPower(); break;
+  //     case INPUT_KEYS.INCREMENT_POWER: this.incrementPower(); break;
+  //     default: break;
+  //   }
   }
 
   onKeyUp({ key }) {

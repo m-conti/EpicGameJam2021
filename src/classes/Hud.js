@@ -1,7 +1,7 @@
 class Hud {
     constructor(player) {
         this.hud = new PIXI.Container();
-        this.floor = FLOORS.START;
+        this.floor = player.floor;
         this.life = player.health;
 
         this.containerText = new PIXI.Graphics()
@@ -19,8 +19,6 @@ class Hud {
             fontSize: 20,
             fill: 0x990201,
             fontWeight: 400,
-            wordWrap: true,
-            wordWrapWidth: 230,
         })
 
         this.currentTextureLifeIndex = 4;
@@ -28,10 +26,7 @@ class Hud {
     }
 
     draw(player, enemies) {
-        
-        
         this.isSettingsOpen = false;
-
         this.drawLifeBar(player.health);
         this.drawNbEnemiesLeft(enemies.length);
         this.drawSetting();
@@ -60,6 +55,7 @@ class Hud {
         hud.addChild(this.containerText);
         hud.addChild(this.commandsText);
         hud.addChild(this.settings);
+        hud.addChild(this.floorText);
     }
 
     handleSettings() {
@@ -69,6 +65,7 @@ class Hud {
         } else {
             this.containerText.visible = true;
             this.commandsText.visible = true;
+            window.game.trombi.destroy();
         }
         this.isSettingsOpen = !this.isSettingsOpen;
     }
