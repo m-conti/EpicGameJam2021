@@ -61,7 +61,8 @@ const ENEMY_LIST = [
 const ENTITY_TYPES = {
   PLAYER: 'player',
   WALL: 'wall',
-  PROJECTILE: 'projectile'
+  PROJECTILE: 'projectile',
+  DEATH: 'death'
 }
 
 const PROBA_LOVE_SHOT = 0.1

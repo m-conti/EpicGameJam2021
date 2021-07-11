@@ -3,6 +3,7 @@ class Death extends SpriteEntity {
       super(x, y, 0, 0);
 
       this.timeToLive = TIME_TO_LIVE_DEATH;
+      this.typeEntity = ENTITY_TYPES.DEATH;
 
       const texture = PIXI.Texture.from(DEATH_SPRITE_PATH);
       const deathSprite = new PIXI.Sprite(texture);

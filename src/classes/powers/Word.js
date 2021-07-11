@@ -41,7 +41,7 @@ class WordProjectile extends Projectile {
   }
 
   collidesWithEntity(entity) {
-      if (!([ENTITY_TYPES.PLAYER, ENTITY_TYPES.PROJECTILE].includes(entity.typeEntity))) {
+      if (!([ENTITY_TYPES.PLAYER, ENTITY_TYPES.PROJECTILE, ENTITY_TYPES.DEATH].includes(entity.typeEntity))) {
 
           if (entity.sprite) {
             const maxXEntity = entity.sprite.x + entity.sprite.width;
