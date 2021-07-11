@@ -1,4 +1,4 @@
-class ProjectileMail extends Projectile {
+class ProjectileMail extends EnemyProjectile {
   constructor(x, y, direction={ x: 0, y: 0 }) {
     const moveSpeed = 10;
     const damage = 10;
@@ -19,7 +19,6 @@ class EnemyMail extends Enemy {
     super(x, y);
     this.fireRate = 14;
     this.targetRange = 1000;
-
     this.health = 50;
 
     this.isAnimate = true;
