@@ -4,6 +4,7 @@ class Hud {
         this.floor = FLOORS.START;
         this.life = player.health;
 
+        this.currentTextureLifeIndex = 4;
         this.drawSetting();
     }
 
@@ -42,27 +43,42 @@ class Hud {
     }
 
     drawLifeBar(health) {
-        let lifePercentage = new PIXI.Text(health + '%',  {
-            fontFamily: 'Comic Sans MS',
-            fontSize: 20,
-            fill: 0x990201,
-            fontWeight: 400,
-            wordWrap: true,
-            wordWrapWidth: 230,
-        })
-        lifePercentage.position.set(360, window.innerHeight - 50);
-        hud.addChild(lifePercentage)
+        if (!this.lifeBar) {
+            this.lifePercentage = new PIXI.Text(health + '%',  {
+                fontFamily: 'Comic Sans MS',
+                fontSize: 20,
+                fill: 0x990201,
+                fontWeight: 400,
+                wordWrap: true,
+                wordWrapWidth: 230,
+            })
+            this.lifePercentage.position.set(360, window.innerHeight - 50);
+            hud.addChild(this.lifePercentage)
+        }
+        else {
+            this.lifePercentage.text = health + '%';
+        }
+        if (!this.lifeBar) this.lifeBar = PIXI.Sprite.from(textures.life4);
 
         if (health === 0) {
-            this.lifeBar = PIXI.Sprite.from(textures.life0);
+            if (this.currentTextureLifeIndex === 0) return;
+            this.lifeBar.texture = textures.life0;
+            this.currentTextureLifeIndex = 0;
         } else if (health <= 25) {
-            this.lifeBar = PIXI.Sprite.from(textures.life1);
+            if (this.currentTextureLifeIndex === 1) return;
+            this.lifeBar.texture = textures.life1;
+            this.currentTextureLifeIndex = 1;
         } else if(health <= 50) {
-            this.lifeBar = PIXI.Sprite.from(textures.life2);
+            if (this.currentTextureLifeIndex === 2) return;
+            this.lifeBar.texture = textures.life2;
+            this.currentTextureLifeIndex = 2;
         } else if(health <= 75) {
-            this.lifeBar = PIXI.Sprite.from(textures.life3);
-        } else {
-            this.lifeBar = PIXI.Sprite.from(textures.life4);
+            if (this.currentTextureLifeIndex === 3) return;
+            this.lifeBar.texture = textures.life3;
+            this.currentTextureLifeIndex = 3;
+        } else if (this.currentTextureLifeIndex != 4) {
+            this.lifeBar.texture = textures.life4;
+            this.currentTextureLifeIndex = 4;
         }
         this.lifeBar.x = 0;
         this.lifeBar.y = window.innerHeight + 90;
