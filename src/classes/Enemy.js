@@ -17,6 +17,7 @@ class Enemy extends SpriteEntity {
     this.fireRate = 60;
     this.fireDistance = 100;
     this.reload = this.fireRate;
+
   }
 
   get originX() {
@@ -53,7 +54,7 @@ class Enemy extends SpriteEntity {
     if (this.reload) return;
     this.reload = this.fireRate;
 
-    const target = window.game.player.originVector;
+    const target = window.game.player.hitBoxOrigin;
     const range = Math.pow(this.x - target.x, 2) + Math.pow(this.y - target.y, 2);
     const origin = this.originVector;
     if (Math.pow(this.targetRange, 2) >= range) {

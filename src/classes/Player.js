@@ -56,7 +56,11 @@ class Player extends SpriteEntity {
     }
 
     get originY() {
-        return this.y;
+        return this.y - this.sprite.height / 2;
+    }
+
+    get hitBoxOrigin() {
+        return { x: this.sprite.x + this.sprite.width / 2, y: this.sprite.y + this.sprite.height / 2 }
     }
 
     get originVector() {

@@ -17,3 +17,13 @@ const getFireVector = (source, target) => {
   const angle = Math.atan2(y, x);
   return angleToVector(angle);
 };
+
+
+const debugSprite = (sprite) => {
+        const graphics = new PIXI.Graphics();
+        graphics.moveTo(sprite.x, sprite.y);
+        graphics.beginFill(0xFFFFFF);
+        graphics.drawRect(0, 0, sprite.width, sprite.height);
+        graphics.endFill();
+        sprite.addChild(graphics);
+};

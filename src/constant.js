@@ -36,7 +36,7 @@ const TROMBI_SPRITE_PATH2 = 'src/assets/sprites/enemies/Trombi/Trombi_Phase_Deux
 const TROMBI_SPRITE_PATH3 = 'src/assets/sprites/enemies/Trombi/Trombi_Phase_Trois.png';
 
 const WORDSHOT_SQUARE = 30
-const ENEMY_SHOT_WIDTH = 10
+const ENEMY_SHOT_WIDTH = 15
 
 const BORDER_ROOM_SPRITE_PATH = 'src/assets/sprites/wall.png'
 
