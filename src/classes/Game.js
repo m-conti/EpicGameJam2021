@@ -56,6 +56,7 @@ class Game {
 
     spawnRandomEnemies() {
         const enemiesNumber = randomBetween(MIN_ENEMIES, MAX_ENEMIES)
+        this.enemiesTotal = enemiesNumber;
         for (let i = 0; i < enemiesNumber; ++i) {
             const coord = this.map.getRandomTunnelCoord();
             const newEnemy = new ENEMY_LIST[randomBetween(0, ENEMY_LIST.length)](0, 0);

@@ -78,6 +78,16 @@ class Map {
         return minimap;
     }
 
+    spawnElevator() {
+        let sprite = new PIXI.Sprite.from(ELEVATOR_SPRITE);
+        sprite.x = this.exit.x * ROOM_SIZE + (ROOM_SIZE / 2);
+        sprite.y = this.exit.y * ROOM_SIZE + (ROOM_SIZE / 2);
+        sprite.anchor.set(0.5);
+        sprite.scale.x = 0.1;
+        sprite.scale.y = 0.1;
+        return sprite;
+    }
+
     getRandomTunnelCoord() {
         return this.freeTunnels[randomBetween(0, this.freeTunnels.length)];
     }

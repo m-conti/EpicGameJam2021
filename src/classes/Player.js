@@ -88,10 +88,16 @@ class Player extends SpriteEntity {
             return false;
         return (
             (this.sprite.x <= 0 + this.sprite.width / 2 || this.sprite.y <= 0 + this.sprite.height / 2 ||
-                this.sprite.x >= ROOM_SIZE * window.game.map.dimensions - this.sprite.width / 2 ||
+                this.sprite.x >= ROOM_SIZE * window.Fthisgame.map.dimensions - this.sprite.width / 2 ||
                 this.sprite.y >= ROOM_SIZE * window.game.map.dimensions - this.sprite.height / 2)
         )
     }
+
+    isInElevator() {
+        return ((this.sprite.position.x <= game.map.elevator.x + game.map.elevator.width / 2 && this.sprite.position.x >= game.map.elevator.x - game.map.elevator.width / 2)
+            && (this.sprite.position.y <= game.map.elevator.y + game.map.elevator.height / 2 && this.sprite.position.y >= game.map.elevator.y - game.map.elevator.height / 2));
+    }
+
 
     collidesWithWall(wall) {
         const maxXWall = wall.x + ROOM_SIZE;
@@ -156,6 +162,8 @@ class Player extends SpriteEntity {
 
         this.sprite.position.set(this.sprite.x + x, this.sprite.y + y)
         this.move(x, y)
+        if (this.isInElevator() && (game.enemies.length <= (game.enemiesTotal - game.enemiesTotal / 3)))
+            console.log("IT WORKS");
 
         if (this.isOutOfBounds() ||
             window.game.entities?.some(entity => this.collidesWithEntity(entity))
