@@ -23,11 +23,11 @@ class ProjectilePhone extends EnemyProjectile {
 class EnemyPhone extends Enemy {
   constructor(x, y) {
     super(x, y);
-    this.fireRate = 28;
+    this.fireRate = 12;
     this.targetRange = 1000;
 
     this.isAnimate = true;
-    this.animationClock = 16;
+    this.animationClock = 12;
     this.textures = TEXTURES_PHONE;
     const enemySprite = new PIXI.Sprite(this.textures[0]);
     enemySprite.scale.x = 0.1;

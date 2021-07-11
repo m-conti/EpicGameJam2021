@@ -60,7 +60,7 @@ class WordPower extends Power {
     super();
     this.fireRate = 10;
     this.fireDistance = 120;
-    this.bulletSpeed = 10;
+    this.bulletSpeed = 22;
     this.reload = 0;
     this.Projectile = WordProjectile;
   }
