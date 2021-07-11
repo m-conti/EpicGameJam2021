@@ -12,4 +12,4 @@ function add_textures(name, filename, count)
 
 add_texture('settings', 'settings.png');
 add_textures('life', 'life', 4);
-add_texture('gameOver', 'cravate_orig.png')
+add_texture('gameOver', 'game_over.jpg')
