@@ -86,6 +86,7 @@ class Player extends SpriteEntity {
 
       this.health = Math.max(this.health - damage, 0);
 
+      window.game.hud?.drawLifeBar(this.health);
       if (!this.health) this.onDeath();
   }
 

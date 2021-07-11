@@ -42,16 +42,23 @@ class Hud {
     }
 
     drawLifeBar(health) {
-        let lifePercentage = new PIXI.Text(health + '%',  {
-            fontFamily: 'Comic Sans MS',
-            fontSize: 20,
-            fill: 0x990201,
-            fontWeight: 400,
-            wordWrap: true,
-            wordWrapWidth: 230,
-        })
-        lifePercentage.position.set(360, window.innerHeight - 50);
-        hud.addChild(lifePercentage)
+
+        const text = health + '%';
+        if (!this.lifePercentage) {
+            this.lifePercentage = new PIXI.Text(text,  {
+                fontFamily: 'Comic Sans MS',
+                fontSize: 20,
+                fill: 0x990201,
+                fontWeight: 400,
+                wordWrap: true,
+                wordWrapWidth: 230,
+            })
+        }
+        else {
+            this.lifePercentage.text = text;
+        }
+        this.lifePercentage.position.set(360, window.innerHeight - 50);
+        hud.addChild(this.lifePercentage)
 
         if (health === 0) {
             this.lifeBar = PIXI.Sprite.from(textures.life0);
