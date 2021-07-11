@@ -87,4 +87,5 @@ const RANDOM_TIPS = [
     "Don't forget to take your Mandatory Contraception Pills every morning!",
     "If there's a will, there's a way! Focus on your GOALS!",
     "I'm sure management will notice you working so hard and KILLING all those productivity issues.",
+    "lorem ipsum DOLOR sit amet.",
 ]
