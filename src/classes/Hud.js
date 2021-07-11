@@ -67,6 +67,7 @@ class Hud {
         } else {
             this.containerText.visible = true;
             this.commandsText.visible = true;
+            window.game.trombi.destroy();
         }
         this.isSettingsOpen = !this.isSettingsOpen;
     }

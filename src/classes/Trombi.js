@@ -47,11 +47,6 @@ class Trombi {
         app.stage.removeChild(this.trombi);
     }
 
-    refresh() {
-        this.helpText.text = this.getHelpText();
-        this.sprite = this.getSprite();
-    }
-
     getHelpText() {
         switch (game.player.floor) {
             case FLOORS.START: return "Hi I'm Trombi! It looks like you're new here! Let me help you get acquainted with your new family!";
