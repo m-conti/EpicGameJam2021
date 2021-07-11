@@ -163,6 +163,18 @@ class Hud {
         this.question.click = function (){  
           location.reload();
         }
+
+        this.credit = new PIXI.Text("Made with -love +PRODUCTIVITY by Lola, Louise, Matthieu, Mattia, Stan and Tim!", {
+            fontFamily: 'Comic Sans MS',
+            fill: "#000000",
+            fontSize: 28,
+            stroke: "#ffffff",
+            strokeThickness: 5,
+        })
+        this.credit.anchor.set(0.5);
+        this.credit.x = window.innerWidth / 2;
+        this.credit.y = window.innerHeight - 200;
+        hud.addChild(this.credit);
     }
 
 }
