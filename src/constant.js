@@ -24,6 +24,8 @@ const WALL_SPRITE_PATH = 'src/assets/sprites/wall.png'
 const BACKGROUND_COLOR = 0xfac049
 const PLAYER_SPRITE_PATH = 'src/assets/sprites/cravate.png'
 const PLAYER_SPRITE_PATH2 = 'src/assets/sprites/cravate3.png'
+const PLAYER_SPRITE_DEFAULT_PATH = 'src/assets/sprites/cravate2.png'
+const PLAYER_PATTERN_PATH = 'src/assets/sprites/pattern.jpg'
 
 const TROMBI_X = innerWidth - 200;
 const TROMBI_Y =  innerHeight - innerHeight / 2;
