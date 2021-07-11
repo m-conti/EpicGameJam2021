@@ -1,4 +1,5 @@
 const MUSIC_PATH = 'src/assets/audio/Tromby_Music.mp3'
+const GAME_OVER_MUSIC_AUDIO = 'src/assets/audio/gameover.mp3'
 
 class Game {
     constructor(app) {
@@ -13,16 +14,18 @@ class Game {
         this.loop = this.loop.bind(this);
         this.isOver = false;
         this.music = new Audio(MUSIC_PATH);
+        this.music.loop = true;
+        this.gameoverMusic = new Audio(GAME_OVER_MUSIC_AUDIO);
     }
-
+    
     get enemies() {
         return this.entities.filter((entity) => entity instanceof Enemy);
     }
-
+    
     addEntity(entity) {
         this.entities.push(entity);
     }
-
+    
     spawnPlayer() {
         this.map.drawMap();
         container.addChild(this.map.mapContainer);
@@ -30,7 +33,7 @@ class Game {
         this.player.respawn();
         this.spawnRandomEnemies();
         this.music.play();
-        this.music.loop = true;
+        this.gameoverMusic.pause()
     }
 
     onEnemyDeath() {
@@ -63,6 +66,8 @@ class Game {
         this.trombi.classicGameOver();
         this.isOver = true;
         this.music.pause()
+        this.gameoverMusic.muted = this.music.muted;
+        this.gameoverMusic.play();
     }
 
     loop(timeDelta) {

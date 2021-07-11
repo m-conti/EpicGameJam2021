@@ -11,7 +11,8 @@ class ProjectileCV extends EnemyProjectile {
 
     this.sprite.position.set(this.x, this.y);
     const audio = new Audio('src/assets/audio/fire/cv.wav');
-    audio.volume = 0.1
+    audio.volume = 0.06
+    audio.muted = window.game.music.muted;
     audio.play();
   }
 }
