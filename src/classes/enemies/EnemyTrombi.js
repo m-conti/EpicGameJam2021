@@ -13,7 +13,7 @@ class ProjectileTrombi extends EnemyProjectile {
 
   onCollide(elementCollided) {
     elementCollided.health -= this.damage;
-    window.game.hud.drawLifeBar(this.health);
+    window.game.hud.drawLifeBar(window.game.player.health);
     this.remove();
     if (window.game.player.health < 0)
       window.game.gameOverGood()
