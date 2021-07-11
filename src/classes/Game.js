@@ -10,7 +10,7 @@ class Game {
     this.inputHandler = new InputHandler(app);
     this.trombi = new Trombi();
     this.loop = this.loop.bind(this);
-    this.gameOver = false;
+    this.isOver = false;
   }
 
   get enemies() {
@@ -60,8 +60,12 @@ class Game {
     this.trombi.spawn();
   }
 
+  gameOver() {
+    this.isOver = true;
+  }
+
   loop(timeDelta) {
-    if (this.gameOver) return;
+    if (this.isOver) return;
     for (const entity of this.entities) {
       entity.tick(timeDelta);
     }
