@@ -1,6 +1,8 @@
 const MUSIC_PATH = 'src/assets/audio/Tromby_Music.mp3'
 const GAME_OVER_MUSIC_AUDIO = 'src/assets/audio/gameover.mp3'
 const music = new Audio(MUSIC_PATH);
+const MIN_ENEMIES = 10;
+const MAX_ENEMIES = 20;
 
 class Game {
     constructor(app) {
@@ -31,7 +33,6 @@ class Game {
     }
 
     spawnFurnitures() {
-        console.log("furnitures", this.furnitures)
         for (const furniture of this.furnitures) {
             this.addEntity(furniture);
             furniture.spawn();
@@ -40,7 +41,6 @@ class Game {
 
     spawnPlayer() {
         this.floor = FLOORS[this.player.currentFloor];
-        console.log(this.floor)
         this.map.initializeMap(this);
         container.addChild(this.map.mapContainer);
         this.player.x = -400;
@@ -60,9 +60,8 @@ class Game {
     }
 
     spawnRandomEnemies() {
-        const enemiesNumber = randomBetween(MIN_ENEMIES, MAX_ENEMIES)
-        this.enemiesTotal = enemiesNumber;
-        for (let i = 0; i < enemiesNumber; ++i) {
+        this.enemiesNumber = randomBetween(MIN_ENEMIES, MAX_ENEMIES);
+        for (let i = 0; i < this.enemiesNumber; ++i) {
             const coord = this.map.getRandomTunnelCoord();
             const newEnemy = new ENEMY_LIST[randomBetween(0, ENEMY_LIST.length)](0, 0);
             const x = coord.x * ROOM_SIZE + randomBetween(1, ROOM_SIZE - newEnemy.width);
@@ -71,6 +70,10 @@ class Game {
             this.addEntity(newEnemy);
             newEnemy.spawn();
         }
+    }
+
+    getEnemiesTotal() {
+        return this.enemiesNumber;
     }
 
     drawHud() {
@@ -93,9 +96,6 @@ class Game {
     reloadLevel() {
         this.player.currentFloor += 1;
         this.hud.drawFloorText(FLOORS[this.player.currentFloor]);
-
-        console.log(this.player.currentFloor)
-
         this.removeAllEntities();
         this.map.emptyMap();
         this.spawnPlayer();

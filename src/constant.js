@@ -52,8 +52,6 @@ const CORPORATE_TEXT = [
 const LOVE_TEXT = [
     "Love"
 ]
-const MIN_ENEMIES = 10;
-const MAX_ENEMIES = 20;
 
 const ENEMY_LIST = [
     EnemyCV,

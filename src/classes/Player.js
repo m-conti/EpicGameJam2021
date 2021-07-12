@@ -162,8 +162,12 @@ class Player extends SpriteEntity {
 
         this.sprite.position.set(this.sprite.x + x, this.sprite.y + y)
         this.move(x, y)
-        if (game.enemies.length <= game.enemiesTotal - 1)//this.isInElevator() && (game.enemies.length <= (game.enemiesTotal - game.enemiesTotal / 3)))
+        if (game.enemies.length <= game.getEnemiesTotal() - 1)//this.isInElevator() && (game.enemies.length <= (game.enemiesTotal - game.enemiesTotal / 3)))
+        {
+            console.log(game.enemies.length, game.getEnemiesTotal())
+
             window.game.reloadLevel()
+        }
 
         if (this.isOutOfBounds() ||
             window.game.entities?.some(entity => this.collidesWithEntity(entity))
