@@ -9,11 +9,11 @@ const INPUT_KEYS = {
 };
 
 const FLOORS = {
-    START: 'Ground Floor - Reception',
-    IT: '1st Floor - IT Department',
-    MARKETING: '2nd Floor - Marketing Department',
-    HR: '3rd Floor - HR Department',
-    END: '4th Floor - Big Boss',
+    '0': 'Ground Floor - Reception',
+    '1': '1st Floor - IT Department',
+    '2': '2nd Floor - Marketing Department',
+    '3': '3rd Floor - HR Department',
+    '4': '4th Floor - Big Boss',
 }
 
 const PLAYER_WIDTH = 1

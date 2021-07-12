@@ -15,7 +15,6 @@ const MAP_FLOORS = {
 class Map {
     constructor(game) {
         this.theme = "";
-
         this.walls = [];
         this.dimensions = 15;
         //this.initializeMap(game);

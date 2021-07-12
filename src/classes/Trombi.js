@@ -47,6 +47,9 @@ class Trombi {
     }
 
     destroy() {
+        this.trombi.removeChild(this.sprite);
+        this.trombi.removeChild(this.textBubble);
+        this.trombi.removeChild(this.textTriangle);
         app.stage.removeChild(this.trombi);
     }
 
@@ -55,16 +58,16 @@ class Trombi {
     }
 
     getHelpText() {
-        switch (game.player.floor) {
-            case FLOORS.START:
+        switch (game.floor) {
+            case FLOORS[0]:
                 return "Hi I'm Trombi! It looks like you're new here! Let me help you get acquainted with your new family!";
-            case FLOORS.IT:
+            case FLOORS[1]:
                 return "It looks like the IT team is in a bit of a rush at the moment! Tread carefully, you might encounter some bugs!";
-            case FLOORS.MARKETING:
+            case FLOORS[2]:
                 return "It looks like you need to pay to stop seeing the pop-up ads, you can use my credit card number: 4578 4562 5643 9173";
-            case FLOORS.HR:
+            case FLOORS[3]:
                 return "It looks like you're with our HR team, don't worry they really nice and competent people, just do as they say!";
-            case FLOORS.END:
+            case FLOORS[4]:
                 return "MWAHAHA!!! It looks like you finally arrived to the last floor! I bet you're really surprised it's me the boss! I WILL CRUSH YOU!";
 
             default:
@@ -73,12 +76,12 @@ class Trombi {
     }
 
     getSprite() {
-        switch (game.player.floor) {
-            case FLOORS.START, FLOORS.IT:
+        switch (game.floor) {
+            case FLOORS[0], FLOORS[1]:
                 return PIXI.Sprite.from(TROMBI_SPRITE_PATH1);
-            case FLOORS.MARKETING, FLOORS.HR:
+            case FLOORS[2], FLOORS[3]:
                 return PIXI.Sprite.from(TROMBI_SPRITE_PATH2);
-            case FLOORS.END:
+            case FLOORS[4]:
                 return PIXI.Sprite.from(TROMBI_SPRITE_PATH3);
 
             default:

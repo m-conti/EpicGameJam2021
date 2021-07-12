@@ -5,7 +5,7 @@ class Player extends SpriteEntity {
 
         this.typeEntity = ENTITY_TYPES.PLAYER
         this.moveSpeed = 15;
-        this.floor = FLOORS.START;
+        this.currentFloor = 0;
         this.health = 100;
 
         this.powers = [

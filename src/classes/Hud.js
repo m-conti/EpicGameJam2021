@@ -1,7 +1,6 @@
 class Hud {
     constructor(player, music) {
         this.hud = new PIXI.Container();
-        this.floor = player.floor;
         this.life = player.health;
         this.isSettingsOpen = false;
         this.music = music;
@@ -25,13 +24,6 @@ class Hud {
             wordWrapWidth: 230
         })
 
-        this.floorText = new PIXI.Text(this.floor, {
-            fontFamily: 'Comic Sans MS',
-            fontSize: 20,
-            fill: 0x990201,
-            fontWeight: 400,
-        })
-
         this.currentTextureLifeIndex = 4;
         this.drawSetting();
     }
@@ -41,6 +33,7 @@ class Hud {
         this.drawLifeBar(player.health);
         this.drawNbEnemiesLeft(enemies.length);
         this.drawSetting();
+        this.drawFloorText(game.floor);
     }
 
     drawSetting() {
@@ -90,7 +83,6 @@ class Hud {
         hud.addChild(this.restart);
         hud.addChild(this.soundOn);
         hud.addChild(this.settings);
-        hud.addChild(this.floorText);
     }
 
     handleSettings() {
@@ -251,5 +243,19 @@ class Hud {
         this.credit.x = window.innerWidth / 2;
         this.credit.y = window.innerHeight - 200;
         hud.addChild(this.credit);
+    }
+
+    drawFloorText(floor) {
+        if (!this.floorText) {
+            this.floorText = new PIXI.Text(floor, {
+                fontFamily: 'Comic Sans MS',
+                fontSize: 19,
+                fill: 0x990200,
+                fontWeight: 399,
+            });
+            hud.addChild(this.floorText);
+        } else {
+            this.floorText.text = floor;
+        }
     }
 }

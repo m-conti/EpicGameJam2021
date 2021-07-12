@@ -20,6 +20,7 @@ class Game {
         this.music.loop = true;
         this.gameoverMusic = new Audio(GAME_OVER_MUSIC_AUDIO);
     }
+
     
     get enemies() {
         return this.entities.filter((entity) => entity instanceof Enemy);
@@ -38,6 +39,8 @@ class Game {
     }
 
     spawnPlayer() {
+        this.floor = FLOORS[this.player.currentFloor];
+        console.log(this.floor)
         this.map.initializeMap(this);
         container.addChild(this.map.mapContainer);
         this.player.x = -400;
@@ -83,15 +86,21 @@ class Game {
             entity.remove();
         })
         container.removeChild(this.player.sprite);
+        this.trombi.destroy();
+
     }
 
     reloadLevel() {
-        this.player.floor = FLOORS.IT;
+        this.player.currentFloor += 1;
+        this.hud.drawFloorText(FLOORS[this.player.currentFloor]);
+
+        console.log(this.player.currentFloor)
 
         this.removeAllEntities();
         this.map.emptyMap();
         this.spawnPlayer();
         this.entities.push(this.player);
+        this.spawnTrombi();
     }
 
     gameOver() {
