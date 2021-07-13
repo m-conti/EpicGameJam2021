@@ -162,7 +162,7 @@ class Player extends SpriteEntity {
 
         this.sprite.position.set(this.sprite.x + x, this.sprite.y + y)
         this.move(x, y)
-        if (this.isInElevator() && (game.enemies.length <= (game.enemiesTotal - 1))) {
+        if (this.isInElevator() && (game.enemies.length <= game.getEnemiesTotal() - 1)) {
             window.game.reloadLevel();
         }
 

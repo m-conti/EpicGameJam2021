@@ -48,8 +48,10 @@ class Game {
         this.player.spawn();
         this.player.respawn();
         this.spawnRandomEnemies();
-        this.boss = new EnemyTrombi(this.map.exit.x * ROOM_SIZE + (ROOM_SIZE /2), this.map.exit.y * ROOM_SIZE + (ROOM_SIZE /2))
-        this.boss.spawn();
+        if (this.player.currentFloor == 4) {
+            this.boss = new EnemyTrombi(this.map.exit.x * ROOM_SIZE + (ROOM_SIZE /2), this.map.exit.y * ROOM_SIZE + (ROOM_SIZE /2))
+            this.boss.spawn();
+        }
         this.music.play();
         this.gameoverMusic.pause()
         this.spawnFurnitures();
@@ -100,7 +102,9 @@ class Game {
         this.map.emptyMap();
         this.spawnPlayer();
         this.entities.push(this.player);
-        this.spawnTrombi();
+        if (this.player.currentFloor < 4) {
+            this.spawnTrombi();
+        }
     }
 
     gameOver() {
@@ -133,6 +137,8 @@ class Game {
             entity.tick(timeDelta);
         }
         this.trombi.tick(timeDelta);
-        this.boss.tick(timeDelta);
+        if (this.player.currentFloor == 4) {
+            this.boss.tick(timeDelta);
+        }
     }
 }

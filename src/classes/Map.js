@@ -34,7 +34,9 @@ class Map {
         this.generateMap();
         this.minimap = this.drawMinimap();
         this.mapContainer = this.drawMap(game);
-        this.elevator = this.spawnElevator();
+        if (game.player.currentFloor < 4) {
+            this.elevator = this.spawnElevator();
+        }
         this.mapContainer.addChild(this.elevator);
         window.app.stage.addChild(this.minimap);
     }
