@@ -24,7 +24,7 @@ class Map {
         this.wall = [];
 
         container.removeChild(this.mapContainer);
-        window.app.stage.removeChild(this.minimap);
+        //window.app.stage.removeChild(this.minimap);
         window.game.furnitures = [];
     }
 
@@ -38,7 +38,7 @@ class Map {
             this.elevator = this.spawnElevator();
         }
         this.mapContainer.addChild(this.elevator);
-        window.app.stage.addChild(this.minimap);
+        //window.app.stage.addChild(this.minimap);
     }
 
     drawMap(game) {

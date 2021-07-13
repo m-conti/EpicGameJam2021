@@ -77,13 +77,14 @@ class Trombi {
 
     getSprite() {
         switch (game.player.currentFloor) {
-            case 0, 1:
+            case 0:
+            case 1:
                 return PIXI.Sprite.from(TROMBI_SPRITE_PATH1);
-            case 2, 3:
+            case 2:
+            case 3:
                 return PIXI.Sprite.from(TROMBI_SPRITE_PATH2);
             case 4:
                 return PIXI.Sprite.from(TROMBI_SPRITE_PATH3);
-
             default:
                 return PIXI.Sprite.from(TROMBI_SPRITE_PATH1);
         }
