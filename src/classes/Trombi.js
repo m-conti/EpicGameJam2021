@@ -58,16 +58,16 @@ class Trombi {
     }
 
     getHelpText() {
-        switch (game.floor) {
-            case FLOORS[0]:
+        switch (game.player.currentFloor) {
+            case 0:
                 return "Hi I'm Trombi! It looks like you're new here! Let me help you get acquainted with your new family!";
-            case FLOORS[1]:
+            case 1:
                 return "It looks like the IT team is in a bit of a rush at the moment! Tread carefully, you might encounter some bugs!";
-            case FLOORS[2]:
-                return "It looks like you need to pay to stop seeing the pop-up ads, you can use my credit card number: 4578 4562 5643 9173";
-            case FLOORS[3]:
+            case 2:
+                return "It looks like you reached our marketing team, if you wanna help your family a bit feel free to twint us at: 078 123 45 67";
+            case 3:
                 return "It looks like you're with our HR team, don't worry they really nice and competent people, just do as they say!";
-            case FLOORS[4]:
+            case 4:
                 return "MWAHAHA!!! It looks like you finally arrived to the last floor! I bet you're really surprised it's me the boss! I WILL CRUSH YOU!";
 
             default:
@@ -76,12 +76,12 @@ class Trombi {
     }
 
     getSprite() {
-        switch (game.floor) {
-            case FLOORS[0], FLOORS[1]:
+        switch (game.player.currentFloor) {
+            case 0, 1:
                 return PIXI.Sprite.from(TROMBI_SPRITE_PATH1);
-            case FLOORS[2], FLOORS[3]:
+            case 2, 3:
                 return PIXI.Sprite.from(TROMBI_SPRITE_PATH2);
-            case FLOORS[4]:
+            case 4:
                 return PIXI.Sprite.from(TROMBI_SPRITE_PATH3);
 
             default:

@@ -88,9 +88,9 @@ class Game {
         this.entities.forEach(entity => {
             entity.remove();
         })
+        this.entities = [];
         container.removeChild(this.player.sprite);
         this.trombi.destroy();
-
     }
 
     reloadLevel() {
